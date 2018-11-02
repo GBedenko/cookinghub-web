@@ -13,6 +13,11 @@ import Ingrediants from './components/recipe/ingrediants/Ingrediants';
 import PreperationSteps from './components/recipe/preperationsSteps/PreperationSteps';
 import RecipeVideo from './components/recipe/recipeVideo/RecipeVideo'
 import RecipeSoundFile from './components/recipe/recipeSoundFile/RecipeSoundFile'
+import UserDetails from './components/userDashboard/userDetails/UserDetails';
+import UserNotifications from './components/userDashboard/userNotifications/UserNotifications';
+import UserStatistics from './components/userDashboard/userStatistics/UserStatistics';
+import UserRecipes from './components/userDashboard/userRecipes/UserRecipes';
+import UserFavouriteRecipes from './components/userDashboard/userFavouriteRecipes/UserFavouriteRecipes';
 
 class App extends Component {
 
@@ -28,15 +33,28 @@ class App extends Component {
 
   render() {
     // Render the App component and the other components it requires
+    // return (
+    //   <div>
+    //     <div class="recipe">
+    //       <Header title="Yummy Recipes" logo={cooking_logo} onSearchClick={this.onSearch} backgroundColor="#339FFF" />
+    //       <RecipeHeader recipe_image={cooking_logo}/>
+    //       <Ingrediants/>  
+    //       <PreperationSteps/>  
+    //       <RecipeVideo/>
+    //       <RecipeSoundFile/>               
+    //     </div>
+    //   </div>
+    // );
+
     return (
       <div>
         <div class="recipe">
           <Header title="Yummy Recipes" logo={cooking_logo} onSearchClick={this.onSearch} backgroundColor="#339FFF" />
-          <RecipeHeader recipe_image={cooking_logo}/>
-          <Ingrediants/>  
-          <PreperationSteps/>  
-          <RecipeVideo/>
-          <RecipeSoundFile/>               
+          <UserDetails img={cooking_logo}/>
+          <UserNotifications/>
+          <UserStatistics/>
+          <UserRecipes/>
+          <UserFavouriteRecipes/>
         </div>
       </div>
     );
