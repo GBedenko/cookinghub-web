@@ -9,10 +9,13 @@ import cooking_logo from './img/cooking_logo.png';
 // Import other component this one will use
 import Header from './components/header/Header';
 import RecipeHeader from './components/recipe/recipeHeader/RecipeHeader'
-import Ingrediants from './components/recipe/ingrediants/Ingrediants';
+import Ingredients from './components/recipe/ingredients/Ingredients';
 import PreperationSteps from './components/recipe/preperationsSteps/PreperationSteps';
 import RecipeVideo from './components/recipe/recipeVideo/RecipeVideo'
 import RecipeSoundFile from './components/recipe/recipeSoundFile/RecipeSoundFile'
+import RecipeCommentBox from './components/recipe/recipeFooter/recipeCommentBox/RecipeCommentBox';
+import RecipeAboutAuthor from './components/recipe/recipeFooter/recipeAboutAuthor/RecipeAboutAuthor';
+import RecipeSharingOptions from './components/recipe/recipeFooter/recipeSharingOptions/RecipeSharingOptions';
 
 class App extends Component {
 
@@ -33,10 +36,13 @@ class App extends Component {
         <div class="recipe">
           <Header title="Yummy Recipes" logo={cooking_logo} onSearchClick={this.onSearch} backgroundColor="#339FFF" />
           <RecipeHeader recipe_image={cooking_logo}/>
-          <Ingrediants/>  
+          <Ingredients/>  
           <PreperationSteps/>  
           <RecipeVideo/>
-          <RecipeSoundFile/>               
+          <RecipeSoundFile/>
+          <RecipeCommentBox/>  
+          <RecipeAboutAuthor/>   
+          <RecipeSharingOptions/>     
         </div>
       </div>
     );

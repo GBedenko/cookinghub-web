@@ -21,7 +21,7 @@ class RecipeHeader extends Component {
                 blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
                 blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
                 </p>
-                <img src={this.props.recipe_image} style={{width: 100, height: 100}}/>
+                <img src={this.props.recipe_image} style={{width: 100, height: 100}} alt="blah"/>
             </div>
         );
     }
