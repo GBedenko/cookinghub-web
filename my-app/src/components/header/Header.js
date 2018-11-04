@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './Header.css';
+import SearchBox from './searchBox/SearchBox'
+import LoginBox from './loginBox/LoginBox'
 
 class Header extends Component {
 
@@ -41,12 +43,8 @@ class Header extends Component {
             <img src={this.props.logo} alt="React logo" />
             <a href="#default" className="logo"> {this.props.title}</a>
             <div className="header-right">
-                <div className="search-container">
-                    <form action="">
-                        <input type="text" placeholder="Search.." name="txtSearch" onChange={this.handleInputChange} />
-                        <button type="submit" onClick={this.handleSearchSubmit}>Search</button>
-                    </form>
-                </div>
+                <SearchBox/>
+                <LoginBox/>
             </div>
         </div>
         );
