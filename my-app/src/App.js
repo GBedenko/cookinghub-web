@@ -31,6 +31,19 @@ class App extends Component {
 
   render() {
     // Render the App component and the other components it requires
+    // return (
+    //   <div>
+    //     <div class="recipe">
+    //       <Header title="Yummy Recipes" logo={cooking_logo} onSearchClick={this.onSearch} backgroundColor="#339FFF" />
+    //       <RecipeHeader recipe_image={cooking_logo}/>
+    //       <Ingrediants/>  
+    //       <PreperationSteps/>  
+    //       <RecipeVideo/>
+    //       <RecipeSoundFile/>               
+    //     </div>
+    //   </div>
+    // );
+
     return (
       <div>
         <div class="recipe">
