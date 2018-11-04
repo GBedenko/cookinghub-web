@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Ingrediants extends Component {
+class Ingredients extends Component {
   
     constructor(props){
         super(props);
@@ -13,7 +13,7 @@ class Ingrediants extends Component {
     render() {
 
         return (
-            <div className="ingrediants">
+            <div className="Ingredients">
                 <h3>Ingrediants:</h3>
                 <ul>
                     <li>...</li>
@@ -26,4 +26,4 @@ class Ingrediants extends Component {
         );
     }
 }
-export default Ingrediants;
+export default Ingredients;
