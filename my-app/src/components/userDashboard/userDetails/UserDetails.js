@@ -21,7 +21,7 @@ class UserDetails extends Component {
                     <li>...</li>
                     <li>...</li>
                 </ul>
-                <img src={this.props.img} style={{width: 50, height: 50}}/>
+                <img src={this.props.img} alt="User Profile" style={{width: 50, height: 50}}/>
             </div>
         );
     }

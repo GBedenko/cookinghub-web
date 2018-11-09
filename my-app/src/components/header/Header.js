@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+
 import './Header.css';
+
 import SearchBox from './searchBox/SearchBox'
 import LoginBox from './loginBox/LoginBox'
+
+import cooking_logo from './img/cooking_logo.png'
 
 class Header extends Component {
 
@@ -40,7 +44,7 @@ class Header extends Component {
         return (
         //this is JSX code which is very similar to HTML we already know 
         <div className="header" style={this.state.headerStyle}>
-            <img src={this.props.logo} alt="React logo" />
+            <img src={cooking_logo} alt="Yummy Recipes Logo" />
             <a href="#default" className="logo"> {this.props.title}</a>
             <div className="header-right">
                 <SearchBox/>
