@@ -7,17 +7,19 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Header from './components/header/Header'
 import Recipe from './components/recipe/Recipe'
 import UserDashboard from './components/userDashboard/UserDashboard'
-import LoginBox from './components/header/loginBox/LoginBox';
+import Login from './components/login/Login'
+import Signup from './components/signup/Signup'
 
 
 ReactDOM.render(<Router>
                     <React.Fragment>
                         <Header title="Yummy Recipes"/>
-                        <Route path="/" component={Recipe}/>
+                        <Route path="/" exact component={Recipe}/>
                         <Route path="/home" component={Recipe}/>
-                        <Route path="/recipes" component={Recipe}/>
-                        <Route path="/recipes/:id" component={Recipe}/>
+                        <Route path="/recipe" component={Recipe}/>
                         <Route path="/user" component={UserDashboard}/>
+                        <Route path="/login" component={Login}/>
+                        <Route path="/register" component={Signup}/>
                     </React.Fragment>
                 </Router>, document.getElementById('root'));
 
