@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import './RecipeHeader.css';
 
-<<<<<<< HEAD
-=======
-// const divStyle = {
-//     display: 'flex',
-//     alignItems: 'center'
-// };
-
->>>>>>> c25c6059d60b56b3c3211c846166eb57a6b4183d
 class RecipeHeader extends Component {
   
     constructor(props){
