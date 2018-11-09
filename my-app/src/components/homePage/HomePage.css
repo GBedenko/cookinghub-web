@@ -1,0 +1,13 @@
+.row {
+    display:flex;
+    flex-direction:row;
+}
+
+.box {    
+    margin-left: 100px;
+}
+
+.HomePage {
+    margin: auto;
+    width: 100%;
+}
