@@ -12,6 +12,7 @@ class Header extends Component {
     constructor(props){
         // Uses parent 'Component' properties variables
         super(props);
+        console.log(props)
         
         // Ensures that the functions understand what 'this' object is
         this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
@@ -39,19 +40,29 @@ class Header extends Component {
         this.setState({searchTerm : event.target.value})
     }
 
+    checkIfRequired(path) {
+
+        return !(/login$/g.test(path))
+    }
+
     render() {
 
         return (
-        //this is JSX code which is very similar to HTML we already know 
-        <div className="header" style={this.state.headerStyle}>
-            <img src={cooking_logo} alt="Yummy Recipes Logo" />
-            <a href="#default" className="logo"> {this.props.title}</a>
-            <div className="header-right">
-                <SearchBox/>
-                <LoginBox/>
-            </div>
-        </div>
-        );
+
+            <React.Fragment>
+                {this.checkIfRequired(this.props.location.pathname) && 
+                
+                <div className="header" style={this.state.headerStyle}>
+                    <img src={cooking_logo} alt="Yummy Recipes Logo" />
+                    <a href="#default" className="logo"> {this.props.title}</a>
+                    <div className="header-right">
+                        <SearchBox/>
+                        <LoginBox/>
+                    </div>
+                </div> }
+
+            </React.Fragment>
+        )            
     }
 }
 export default Header;

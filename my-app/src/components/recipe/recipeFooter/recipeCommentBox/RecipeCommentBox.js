@@ -6,6 +6,7 @@ class recipeCommentBox extends Component {
         super(props);
 
         this.state = {
+
         };
         
     }
@@ -16,7 +17,6 @@ class recipeCommentBox extends Component {
 
             <div className="recipeCommentBox">
                 <h4>Comment on this Recipe:</h4>
-                <textarea rows="4" cols="50" name="comment" form="usrform">Enter text here...</textarea>
             </div>
         );
     }
