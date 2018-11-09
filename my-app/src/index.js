@@ -13,7 +13,7 @@ import Signup from './components/signup/Signup'
 
 ReactDOM.render(<Router>
                     <React.Fragment>
-                        <Header title="Yummy Recipes"/>
+                        <Route path="/" component={Header}/>
                         <Route path="/" exact component={Recipe}/>
                         <Route path="/home" component={Recipe}/>
                         <Route path="/recipe" component={Recipe}/>
