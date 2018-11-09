@@ -1,12 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import Header from './components/header/Header'
+import Recipe from './components/recipe/Recipe'
+import UserDashboard from './components/userDashboard/UserDashboard'
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
+import cooking_logo from './img/cooking_logo.png'
+
+ReactDOM.render(<Router>
+                    <React.Fragment>
+                        <Header title="Yummy Recipes" logo={cooking_logo}/>
+                        <Route path="/home" component={Recipe}/>
+                        <Route path="/recipes" component={Recipe}/>
+                        <Route path="recipes/:id" component={Recipe}/>
+                        <Route path="users/:id" component={UserDashboard}/>
+                    </React.Fragment>
+                </Router>, document.getElementById('root'));
+                
 serviceWorker.unregister();
