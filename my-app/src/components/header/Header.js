@@ -55,7 +55,7 @@ class Header extends Component {
                     <a href="/"><img src={cooking_logo} alt="Yummy Recipes Logo" /></a>                    
                     <a href="/">Yummy Recipes - Genaro Bedenko</a>
                     <ul id="navigation-menu">
-                        <li><a href="/recipes">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li><a href="/createRecipe">Create a Recipe</a></li>
                         <li><a href="/user">My Recipes and Lists</a></li>
                     </ul>

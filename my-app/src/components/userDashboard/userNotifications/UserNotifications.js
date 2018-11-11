@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './UserNotifications.css'
 
 class UserNotifications extends Component {
   
@@ -16,11 +17,20 @@ class UserNotifications extends Component {
 
             <div className="UserNotifications">
                 <h4>Notifications:</h4>
-                <ul>
-                    <li>...</li>
-                    <li>...</li>
-                    <li>...</li>
-                </ul>
+                <table>
+                    <tr>
+                        <th>Summary</th>
+                        <th>Recipe Link</th>
+                    </tr>
+                    <tr>
+                        <td>A user you follow uploaded a recipe</td>
+                        <td><a href="#">Recipe</a></td>
+                    </tr>
+                    <tr>
+                        <td>A user you follow uploaded a recipe</td>
+                        <td><a href="#">Recipe</a></td>
+                    </tr>
+                </table>
             </div>
         );
     }

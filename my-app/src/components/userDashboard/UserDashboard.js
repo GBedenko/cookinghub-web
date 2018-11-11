@@ -5,6 +5,7 @@ import UserFavouriteRecipes from './userFavouriteRecipes/UserFavouriteRecipes'
 import UserNotifications from './userNotifications/UserNotifications'
 import UserRecipes from './userRecipes/UserRecipes'
 import UserStatistics from './userStatistics/UserStatistics'
+import UserCustomList from './userCustomLists/UserCustomList';
 
 
 class UserDashboard extends Component {
@@ -20,11 +21,11 @@ class UserDashboard extends Component {
 
         return (
             <div className="UserDashboard">
-                <UserDetails />
-                <UserFavouriteRecipes/>  
-                <UserNotifications/>  
+                <h1>Username's Dashboard:</h1>
                 <UserRecipes/>
-                <UserStatistics/>
+                <UserNotifications/>  
+                <UserFavouriteRecipes/> 
+                <UserCustomList/>  
             </div>
         );
     }
