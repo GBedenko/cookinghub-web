@@ -10,6 +10,7 @@ import Recipe from './components/recipe/Recipe'
 import UserDashboard from './components/userDashboard/UserDashboard'
 import Login from './components/login/Login'
 import Signup from './components/signup/Signup'
+import CreateRecipe from './components/createRecipe/CreateRecipe';
 
 
 ReactDOM.render(<Router>
@@ -20,6 +21,7 @@ ReactDOM.render(<Router>
                         <Route path="/user" component={UserDashboard}/>
                         <Route path="/login" component={Login}/>
                         <Route path="/register" component={Signup}/>
+                        <Route path="/createRecipe" component={CreateRecipe}/>
                     </React.Fragment>
                 </Router>, document.getElementById('root'));
 
