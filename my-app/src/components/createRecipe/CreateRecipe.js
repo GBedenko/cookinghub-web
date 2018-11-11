@@ -16,7 +16,7 @@ class CreateRecipe extends Component {
         return (
 
             <div className="CreateRecipe">
-                <form>
+                <form id="createRecipeForm">
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Name:</label>
                         <br/>
@@ -61,6 +61,10 @@ class CreateRecipe extends Component {
                         <label for="exampleFormControlFile1">Preperation Steps:</label>
                         <p>1.</p><textarea class="form-control" rows="3"></textarea>
                         <br/>
+                        <label for="exampleFormControlFile1">Step Image:</label>
+                        <br/>
+                        <input type="file" class="form-control-file"/>
+                        <br/>
                         <small>Press + to add another form field :)</small>
                     </div>
                     <div class="form-group">
@@ -72,8 +76,11 @@ class CreateRecipe extends Component {
                         <label for="exampleFormControlFile1">Audio File:</label>
                         <br/>
                         <input type="file" class="form-control-file"/>
+                        <br/>
                     </div>
                 </form>
+                <button type="submit" form="createRecipeForm" value="publish_recipe">Publish Recipe</button>
+                <button type="submit" form="createRecipeForm" value="save_recipe">Save Recipe for Later (Won't be published)</button>
             </div>
         );
     }
