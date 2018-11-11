@@ -7,20 +7,15 @@ class Ingredients extends Component {
 
         this.state = {
         };
-        
     }
-
+    
     render() {
 
         return (
             <div className="Ingredients">
-                <h3>Ingrediants:</h3>
+                <h3>Ingredients:</h3>
                 <ul>
-                    <li>...</li>
-                    <li>...</li>
-                    <li>...</li>
-                    <li>...</li>
-                    <li>...</li>
+                    {this.props.ingredients_list}
                 </ul>
             </div>
         );
