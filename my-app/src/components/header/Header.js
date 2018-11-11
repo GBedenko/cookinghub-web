@@ -20,8 +20,7 @@ class Header extends Component {
 
         // Maintains the state of the header's attributes, including the value of the search field in the header
         this.state = {
-            searchTerm : '',
-            headerStyle:{backgroundColor:this.props.backgroundColor} 
+            searchTerm : ''
         }
     }
 
@@ -52,13 +51,21 @@ class Header extends Component {
             <React.Fragment>
                 {this.checkIfRequired(this.props.location.pathname) && 
                 
-                <div className="header" style={this.state.headerStyle}>
+                <div className="Header">
                     <img src={cooking_logo} alt="Yummy Recipes Logo" />
-                    <a href="#default" className="logo"> {this.props.title}</a>
-                    <div className="header-right">
+                    <a href="/" className="logo">Yummy Recipes - Genaro Bedenko</a>
+                    <ul id="navigation-menu">
+                        <li><a href="/recipes">Home</a></li>
+                        <li><a href="/createRecipe">Create a Recipe</a></li>
+                        <li><a href="/user">My Recipes and Lists</a></li>
+                    </ul>
+                    <div>
                         <SearchBox/>
-                        <LoginBox/>
                     </div>
+                    <div>
+                        <li><a href="/login">Log In</a></li>
+                        <li><a href="/register">Register</a></li>
+                    </div>    
                 </div> }
 
             </React.Fragment>
