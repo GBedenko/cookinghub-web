@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './FilterCategoryRecipes.css'
 
 class FilterCategoryRecipes extends Component {
   
@@ -29,11 +30,11 @@ class FilterCategoryRecipes extends Component {
                 </form>
                 <button type="submit">Submit</button>
                 <ol>
-                    <li>...</li>
-                    <li>...</li>
-                    <li>...</li>
-                    <li>...</li>
-                    <li>...</li>
+                    <li>1...</li>
+                    <li>2...</li>
+                    <li>3...</li>
+                    <li>4...</li>
+                    <li>5...</li>
                 </ol>
             </div>
         );

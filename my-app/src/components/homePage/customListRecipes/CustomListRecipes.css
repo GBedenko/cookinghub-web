@@ -1,9 +1,9 @@
-.MostRecentRecipes {
+.CustomListRecipes {
     border-style: solid;
     margin: 20px;
     padding: 10px;
 }
 
-.MostRecentRecipes li {
+.CustomListRecipes li {
     display:inline;
 }

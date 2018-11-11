@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './HighestRatedRecipes.css'
+import './CustomListRecipes.css'
 
-class HighestRatedRecipes extends Component {
+class CustomListRecipes extends Component {
   
     constructor(props){
         super(props);
@@ -14,9 +14,9 @@ class HighestRatedRecipes extends Component {
     render() {
 
         return (
-
-            <div className="HighestRatedRecipes">
-                <h3>Highest Rated Recipes:</h3>
+            
+            <div className="CustomListRecipes">
+                <h3>{this.props.title}</h3>
                 <ol>
                     <li>1...</li>
                     <li>2...</li>
@@ -28,4 +28,4 @@ class HighestRatedRecipes extends Component {
         );
     }
 }
-export default HighestRatedRecipes;
+export default CustomListRecipes;
