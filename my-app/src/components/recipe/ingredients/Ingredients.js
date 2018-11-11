@@ -14,7 +14,7 @@ class Ingredients extends Component {
 
         return (
             <div className="Ingredients">
-                <h3>Ingrediants:</h3>
+                <h3>Ingredients:</h3>
                 <ul>
                     <li>...</li>
                     <li>...</li>
