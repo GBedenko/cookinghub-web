@@ -1,0 +1,46 @@
+.RecipeHeader {
+    border-style: dashed;
+    background-color: green;
+}
+
+.description-container {
+    border-style: solid;
+    margin: 20px;
+    padding: 10px;
+}
+.recipe-main-image-container {
+    width: 30%;
+}
+
+.name-container {
+    margin: 20px;
+    padding: 10px;
+}
+
+.category-container {
+    margin: 20px;
+    padding: 10px;
+}
+
+.recipe-main-image-container {
+    margin: 20px;
+    padding: 10px;
+}
+
+.column {
+    float: left;
+    width: 50%;
+    padding: 5px;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}

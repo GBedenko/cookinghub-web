@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './RecipeSoundFile.css'
 
 class RecipeSoundFile extends Component {
   
@@ -15,8 +16,8 @@ class RecipeSoundFile extends Component {
         return (
 
             <div className="RecipeSoundFile">
-                <h3>Step by Step Video:</h3>
-                <video width="320" height="240" controls></video>
+                <h3>Step by Step Audio Instructions:</h3>
+                <audio controls></audio>
             </div>
         );
     }

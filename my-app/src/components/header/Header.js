@@ -52,8 +52,8 @@ class Header extends Component {
                 {this.checkIfRequired(this.props.location.pathname) && 
                 
                 <div className="Header">
-                    <img src={cooking_logo} alt="Yummy Recipes Logo" />
-                    <a href="/" className="logo">Yummy Recipes - Genaro Bedenko</a>
+                    <a href="/"><img src={cooking_logo} alt="Yummy Recipes Logo" /></a>                    
+                    <a href="/">Yummy Recipes - Genaro Bedenko</a>
                     <ul id="navigation-menu">
                         <li><a href="/recipes">Home</a></li>
                         <li><a href="/createRecipe">Create a Recipe</a></li>

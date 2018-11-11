@@ -15,10 +15,12 @@ class RecipeSharingOptions extends Component {
         return (
             <div className="RecipeSharingOptions">
                 <ul>
-                    <li>Follow this Author</li>
-                    <li>Rate this Recipe</li>
-                    <li>Recommend this Recipe to another user</li>
-                    <li>Share this Recipe to Social Media</li>
+                    <li><a href="#">Add Recipe to my Favourites</a></li>
+                    <li><a href="#">Rate this Recipe</a></li>
+                    <li><a href="#">Recommend this Recipe to another user</a></li>
+                    <li><a href="#">Follow this Author</a></li>
+                    <li><a href="#">Share this Recipe to Social Media</a></li>
+                    <li><a href="#">Report this Recipe to administrator</a></li>
                 </ul>
             </div>
         );

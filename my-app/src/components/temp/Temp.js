@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Temp.css'
 
 class Temp extends Component {
   
@@ -6,14 +7,15 @@ class Temp extends Component {
         super(props);
 
         this.state = {
-        };        
+        };
+        
     }
 
     render() {
 
         return (
-
-            <div className="temp">
+            
+            <div className="Temp">
             </div>
         );
     }
