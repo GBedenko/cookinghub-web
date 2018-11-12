@@ -5,7 +5,7 @@ import './Header.css';
 import SearchBox from './searchBox/SearchBox'
 import LoginBox from './loginBox/LoginBox'
 
-import cooking_logo from './img/cooking_logo.png'
+import yummy_recipes_logo from './img/logo-full.png'
 
 class Header extends Component {
 
@@ -52,8 +52,8 @@ class Header extends Component {
                 {this.checkIfRequired(this.props.location.pathname) && 
                 
                 <div className="Header">
-                    <img src={cooking_logo} alt="Yummy Recipes Logo" />
-                    <a href="/" className="logo">Yummy Recipes - Genaro Bedenko</a>
+                    <img src={yummy_recipes_logo} alt="Yummy Recipes Logo" />
+                    <a href="/" className="logo"><h1>Yummy Recipes - Genaro Bedenko</h1></a>
                     <ul id="navigation-menu">
                         <li><a href="/recipes">Home</a></li>
                         <li><a href="/createRecipe">Create a Recipe</a></li>
