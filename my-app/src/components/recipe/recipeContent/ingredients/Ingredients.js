@@ -16,7 +16,7 @@ class Ingredients extends Component {
             <div className="Ingredients">
                 <h3>Ingredients:</h3>
                 <ul>
-                    {this.props.ingredients_list}
+                    {this.props.ingredients_list.map((ingredient, i) => <li key={i}>{ingredient}</li>)}
                 </ul>
             </div>
         );

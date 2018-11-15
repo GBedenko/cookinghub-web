@@ -15,18 +15,18 @@ class RecipeHeader extends Component {
 
         return (
             <div className="RecipeHeader">
-                <div class="center">
-                    <div class="row">
-                        <div class="column">
-                            <div class="name-container">
+                <div className="center">
+                    <div className="row">
+                        <div className="column">
+                            <div className="name-container">
                                 <h1>Recipe Name</h1>
                             </div>
-                            <div class="category-container">
+                            <div className="category-container">
                                 <h2>Category: Starter</h2>
                             </div>
                         </div>
-                        <div class="column">
-                            <div class="recipe-main-image-container">
+                        <div className="column">
+                            <div className="recipe-main-image-container">
                                 <img src={this.props.recipe_image} style={{width: 200, height: 200}} alt="blah"/>
                             </div>
                         </div>
@@ -34,7 +34,7 @@ class RecipeHeader extends Component {
                 </div>
                 
                 
-                <div class="description-container">
+                <div className="description-container">
                     <p>Recipe description blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
                     blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
                     blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah

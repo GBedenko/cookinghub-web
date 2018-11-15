@@ -17,13 +17,9 @@ class PreperationSteps extends Component {
             
             <div className="preperation-steps-container">
                 <h3>Preperations Steps:</h3>
-                <ol>
-                    <li>...</li>
-                    <li>...</li>
-                    <li>...</li>
-                    <li>...</li>
-                    <li>...</li>
-                </ol>
+                <ul>
+                    {this.props.preperation_steps_list.map((step, i) => <li key={i}>{step}</li>)}
+                </ul>
             </div>
         );
     }

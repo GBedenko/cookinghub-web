@@ -15,20 +15,7 @@ class Recipe extends Component {
             dataloaded: false,
             recipe_data: {}
         };        
-    }
-
-    componentDidMount(){
-        const recipeURI = this.props.location.pathname
-        axios
-          .get('http://localhost:8080/api/v1.0/' + recipeURI)
-          .then(({ data })=> {
-            console.log(data);
-            this.setState({
-                recipe_data: data,
-                dataloaded: true});
-          })
-          .catch((err)=> {})
-    }
+    }    
 
     render() {
 
