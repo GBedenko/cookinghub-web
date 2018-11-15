@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './PreperationSteps.css'
 
 class PreperationSteps extends Component {
   
@@ -14,7 +15,7 @@ class PreperationSteps extends Component {
 
         return (
             
-            <div className="preperationSteps">
+            <div className="preperation-steps-container">
                 <h3>Preperations Steps:</h3>
                 <ol>
                     <li>...</li>

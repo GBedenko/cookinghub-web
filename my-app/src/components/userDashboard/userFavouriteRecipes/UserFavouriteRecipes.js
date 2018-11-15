@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './UserFavouriteRecipes.css'
 
 class UserFavouriteRecipes extends Component {
   
@@ -16,11 +17,20 @@ class UserFavouriteRecipes extends Component {
 
             <div className="UserFavouriteRecipes">
                 <h4>Your Favourite Recipes:</h4>
-                <ul>
-                    <li>...</li>
-                    <li>...</li>
-                    <li>...</li>
-                </ul>
+                <table>
+                    <tr>
+                        <th>Recipe</th>
+                        <th>Author</th>
+                    </tr>
+                    <tr>
+                        <td><a href="#">Recipe Name</a></td>
+                        <td>AuthorName</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#">Recipe Name</a></td>
+                        <td>AuthorName</td>
+                    </tr>
+                </table>
             </div>
         );
     }

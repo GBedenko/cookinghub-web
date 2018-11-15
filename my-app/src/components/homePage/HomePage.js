@@ -5,6 +5,7 @@ import HighestRatedRecipes from './highestRatedRecipes/HighestRatedRecipes'
 import MostRecentRecipes from './mostRecentRecipes/MostRecentRecipes'
 import MostViewedRecipes from './mostViewedRecipes/MostViewedRecipes'
 import './HomePage.css';
+import CustomListRecipes from './customListRecipes/CustomListRecipes';
 
 class HomePage extends Component {
   
@@ -20,26 +21,15 @@ class HomePage extends Component {
         return (
 
             <div className="HomePage">
-                <div className="row">
-                    <div className="box">
-                        <FilterCategoryRecipes />                    
-                    </div>
-                    <div className="box">
-                        <HighestRatedRecipes />
-                    </div>
-
-                </div>
-                <div className="row">
-                    <div className="box">
-                        <MostRecentRecipes />                      
-                    </div>
-                    <div className="box">
-                        <MostViewedRecipes />                    
-                    </div>
-                </div>
-
-            </div>
-            
+                    <FilterCategoryRecipes />  
+                    <HighestRatedRecipes />
+                    <MostRecentRecipes /> 
+                    <MostViewedRecipes /> 
+                    <CustomListRecipes title="Your Favourite Recipes:" />  
+                    <CustomListRecipes title="Recipes from Authors you Follow:" />  
+                    <CustomListRecipes title="Recipes you created:" />  
+                    <CustomListRecipes title="Recipes Custom List Name:" />  
+            </div>            
         );
     }
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import './RecipeCommentBox.css'
 
-class recipeCommentBox extends Component {
+class RecipeCommentBox extends Component {
   
     constructor(props){
         super(props);
@@ -15,10 +16,10 @@ class recipeCommentBox extends Component {
 
         return (
 
-            <div className="recipeCommentBox">
+            <div className="RecipeCommentBox">
                 <h4>Comment on this Recipe:</h4>
             </div>
         );
     }
 }
-export default recipeCommentBox;
+export default RecipeCommentBox;

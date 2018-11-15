@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './MostRecentRecipes.css'
 
 class MostRecentRecipes extends Component {
   
@@ -17,11 +18,11 @@ class MostRecentRecipes extends Component {
             <div className="MostRecentRecipes">
                 <h3>Most Recent Recipes:</h3>
                 <ol>
-                    <li>...</li>
-                    <li>...</li>
-                    <li>...</li>
-                    <li>...</li>
-                    <li>...</li>
+                    <li>1...</li>
+                    <li>2...</li>
+                    <li>3...</li>
+                    <li>4...</li>
+                    <li>5...</li>
                 </ol>
             </div>
         );

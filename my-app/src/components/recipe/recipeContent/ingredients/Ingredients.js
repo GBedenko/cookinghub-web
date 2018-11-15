@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import './Ingredients.css'
 
-class UserDetails extends Component {
+class Ingredients extends Component {
   
     constructor(props){
         super(props);
@@ -13,17 +14,17 @@ class UserDetails extends Component {
     render() {
 
         return (
-
-            <div className="UserDetails">
-                <h4>User Details:</h4>
+            <div class="ingredients-container">
+                <h3>Ingredients:</h3>
                 <ul>
-                    <li>Username</li>
+                    <li>...</li>
+                    <li>...</li>
+                    <li>...</li>
                     <li>...</li>
                     <li>...</li>
                 </ul>
-                <img src={this.props.img} alt="User Profile" style={{width: 50, height: 50}}/>
             </div>
         );
     }
 }
-export default UserDetails;
+export default Ingredients;

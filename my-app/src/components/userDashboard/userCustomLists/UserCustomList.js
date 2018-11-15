@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './Temp.css'
+import './UserCustomList.css'
 
-class Temp extends Component {
+class UserCustomList extends Component {
   
     constructor(props){
         super(props);
@@ -15,9 +15,10 @@ class Temp extends Component {
 
         return (
             
-            <div className="Temp">
+            <div className="UserCustomList">
+                <p>Yet to be implemented how to manage lists</p>
             </div>
         );
     }
 }
-export default Temp;
+export default UserCustomList;

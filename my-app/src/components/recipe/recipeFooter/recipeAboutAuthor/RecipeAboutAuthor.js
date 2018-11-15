@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import './RecipeAboutAuthor.css'
 
-class recipeAboutAuthor extends Component {
+class RecipeAboutAuthor extends Component {
   
     constructor(props){
         super(props);
@@ -14,11 +15,11 @@ class recipeAboutAuthor extends Component {
 
         return (
 
-            <div className="recipeAboutAuthor">
+            <div className="RecipeAboutAuthor">
                 <h3>About this Recipe's Author:</h3>
                 <p>Username</p>            
             </div>
         );
     }
 }
-export default recipeAboutAuthor;
+export default RecipeAboutAuthor;
