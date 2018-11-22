@@ -32,8 +32,6 @@ class Header extends Component {
     }
 
     handleInputChange(event){
-        // this.state.searchTerm = event.target.value
-
         // Update the state of the searchTerm value to whatever was entered in the field
         this.setState({searchTerm : event.target.value})
     }

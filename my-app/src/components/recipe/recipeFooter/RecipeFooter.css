@@ -1,4 +1,5 @@
 .RecipeFooter {
-    border-style: dashed;
-    background-color: yellow;
+    background-color: rgb(175, 233, 122);
+    margin: 20px;
+    padding: 10px;
 }

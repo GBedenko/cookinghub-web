@@ -14,7 +14,6 @@ class RecipeContent extends Component {
         super(props);
 
         this.state = {
-            name: "",
             ingredients: [],
             steps: []
         };
@@ -27,7 +26,6 @@ class RecipeContent extends Component {
              .then(({ data })=> {
                 console.log(data)
                     this.setState({
-                        name: data.name,
                         ingredients: data.ingredients,
                         steps: data.steps});
                 })
@@ -37,7 +35,7 @@ class RecipeContent extends Component {
     render() {
 
         return (
-            <div className="RecipeContent">
+            <div className="recipeContent">
                 <Ingredients ingredients_list={this.state.ingredients}/>  
                 <PreperationSteps preperation_steps_list={this.state.steps}/>  
                 <RecipeVideo/>
