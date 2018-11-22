@@ -23,7 +23,7 @@ class RecipeContent extends Component {
 
     componentDidMount(){
         console.log(this.props.recipe_id)
-        axios.get('http://localhost:8080/api/v1.0/recipes/1234')
+        axios.get('http://localhost:8080/api/v1.0/recipes/' + this.props.recipe_id)
              .then(({ data })=> {
                 console.log(data)
                     this.setState({

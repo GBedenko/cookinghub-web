@@ -10,11 +10,11 @@ class Recipe extends Component {
   
     constructor(props){
         super(props);
-        console.log(this.props.location.pathname.match(/([0-9]+)/g)[0])
+        const recipe_id_from_url = this.props.location.pathname.match(/\/([0-9a-fA-F]+)/g)[0].substr(1)
         // Save the recipe_id as the url endpoint /recipe/:recipe_id the user is on
 
         this.state = {
-            recipe_id: this.props.location.pathname.match(/([0-9]+)/g)[0]
+            recipe_id: recipe_id_from_url
         };        
     }
 

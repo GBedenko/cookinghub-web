@@ -17,7 +17,7 @@ ReactDOM.render(<Router>
                     <React.Fragment>
                         <Route path="/" component={Header}/>
                         <Route path="/" exact component={HomePage}/>
-                        <Route path="/recipe" component={Recipe}/>
+                        <Route path="/recipes" component={Recipe}/>
                         <Route path="/user" component={UserDashboard}/>
                         <Route path="/login" component={Login}/>
                         <Route path="/register" component={Signup}/>
