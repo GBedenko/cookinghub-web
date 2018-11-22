@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './MostViewedRecipes.css'
+import Grid from '../grid/Grid'
+import Data from '../temp_data'
 
 class MostViewedRecipes extends Component {
   
@@ -11,19 +13,20 @@ class MostViewedRecipes extends Component {
         
     }
 
+    handleThumbnailClicked(key){
+        
+        console.log("item with id:" + key + " was clicked");
+    }
+    
     render() {
 
         return (
 
             <div className="MostViewedRecipes">
                 <h3>Most Viewed Recipes:</h3>
-                <ol>
-                    <li>1...</li>
-                    <li>2...</li>
-                    <li>3...</li>
-                    <li>4...</li>
-                    <li>5...</li>
-                </ol>
+                <div>
+                    <Grid items={Data.items} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
+                </div>
             </div>
         );
     }

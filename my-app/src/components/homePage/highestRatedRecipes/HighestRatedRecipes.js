@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './HighestRatedRecipes.css'
+import Grid from '../grid/Grid'
+import Data from '../temp_data'
 
 class HighestRatedRecipes extends Component {
   
@@ -17,13 +19,9 @@ class HighestRatedRecipes extends Component {
 
             <div className="HighestRatedRecipes">
                 <h3>Highest Rated Recipes:</h3>
-                <ol>
-                    <li>1...</li>
-                    <li>2...</li>
-                    <li>3...</li>
-                    <li>4...</li>
-                    <li>5...</li>
-                </ol>
+                <div>
+                    <Grid items={Data.items} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
+                </div>
             </div>
         );
     }

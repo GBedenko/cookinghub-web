@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './CustomListRecipes.css'
+import Grid from '../grid/Grid'
+import Data from '../temp_data'
 
 class CustomListRecipes extends Component {
   
@@ -17,13 +19,9 @@ class CustomListRecipes extends Component {
             
             <div className="CustomListRecipes">
                 <h3>{this.props.title}</h3>
-                <ol>
-                    <li>1...</li>
-                    <li>2...</li>
-                    <li>3...</li>
-                    <li>4...</li>
-                    <li>5...</li>
-                </ol>
+                <div>
+                    <Grid items={Data.items} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
+                </div>
             </div>
         );
     }

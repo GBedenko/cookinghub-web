@@ -27,7 +27,9 @@ class Card extends Component {
             //note that when a card has its title clicked it will call the event handler
             //which was passed from the grid to the card
             <div className="card">
-                <img src={this.props.image} alt={this.props.imgAlt} style={{width: '100%'}} />
+            <div className="cardImage">
+                <img src={this.props.image} alt={this.props.imgAlt} style={{width: '200px', height: '200px'}} />
+            </div>
                 <div className="container">
                     <button onClick={this.onClickHandler} className="linkButton"><h4><b>{this.props.title}</b></h4></button>
                     <p>{this.props.article}</p> 
