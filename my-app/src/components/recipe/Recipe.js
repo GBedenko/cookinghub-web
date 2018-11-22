@@ -10,20 +10,21 @@ class Recipe extends Component {
   
     constructor(props){
         super(props);
+        console.log(this.props.location.pathname.match(/([0-9]+)/g)[0])
+        // Save the recipe_id as the url endpoint /recipe/:recipe_id the user is on
 
         this.state = {
-            dataloaded: false,
-            recipe_data: {}
+            recipe_id: this.props.location.pathname.match(/([0-9]+)/g)[0]
         };        
-    }    
+    }
 
     render() {
 
         return (
             <div className="Recipe">
-                <RecipeHeader recipe_image={cooking_logo}/>
-                <RecipeContent/>
-                <RecipeFooter/>
+                <RecipeHeader recipe_image={cooking_logo} recipe_id={this.state.recipe_id}/>
+                <RecipeContent recipe_id={this.state.recipe_id}/>
+                <RecipeFooter recipe_id={this.state.recipe_id}/>
             </div>
         );
     }

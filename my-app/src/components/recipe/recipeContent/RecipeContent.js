@@ -22,7 +22,8 @@ class RecipeContent extends Component {
     }
 
     componentDidMount(){
-        axios.get('http://localhost:8080/api/v1.0/recipes/5be609f20905f72f0493cfa7')
+        console.log(this.props.recipe_id)
+        axios.get('http://localhost:8080/api/v1.0/recipes/1234')
              .then(({ data })=> {
                 console.log(data)
                     this.setState({
@@ -36,7 +37,6 @@ class RecipeContent extends Component {
     render() {
 
         return (
-            
             <div className="RecipeContent">
                 <Ingredients ingredients_list={this.state.ingredients}/>  
                 <PreperationSteps preperation_steps_list={this.state.steps}/>  
