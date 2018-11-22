@@ -8,20 +8,15 @@ class Ingredients extends Component {
 
         this.state = {
         };
-        
     }
-
+    
     render() {
 
         return (
-            <div class="ingredients-container">
+            <div className="Ingredients">
                 <h3>Ingredients:</h3>
                 <ul>
-                    <li>...</li>
-                    <li>...</li>
-                    <li>...</li>
-                    <li>...</li>
-                    <li>...</li>
+                    {this.props.ingredients_list.map((ingredient, i) => <li key={i}>{ingredient}</li>)}
                 </ul>
             </div>
         );

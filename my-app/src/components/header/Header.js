@@ -11,8 +11,7 @@ class Header extends Component {
 
     constructor(props){
         // Uses parent 'Component' properties variables
-        super(props);
-        console.log(props)
+        super(props)
         
         // Ensures that the functions understand what 'this' object is
         this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
@@ -33,8 +32,6 @@ class Header extends Component {
     }
 
     handleInputChange(event){
-        // this.state.searchTerm = event.target.value
-
         // Update the state of the searchTerm value to whatever was entered in the field
         this.setState({searchTerm : event.target.value})
     }

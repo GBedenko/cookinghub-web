@@ -15,9 +15,11 @@ import CreateRecipe from './components/createRecipe/CreateRecipe';
 
 ReactDOM.render(<Router>
                     <React.Fragment>
+                        <head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></link>
+</head>
                         <Route path="/" component={Header}/>
                         <Route path="/" exact component={HomePage}/>
-                        <Route path="/recipe" component={Recipe}/>
+                        <Route path="/recipes" component={Recipe}/>
                         <Route path="/user" component={UserDashboard}/>
                         <Route path="/login" component={Login}/>
                         <Route path="/register" component={Signup}/>

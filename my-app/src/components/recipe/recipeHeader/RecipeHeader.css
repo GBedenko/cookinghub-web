@@ -1,46 +1,16 @@
 .RecipeHeader {
-    border-style: dashed;
-    background-color: green;
-}
-
-.description-container {
-    border-style: solid;
+    background-color: rgb(160, 194, 233);
     margin: 20px;
     padding: 10px;
-}
-.recipe-main-image-container {
-    width: 30%;
+    padding-bottom: 100px;
 }
 
-.name-container {
-    margin: 20px;
-    padding: 10px;
-}
-
-.category-container {
-    margin: 20px;
-    padding: 10px;
-}
-
-.recipe-main-image-container {
-    margin: 20px;
-    padding: 10px;
-}
-
-.column {
+.RecipeInfo {
+    width: 70%;
     float: left;
-    width: 50%;
-    padding: 5px;
 }
 
-.row::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-.center {
-    margin: auto;
-    width: 50%;
-    padding: 10px;
+.RecipeImage {
+    width: 30%;
+    float: right;
 }
