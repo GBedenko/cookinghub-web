@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import axios from 'axios'
+
+import './HomePage.css';
 
 import FilterCategoryRecipes from './filterCategoryRecipes/FilterCategoryRecipes'
 import HighestRatedRecipes from './highestRatedRecipes/HighestRatedRecipes'
 import MostRecentRecipes from './mostRecentRecipes/MostRecentRecipes'
 import MostViewedRecipes from './mostViewedRecipes/MostViewedRecipes'
-import './HomePage.css';
 import CustomListRecipes from './customListRecipes/CustomListRecipes';
 
 class HomePage extends Component {
@@ -13,7 +15,19 @@ class HomePage extends Component {
         super(props);
 
         this.state = {
+            all_recipes: []
         };        
+    }
+
+    componentDidMount(){
+        axios.get('http://localhost:8080/api/v1.0/recipes')
+             .then(({ data })=> {
+                console.log(data)
+                    this.setState({
+                        all_recipes: data
+                    });
+                })
+             .catch((err)=> {})
     }
 
     render() {
@@ -22,7 +36,7 @@ class HomePage extends Component {
 
             <div className="HomePage">
                     <FilterCategoryRecipes />  
-                    <HighestRatedRecipes />
+                    <HighestRatedRecipes recipes_list={this.state.all_recipes} />
                     <MostRecentRecipes /> 
                     <MostViewedRecipes /> 
                     <CustomListRecipes title="Your Favourite Recipes:" />  

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './MostRecentRecipes.css'
 import Grid from '../grid/Grid'
-import Data from '../temp_data'
 
 class MostRecentRecipes extends Component {
   
@@ -9,6 +8,7 @@ class MostRecentRecipes extends Component {
         super(props);
 
         this.state = {
+            recipes_list: {id:1, name:"test"}
         };
         
     }
@@ -20,7 +20,7 @@ class MostRecentRecipes extends Component {
             <div className="MostRecentRecipes">
                 <h3>Most Recent Recipes:</h3>
                 <div>
-                    <Grid items={Data.items} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
+                    <Grid items={this.state.recipes_list} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
                 </div>
             </div>
         );

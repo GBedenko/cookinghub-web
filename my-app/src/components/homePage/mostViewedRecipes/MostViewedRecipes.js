@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './MostViewedRecipes.css'
 import Grid from '../grid/Grid'
-import Data from '../temp_data'
 
 class MostViewedRecipes extends Component {
   
@@ -25,7 +24,7 @@ class MostViewedRecipes extends Component {
             <div className="MostViewedRecipes">
                 <h3>Most Viewed Recipes:</h3>
                 <div>
-                    <Grid items={Data.items} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
+                    <Grid items={[]} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
                 </div>
             </div>
         );

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './HighestRatedRecipes.css'
 import Grid from '../grid/Grid'
-import Data from '../temp_data'
 
 class HighestRatedRecipes extends Component {
   
@@ -9,8 +8,13 @@ class HighestRatedRecipes extends Component {
         super(props);
 
         this.state = {
+            recipes_list: []
         };
         
+    }
+
+    componentDidMount(){
+        this.setState({ recipe_list: this.props.recipes_list});
     }
 
     render() {
@@ -20,7 +24,7 @@ class HighestRatedRecipes extends Component {
             <div className="HighestRatedRecipes">
                 <h3>Highest Rated Recipes:</h3>
                 <div>
-                    <Grid items={Data.items} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
+                    <Grid items={this.state.recipes_list} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
                 </div>
             </div>
         );

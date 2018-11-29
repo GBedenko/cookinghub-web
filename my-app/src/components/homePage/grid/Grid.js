@@ -10,7 +10,7 @@ class Grid extends Component {
 
     // GridRow requires and array of cards it is going to make and the index of the row
     GridRow(cards, id){
-         
+        console.log(cards)
         // Check that the cards row/array has been passed
         if(cards == null){
             return null;
@@ -22,10 +22,10 @@ class Grid extends Component {
                 {cards.map((item) =>
                     <div className={this.props.colClass} key={item.id}>
                         <Card   image={item.image} 
-                                title={item.title} 
+                                title={item.name} 
                                 article={item.article} 
                                 onClick = {this.props.onClick}
-                                id ={item.id}
+                                id ={item._id}
                         />
                     </div>
                 )}  
@@ -36,7 +36,7 @@ class Grid extends Component {
     }
 
     render() {
-
+        
         // Check that the items array has been passed to the Grid component
         if(this.props.items == null){
             return null;
@@ -62,7 +62,7 @@ class Grid extends Component {
                 newRow.push(this.props.items[i + (countRows * this.props.rowLength)]);
             }
             countRows++;
-
+            
             // Once row completed, create GridRow for the array
             allRows.push(this.GridRow(newRow, countRows));
         }
