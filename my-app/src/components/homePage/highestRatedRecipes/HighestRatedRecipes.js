@@ -5,16 +5,7 @@ import Grid from '../grid/Grid'
 class HighestRatedRecipes extends Component {
   
     constructor(props){
-        super(props);
-
-        this.state = {
-            recipes_list: []
-        };
-        
-    }
-
-    componentDidMount(){
-        this.setState({ recipe_list: this.props.recipes_list});
+        super(props)        
     }
 
     render() {
@@ -24,7 +15,7 @@ class HighestRatedRecipes extends Component {
             <div className="HighestRatedRecipes">
                 <h3>Highest Rated Recipes:</h3>
                 <div>
-                    <Grid items={this.state.recipes_list} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
+                    <Grid items={this.props.recipes_list} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
                 </div>
             </div>
         );

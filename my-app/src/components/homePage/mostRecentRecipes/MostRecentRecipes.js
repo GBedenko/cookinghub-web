@@ -5,12 +5,7 @@ import Grid from '../grid/Grid'
 class MostRecentRecipes extends Component {
   
     constructor(props){
-        super(props);
-
-        this.state = {
-            recipes_list: {id:1, name:"test"}
-        };
-        
+        super(props)
     }
 
     render() {
@@ -20,7 +15,7 @@ class MostRecentRecipes extends Component {
             <div className="MostRecentRecipes">
                 <h3>Most Recent Recipes:</h3>
                 <div>
-                    <Grid items={this.state.recipes_list} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
+                    <Grid items={this.props.recipes_list} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
                 </div>
             </div>
         );

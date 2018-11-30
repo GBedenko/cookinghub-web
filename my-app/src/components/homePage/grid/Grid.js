@@ -21,7 +21,7 @@ class Grid extends Component {
             <div className="row" key={id}>
                 {cards.map((item) =>
                     <div className={this.props.colClass} key={item.id}>
-                        <Card   image={item.image} 
+                        <Card   image={item.main_image} 
                                 title={item.name} 
                                 article={item.article} 
                                 onClick = {this.props.onClick}

@@ -19,7 +19,7 @@ class CustomListRecipes extends Component {
             <div className="CustomListRecipes">
                 <h3>{this.props.title}</h3>
                 <div>
-                    <Grid items={[]} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
+                    <Grid items={this.props.recipes_list} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
                 </div>
             </div>
         );
