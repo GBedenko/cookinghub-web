@@ -15,7 +15,8 @@ class RecipeContent extends Component {
 
         this.state = {
             ingredients: [],
-            steps: []
+            steps: [],
+            video: ""
         };
         
     }
@@ -27,7 +28,8 @@ class RecipeContent extends Component {
                 console.log(data)
                     this.setState({
                         ingredients: data.ingredients,
-                        steps: data.steps});
+                        steps: data.steps,
+                        video: data.video});
                 })
              .catch((err)=> {})
     }
@@ -38,7 +40,7 @@ class RecipeContent extends Component {
             <div className="recipeContent">
                 <Ingredients ingredients_list={this.state.ingredients}/>  
                 <PreperationSteps preperation_steps_list={this.state.steps}/>  
-                <RecipeVideo/>
+                <RecipeVideo video={this.state.video}/>
                 <RecipeSoundFile/>
             </div>
         );

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './FilterCategoryRecipes.css'
+import Grid from '../grid/Grid'
 
 class FilterCategoryRecipes extends Component {
   
@@ -29,13 +30,9 @@ class FilterCategoryRecipes extends Component {
                     </select>
                 </form>
                 <button type="submit">Submit</button>
-                <ol>
-                    <li>1...</li>
-                    <li>2...</li>
-                    <li>3...</li>
-                    <li>4...</li>
-                    <li>5...</li>
-                </ol>
+                <div>
+                    <Grid items={this.props.recipes_list} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
+                </div>
             </div>
         );
     }

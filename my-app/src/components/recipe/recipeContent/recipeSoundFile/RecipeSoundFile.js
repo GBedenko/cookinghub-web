@@ -17,7 +17,9 @@ class RecipeSoundFile extends Component {
 
             <div className="RecipeSoundFile">
                 <h3>Step by Step Audio Instructions:</h3>
-                <audio controls></audio>
+                <div className="EmbeddedSoundFile">
+                    <audio controls></audio>
+                </div>
             </div>
         );
     }

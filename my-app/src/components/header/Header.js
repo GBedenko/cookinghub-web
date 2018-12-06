@@ -49,20 +49,21 @@ class Header extends Component {
                 {this.checkIfRequired(this.props.location.pathname) && 
                 
                 <div className="Header">
-                    <a href="/"><img src={yummy_recipes_logo} alt="Yummy Recipes Logo" /></a>                    
-                    <a href="/" className="logo"><h1>Yummy Recipes - Genaro Bedenko</h1></a>
-                    <ul id="navigation-menu">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/createRecipe">Create a Recipe</a></li>
-                        <li><a href="/user">My Recipes and Lists</a></li>
-                    </ul>
-                    <div>
-                        <SearchBox/>
-                    </div>
-                    <div>
-                        <li><a href="/login">Log In</a></li>
-                        <li><a href="/register">Register</a></li>
-                    </div>    
+                    <a href="/"><img src={yummy_recipes_logo} alt="Yummy Recipes Logo" /></a>
+                    <div className="row">
+                        <ul className="navigationMenu">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/createRecipe">Create a Recipe</a></li>
+                            <li><a href="/user">My Recipes and Lists</a></li>
+                        </ul>
+                        <div>
+                            <li><a href="/login">Log In</a></li>
+                            <li><a href="/register">Register</a></li>
+                        </div>  
+                        <div className="searchBoxContainer">
+                            <SearchBox/>
+                        </div> 
+                    </div> 
                 </div> }
 
             </React.Fragment>

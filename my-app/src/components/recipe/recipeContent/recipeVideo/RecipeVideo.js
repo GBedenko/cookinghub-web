@@ -17,7 +17,9 @@ class RecipeVideo extends Component {
 
             <div className="RecipeVideo">
                 <h3>Step by Step Video:</h3>
-                <video width="320" height="240" controls></video>
+                <div className="EmbeddedVideo">
+                    <iframe width="640" height="480" src={this.props.video} controls></iframe>
+                </div>
             </div>
         );
     }

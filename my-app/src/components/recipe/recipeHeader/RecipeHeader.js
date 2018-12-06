@@ -9,7 +9,9 @@ class RecipeHeader extends Component {
 
         this.state = {
             name: "",
-            description: ""
+            category: "",
+            description: "",
+            image: ""
         };
         
     }
@@ -21,7 +23,9 @@ class RecipeHeader extends Component {
                 console.log(data)
                     this.setState({
                         name: data.name,
-                        description: data.description});
+                        description: data.description,
+                        category: data.category,
+                        main_image: data.main_image});
                 })
              .catch((err)=> {})
     }
@@ -32,11 +36,11 @@ class RecipeHeader extends Component {
             <div className="RecipeHeader">
                 <div className="RecipeInfo">
                         <h1>{this.state.name}</h1>
-                        <h2>Category: Starter</h2>
+                        <h2>Category: {this.state.category}</h2>
                 </div>
                 <div className="RecipeImage">
                     <div className="recipe-main-image-container">
-                        <img src={this.props.recipe_image} style={{width: 200, height: 200}} alt="blah"/>
+                        <img src={this.state.main_image} style={{width: 200, height: 200}} alt="blah"/>
                     </div>
                 </div>
 
