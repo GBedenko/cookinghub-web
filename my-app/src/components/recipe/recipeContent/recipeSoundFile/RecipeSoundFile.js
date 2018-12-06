@@ -1,27 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import './RecipeSoundFile.css'
 
 class RecipeSoundFile extends Component {
-  
-    constructor(props){
-        super(props);
 
-        this.state = {
-        };
-        
-    }
+	constructor(props){
+		super(props)
 
-    render() {
+		this.state = {
+		}
 
-        return (
+	}
 
-            <div className="RecipeSoundFile">
-                <h3>Step by Step Audio Instructions:</h3>
-                <div className="EmbeddedSoundFile">
-                    <audio controls></audio>
-                </div>
-            </div>
-        );
-    }
+	render() {
+
+		return (
+
+			<div className="RecipeSoundFile">
+				<h3>Step by Step Audio Instructions:</h3>
+				<div className="EmbeddedSoundFile">
+					<audio controls></audio>
+				</div>
+			</div>
+		)
+	}
 }
-export default RecipeSoundFile;
+export default RecipeSoundFile

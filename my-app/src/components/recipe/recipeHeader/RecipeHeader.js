@@ -1,55 +1,55 @@
-import React, { Component } from 'react';
-import './RecipeHeader.css';
+import React, { Component } from 'react'
+import './RecipeHeader.css'
 import axios from 'axios'
 
 class RecipeHeader extends Component {
-  
-    constructor(props){
-        super(props);
 
-        this.state = {
-            name: "",
-            category: "",
-            description: "",
-            image: ""
-        };
-        
-    }
+	constructor(props){
+		super(props)
 
-    componentDidMount(){
-        console.log(this.props.recipe_id)
-        axios.get('http://localhost:8080/api/v1.0/recipes/' + this.props.recipe_id)
-             .then(({ data })=> {
-                console.log(data)
-                    this.setState({
-                        name: data.name,
-                        description: data.description,
-                        category: data.category,
-                        main_image: data.main_image});
-                })
-             .catch((err)=> {})
-    }
+		this.state = {
+			name: '',
+			category: '',
+			description: '',
+			image: ''
+		}
 
-    render() {
+	}
 
-        return (
-            <div className="RecipeHeader">
-                <div className="RecipeInfo">
-                        <h1>{this.state.name}</h1>
-                        <h2>Category: {this.state.category}</h2>
-                </div>
-                <div className="RecipeImage">
-                    <div className="recipe-main-image-container">
-                        <img src={this.state.main_image} style={{width: 200, height: 200}} alt="blah"/>
-                    </div>
-                </div>
+	componentDidMount(){
+		console.log(this.props.recipe_id)
+		axios.get('http://localhost:8080/api/v1.0/recipes/' + this.props.recipe_id)
+			.then(({ data }) => {
+				console.log(data)
+				this.setState({
+					name: data.name,
+					description: data.description,
+					category: data.category,
+					main_image: data.main_image})
+			})
+			.catch((err) => {})
+	}
 
-                <div className="RecipeDescription">
-                    <p>{this.state.description}</p>
-                </div>
-            </div>        
-        );
-    }
+	render() {
+
+		return (
+			<div className="RecipeHeader">
+				<div className="RecipeInfo">
+					<h1>{this.state.name}</h1>
+					<h2>Category: {this.state.category}</h2>
+				</div>
+				<div className="RecipeImage">
+					<div className="recipe-main-image-container">
+						<img src={this.state.main_image} style={{width: 200, height: 200}} alt="blah"/>
+					</div>
+				</div>
+
+				<div className="RecipeDescription">
+					<p>{this.state.description}</p>
+				</div>
+			</div>
+		)
+	}
 }
-export default RecipeHeader;
+export default RecipeHeader
 

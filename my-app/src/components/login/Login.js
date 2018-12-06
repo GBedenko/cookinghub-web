@@ -1,85 +1,85 @@
-import React, { Component } from 'react';
-import './Login.css';
+import React, { Component } from 'react'
+import './Login.css'
 import login_avatar from './img/login_avatar.png'
 
 class Login extends Component {
-  
-    constructor(props){
-        super(props);
 
-        this.state = {
-            loginButtonColor:{backgroundColor:this.props.loginButtonColor},
-            txtUsername: '',
-            txtPassword: '',
-            errors : {
-                txtUsername: false,
-                txtPassword: false
-            }
-        };
-        
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleLoginClick = this.handleLoginClick.bind(this);
-    }
+	constructor(props){
+		super(props)
 
-    handleInputChange(event){
+		this.state = {
+			loginButtonColor: {backgroundColor: this.props.loginButtonColor},
+			txtUsername: '',
+			txtPassword: '',
+			errors: {
+				txtUsername: false,
+				txtPassword: false
+			}
+		}
 
-        const target = event.target;
-        
-        const name = target.name;
-        const value = target.value;
+		this.handleInputChange = this.handleInputChange.bind(this)
+		this.handleLoginClick = this.handleLoginClick.bind(this)
+	}
 
-        this.setState({
-            [name]: value
-        });
-    }
+	handleInputChange(event){
 
-    handleLoginClick(event){
+		const target = event.target
 
-        //prevent form submission
-        event.preventDefault();
+		const name = target.name
+		const value = target.value
 
-        //create new object to assign new error values
-        let newErrors = {};
+		this.setState({
+			[name]: value
+		})
+	}
 
-        newErrors.txtUsername = this.state.txtUsername === '' ? true:false;
-        newErrors.txtPassword = this.state.txtPassword === '' ? true:false;    
-        
-        console.log(newErrors);
+	handleLoginClick(event){
 
-       this.setState({errors:newErrors});
-    }
+		//prevent form submission
+		event.preventDefault()
 
-    render() {
+		//create new object to assign new error values
+		const newErrors = {}
 
-        return (
+		newErrors.txtUsername = this.state.txtUsername === '' ? true:false
+		newErrors.txtPassword = this.state.txtPassword === '' ? true:false
 
-            <div className="loginForm">
-                <form action="action_page.php">
-                    <div className="imgcontainer">
-                        <img src={login_avatar} alt="Avatar" className="avatar" />
-                    </div>
-                    <div className="container">
-                        <label htmlFor="txtUsername"><b>Username</b></label>
-                        <input type="text" placeholder="Enter Username" name="txtUsername" onChange={this.handleInputChange} value={this.state.txtUsername} />
-                         {this.state.errors.txtUsername ? <div className="error">Username is required</div>: null}
+		console.log(newErrors)
 
-                        <label htmlFor="txtPassword" ><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="txtPassword" onChange={this.handleInputChange} value={this.state.txtPassword} />
-                        {this.state.errors.txtPassword ? <div className="error">password is required</div>: null}
+		this.setState({errors: newErrors})
+	}
 
-                        <button type="submit" style={this.state.loginButtonColor} onClick={this.handleLoginClick}>Login</button> 
-                        
-                        <label>
-                            <input type="checkbox" defaultChecked="checked" name="remember" /> Remember me
-                        </label>
-                    </div>
-                    <div className="container" style={{backgroundColor: '#f1f1f1'}}>
-                        <span className="psw">Forgot <a href="#">password?</a></span>
-                    </div>
-                </form>
-            </div>
-            
-        );
-    }
+	render() {
+
+		return (
+
+			<div className="loginForm">
+				<form action="action_page.php">
+					<div className="imgcontainer">
+						<img src={login_avatar} alt="Avatar" className="avatar" />
+					</div>
+					<div className="container">
+						<label htmlFor="txtUsername"><b>Username</b></label>
+						<input type="text" placeholder="Enter Username" name="txtUsername" onChange={this.handleInputChange} value={this.state.txtUsername} />
+						{this.state.errors.txtUsername ? <div className="error">Username is required</div>: null}
+
+						<label htmlFor="txtPassword" ><b>Password</b></label>
+						<input type="password" placeholder="Enter Password" name="txtPassword" onChange={this.handleInputChange} value={this.state.txtPassword} />
+						{this.state.errors.txtPassword ? <div className="error">password is required</div>: null}
+
+						<button type="submit" style={this.state.loginButtonColor} onClick={this.handleLoginClick}>Login</button>
+
+						<label>
+							<input type="checkbox" defaultChecked="checked" name="remember" /> Remember me
+						</label>
+					</div>
+					<div className="container" style={{backgroundColor: '#f1f1f1'}}>
+						<span className="psw">Forgot <a href="#">password?</a></span>
+					</div>
+				</form>
+			</div>
+
+		)
+	}
 }
-export default Login;
+export default Login

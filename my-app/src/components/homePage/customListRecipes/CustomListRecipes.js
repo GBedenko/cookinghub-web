@@ -1,28 +1,28 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import './CustomListRecipes.css'
 import Grid from '../grid/Grid'
 
 class CustomListRecipes extends Component {
-  
-    constructor(props){
-        super(props);
 
-        this.state = {
-        };
-        
-    }
+	constructor(props){
+		super(props)
 
-    render() {
+		this.state = {
+		}
 
-        return (
-            
-            <div className="CustomListRecipes">
-                <h3>{this.props.title}</h3>
-                <div>
-                    <Grid items={this.props.recipes_list} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
-                </div>
-            </div>
-        );
-    }
+	}
+
+	render() {
+
+		return (
+
+			<div className="CustomListRecipes">
+				<h3>{this.props.title}</h3>
+				<div>
+					<Grid items={this.props.recipes_list} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
+				</div>
+			</div>
+		)
+	}
 }
-export default CustomListRecipes;
+export default CustomListRecipes

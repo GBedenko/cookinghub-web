@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import './RecipeFooter.css'
 
 import RecipeComments from './recipeComments/RecipeComments'
@@ -7,26 +7,26 @@ import RecipeCommentBox from './recipeCommentBox/RecipeCommentBox'
 import RecipeSharingOptions from'./recipeSharingOptions/RecipeSharingOptions'
 
 class RecipeFooter extends Component {
-  
-    constructor(props){
-        super(props);
 
-        this.state = {
-        };
-        
-    }
+	constructor(props){
+		super(props)
 
-    render() {
+		this.state = {
+		}
 
-        return (
-            
-            <div className="RecipeFooter">
-                <RecipeComments/>
-                <RecipeCommentBox/>
-                <RecipeAboutAuthor/>
-                <RecipeSharingOptions/>
-            </div>
-        );
-    }
+	}
+
+	render() {
+
+		return (
+
+			<div className="RecipeFooter">
+				<RecipeComments/>
+				<RecipeCommentBox/>
+				<RecipeAboutAuthor/>
+				<RecipeSharingOptions/>
+			</div>
+		)
+	}
 }
-export default RecipeFooter;
+export default RecipeFooter

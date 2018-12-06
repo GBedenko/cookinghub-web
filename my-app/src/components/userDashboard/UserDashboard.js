@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 import UserFavouriteRecipes from './userFavouriteRecipes/UserFavouriteRecipes'
 import UserNotifications from './userNotifications/UserNotifications'
@@ -7,25 +7,25 @@ import UserCustomList from './userCustomLists/UserCustomList'
 
 
 class UserDashboard extends Component {
-  
-    constructor(props){
-        super(props);
 
-        this.state = {
-        };        
-    }
+	constructor(props){
+		super(props)
 
-    render() {
+		this.state = {
+		}
+	}
 
-        return (
-            <div className="UserDashboard">
-                <h1>Username's Dashboard:</h1>
-                <UserRecipes/>
-                <UserNotifications/>  
-                <UserFavouriteRecipes/> 
-                <UserCustomList/>  
-            </div>
-        );
-    }
+	render() {
+
+		return (
+			<div className="UserDashboard">
+				<h1>Username's Dashboard:</h1>
+				<UserRecipes/>
+				<UserNotifications/>
+				<UserFavouriteRecipes/>
+				<UserCustomList/>
+			</div>
+		)
+	}
 }
-export default UserDashboard;
+export default UserDashboard

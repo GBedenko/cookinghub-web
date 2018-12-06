@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import './UserCustomList.css'
 
 class UserCustomList extends Component {
-  
-    constructor(props){
-        super(props);
 
-        this.state = {
-        };
-        
-    }
+	constructor(props){
+		super(props)
 
-    render() {
+		this.state = {
+		}
 
-        return (
-            
-            <div className="UserCustomList">
-                <p>Yet to be implemented how to manage lists</p>
-            </div>
-        );
-    }
+	}
+
+	render() {
+
+		return (
+
+			<div className="UserCustomList">
+				<p>Yet to be implemented how to manage lists</p>
+			</div>
+		)
+	}
 }
-export default UserCustomList;
+export default UserCustomList

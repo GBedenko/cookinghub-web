@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import './Temp.css'
 
 class Temp extends Component {
-  
-    constructor(props){
-        super(props);
 
-        this.state = {
-        };
-        
-    }
+	constructor(props){
+		super(props)
 
-    render() {
+		this.state = {
+		}
 
-        return (
-            
-            <div className="Temp">
-            </div>
-        );
-    }
+	}
+
+	render() {
+
+		return (
+
+			<div className="Temp">
+			</div>
+		)
+	}
 }
-export default Temp;
+export default Temp

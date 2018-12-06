@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import './Header.css';
+import './Header.css'
 
 import SearchBox from './searchBox/SearchBox'
 import LoginBox from './loginBox/LoginBox'
@@ -9,65 +9,65 @@ import yummy_recipes_logo from './img/logo-full.png'
 
 class Header extends Component {
 
-    constructor(props){
-        // Uses parent 'Component' properties variables
-        super(props)
-        
-        // Ensures that the functions understand what 'this' object is
-        this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this);
+	constructor(props){
+		// Uses parent 'Component' properties variables
+		super(props)
 
-        // Maintains the state of the header's attributes, including the value of the search field in the header
-        this.state = {
-            searchTerm : ''
-        }
-    }
+		// Ensures that the functions understand what 'this' object is
+		this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
+		this.handleInputChange = this.handleInputChange.bind(this)
 
-    handleSearchSubmit(event){
-        //prevent the form to be submitted to its action url
-        event.preventDefault();
+		// Maintains the state of the header's attributes, including the value of the search field in the header
+		this.state = {
+			searchTerm: ''
+		}
+	}
 
-        // Use the passed function from the parent
-        this.props.onSearchClick(this.state.searchTerm); 
-    }
+	handleSearchSubmit(event){
+		//prevent the form to be submitted to its action url
+		event.preventDefault()
 
-    handleInputChange(event){
-        // Update the state of the searchTerm value to whatever was entered in the field
-        this.setState({searchTerm : event.target.value})
-    }
+		// Use the passed function from the parent
+		this.props.onSearchClick(this.state.searchTerm)
+	}
 
-    checkIfRequired(path) {
+	handleInputChange(event){
+		// Update the state of the searchTerm value to whatever was entered in the field
+		this.setState({searchTerm: event.target.value})
+	}
 
-        return !(/login$/g.test(path))
-    }
+	checkIfRequired(path) {
 
-    render() {
+		return !/login$/g.test(path)
+	}
 
-        return (
+	render() {
 
-            <React.Fragment>
-                {this.checkIfRequired(this.props.location.pathname) && 
-                
+		return (
+
+			<React.Fragment>
+				{this.checkIfRequired(this.props.location.pathname) &&
+
                 <div className="Header">
-                    <a href="/"><img src={yummy_recipes_logo} alt="Yummy Recipes Logo" /></a>
-                    <div className="row">
-                        <ul className="navigationMenu">
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/createRecipe">Create a Recipe</a></li>
-                            <li><a href="/user">My Recipes and Lists</a></li>
-                        </ul>
-                        <div>
-                            <li><a href="/login">Log In</a></li>
-                            <li><a href="/register">Register</a></li>
-                        </div>  
-                        <div className="searchBoxContainer">
-                            <SearchBox/>
-                        </div> 
-                    </div> 
+                	<a href="/"><img src={yummy_recipes_logo} alt="Yummy Recipes Logo" /></a>
+                	<div className="row">
+                		<ul className="navigationMenu">
+                			<li><a href="/">Home</a></li>
+                			<li><a href="/createRecipe">Create a Recipe</a></li>
+                			<li><a href="/user">My Recipes and Lists</a></li>
+                		</ul>
+                		<div>
+                			<li><a href="/login">Log In</a></li>
+                			<li><a href="/register">Register</a></li>
+                		</div>
+                		<div className="searchBoxContainer">
+                			<SearchBox/>
+                		</div>
+                	</div>
                 </div> }
 
-            </React.Fragment>
-        )            
-    }
+			</React.Fragment>
+		)
+	}
 }
-export default Header;
+export default Header

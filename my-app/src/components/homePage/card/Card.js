@@ -1,41 +1,41 @@
-import React, { Component } from 'react';
-import './Card.css';
+import React, { Component } from 'react'
+import './Card.css'
 
 class Card extends Component {
-  
-    constructor(props){
-        super(props);
 
-        this.state = {
-           cardStyle:{backgroundColor:this.props.backgroundColor}
-        };
-        
-        this.onClickHandler = this.onClickHandler.bind(this);
-    }
+	constructor(props){
+		super(props)
 
-    onClickHandler(event){
+		this.state = {
+			cardStyle: {backgroundColor: this.props.backgroundColor}
+		}
 
-        event.preventDefault();
-        this.props.onClick(this.props.id);
-    }
+		this.onClickHandler = this.onClickHandler.bind(this)
+	}
 
-    render() {
+	onClickHandler(event){
 
-        return (
+		event.preventDefault()
+		this.props.onClick(this.props.id)
+	}
 
-            //this is JSX code which is very similar to HTML we already know
-            //note that when a card has its title clicked it will call the event handler
-            //which was passed from the grid to the card
-            <div className="card">
-            <div className="cardImage">
-                <img src={this.props.image} alt={this.props.imgAlt} style={{width: '200px', height: '200px'}} />
-            </div>
-                <div className="container">
-                    <button onClick={this.onClickHandler} className="linkButton"><h4><b>{this.props.title}</b></h4></button>
-                    <p>{this.props.article}</p> 
-                </div>
-            </div>
-        );
-    }
+	render() {
+
+		return (
+
+		//this is JSX code which is very similar to HTML we already know
+		//note that when a card has its title clicked it will call the event handler
+		//which was passed from the grid to the card
+			<div className="card">
+				<div className="cardImage">
+					<img src={this.props.image} alt={this.props.imgAlt} style={{width: '200px', height: '200px'}} />
+				</div>
+				<div className="container">
+					<button onClick={this.onClickHandler} className="linkButton"><h4><b>{this.props.title}</b></h4></button>
+					<p>{this.props.article}</p>
+				</div>
+			</div>
+		)
+	}
 }
-export default Card;
+export default Card

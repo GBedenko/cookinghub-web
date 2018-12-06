@@ -6,7 +6,8 @@
       "jest": true
     },
     "parserOptions": {
-      "ecmaVersion": 8
+      "ecmaVersion": 8,
+      "sourceType": "module"
     },
     "rules": {
       "arrow-body-style": 2,
@@ -53,14 +54,18 @@
       "space-before-function-paren": [2, "never"],
       "strict": [2, "global"],
       "yoda": 2
-      },
-      "overrides": [{
-          "files": [ "*.test.js" ],
-          "rules": {
-              "max-lines-per-function": "off",
-              "max-lines": "off",
-              "no-magic-numbers": "off"
-          }
-      }]
+    },
+    "overrides": [{
+        "files": [ "*.test.js" ],
+        "rules": {
+            "max-lines-per-function": "off",
+            "max-lines": "off",
+            "no-magic-numbers": "off"
+        }
+    }],
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ]
   }
   
