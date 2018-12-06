@@ -1,7 +1,8 @@
 {
-  "name": "my-app",
-  "version": "0.1.0",
+  "name": "304cem-frontend-development-genarobedenko-7060234",
+  "version": "1.0.0",
   "private": true,
+  "description": "Frontend React App for 304CEM Coursework Assignment",
   "dependencies": {
     "axios": "^0.18.0",
     "eslint-plugin-react": "^7.11.1",
@@ -15,6 +16,11 @@
     "redux": "^4.0.1",
     "yup": "^0.26.6"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.coventry.ac.uk/304CEM-1819OCTJAN/304CEM-FRONTEND-DEVELOPMENT-GenaroBedenko-7060234"
+  },
+  "author": "bedenkog",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
