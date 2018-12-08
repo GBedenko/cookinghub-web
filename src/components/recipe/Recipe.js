@@ -14,7 +14,7 @@ class Recipe extends Component {
 		const recipeIdFromURL = this.props.location.pathname.match(/\/([0-9a-fA-F]+)/g)[0].substr(1)
 
 		this.state = {
-			recipe_id: recipeIdFromURL
+			recipeID: recipeIdFromURL
 		}
 	}
 
@@ -23,8 +23,8 @@ class Recipe extends Component {
 		return (
 			<div className="recipe">
 				<RecipeHeader recipeImage={cookingLogo} recipeID={this.state.recipeID}/>
-				<RecipeContent recipeID={this.state.recipe_id}/>
-				<RecipeFooter recipeID={this.state.recipe_id}/>
+				<RecipeContent recipeID={this.state.recipeID}/>
+				<RecipeFooter recipeID={this.state.recipeID}/>
 			</div>
 		)
 	}

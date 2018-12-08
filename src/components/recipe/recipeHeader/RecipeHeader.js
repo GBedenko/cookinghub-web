@@ -24,7 +24,7 @@ class RecipeHeader extends Component {
 					name: data.name,
 					description: data.description,
 					category: data.category,
-					mainImage: data.mainImage})
+					mainImage: data.main_image})
 			})
 	}
 

@@ -7,8 +7,7 @@
     },
     "parser": "babel-eslint",
     "parserOptions": {
-      "ecmaVersion": 8,
-      "sourceType": "module"
+      "ecmaVersion": 8
     },
     "rules": {
       "arrow-body-style": 2,
@@ -23,8 +22,8 @@
       "key-spacing": ["error", {"beforeColon": false, "afterColon": true}],
       "linebreak-style": ["warn", "unix"],
       "max-depth": ["error", 3],
-      "max-len": ["warn", { "code": 250, "tabWidth": 4 }],
-      "max-lines-per-function": ["warn", 100],
+      "max-len": ["warn", { "code": 200, "tabWidth": 4 }],
+      "max-lines-per-function": ["warn", 40],
       "max-nested-callbacks": ["error", 4],
       "max-params": ["error", 5],
       "max-statements": ["error", 30],
@@ -33,7 +32,7 @@
       "no-dupe-keys": "error",
       "no-duplicate-case": "error",
       "no-empty": "warn",
-      "no-empty-function": 1,
+      "no-empty-function": 0,
       "no-multiple-empty-lines": "warn",
       "no-extra-parens": 2,
       "no-func-assign": 2,
@@ -57,18 +56,18 @@
       "space-before-function-paren": [2, "never"],
       "strict": [2, "global"],
       "yoda": 2
-    },
-    "overrides": [{
-        "files": [ "*.test.js" ],
-        "rules": {
-            "max-lines-per-function": "off",
-            "max-lines": "off",
-            "no-magic-numbers": "off"
-        }
-    }],
-    "extends": [
+      },
+      "overrides": [{
+          "files": [ "*.test.js" ],
+          "rules": {
+              "max-lines-per-function": "off",
+              "max-lines": "off",
+              "no-magic-numbers": "off"
+          }
+      }],
+      "extends": [
         "eslint:recommended",
         "plugin:react/recommended"
-    ]
+      ]
   }
   
