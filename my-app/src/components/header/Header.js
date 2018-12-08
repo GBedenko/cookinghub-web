@@ -3,9 +3,8 @@ import React, { Component } from 'react'
 import './Header.css'
 
 import SearchBox from './searchBox/SearchBox'
-import LoginBox from './loginBox/LoginBox'
 
-import yummy_recipes_logo from './img/logo-full.png'
+import yummyRecipesLogo from './img/logo-full.png'
 
 class Header extends Component {
 
@@ -48,23 +47,23 @@ class Header extends Component {
 			<React.Fragment>
 				{this.checkIfRequired(this.props.location.pathname) &&
 
-                <div className="Header">
-                	<a href="/"><img src={yummy_recipes_logo} alt="Yummy Recipes Logo" /></a>
-                	<div className="row">
-                		<ul className="navigationMenu">
-                			<li><a href="/">Home</a></li>
-                			<li><a href="/createRecipe">Create a Recipe</a></li>
-                			<li><a href="/user">My Recipes and Lists</a></li>
-                		</ul>
-                		<div>
-                			<li><a href="/login">Log In</a></li>
-                			<li><a href="/register">Register</a></li>
-                		</div>
-                		<div className="searchBoxContainer">
-                			<SearchBox/>
-                		</div>
-                	</div>
-                </div> }
+				<div className="Header">
+					<a href="/"><img src={yummyRecipesLogo} alt="Yummy Recipes Logo" /></a>
+					<div className="row">
+						<ul className="navigationMenu">
+							<li><a href="/">Home</a></li>
+							<li><a href="/createRecipe">Create a Recipe</a></li>
+							<li><a href="/user">My Recipes and Lists</a></li>
+						</ul>
+						<div>
+							<li><a href="/login">Log In</a></li>
+							<li><a href="/register">Register</a></li>
+						</div>
+						<div className="searchBoxContainer">
+							<SearchBox/>
+						</div>
+					</div>
+				</div> }
 
 			</React.Fragment>
 		)

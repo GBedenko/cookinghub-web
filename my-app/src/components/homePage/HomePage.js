@@ -27,12 +27,9 @@ class HomePage extends Component {
 					all_recipes: resp.data
 				})
 			})
-			.catch((err) => {})
 	}
 
 	render() {
-		console.log('all recipes:')
-		console.log(this.state.all_recipes)
 
 		return (
 

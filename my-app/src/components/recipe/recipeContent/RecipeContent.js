@@ -22,16 +22,13 @@ class RecipeContent extends Component {
 	}
 
 	componentDidMount(){
-		console.log(this.props.recipe_id)
-		axios.get('http://localhost:8080/api/v1.0/recipes/' + this.props.recipe_id)
+		axios.get('http://localhost:8080/api/v1.0/recipes/' + this.props.recipeID)
 			.then(({ data }) => {
-				console.log(data)
 				this.setState({
 					ingredients: data.ingredients,
 					steps: data.steps,
 					video: data.video})
 			})
-			.catch((err) => {})
 	}
 
 	render() {

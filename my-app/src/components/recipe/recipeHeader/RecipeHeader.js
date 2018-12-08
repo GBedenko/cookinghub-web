@@ -17,17 +17,15 @@ class RecipeHeader extends Component {
 	}
 
 	componentDidMount(){
-		console.log(this.props.recipe_id)
-		axios.get('http://localhost:8080/api/v1.0/recipes/' + this.props.recipe_id)
+
+		axios.get('http://localhost:8080/api/v1.0/recipes/' + this.props.recipeID)
 			.then(({ data }) => {
-				console.log(data)
 				this.setState({
 					name: data.name,
 					description: data.description,
 					category: data.category,
-					main_image: data.main_image})
+					mainImage: data.mainImage})
 			})
-			.catch((err) => {})
 	}
 
 	render() {
@@ -40,7 +38,7 @@ class RecipeHeader extends Component {
 				</div>
 				<div className="RecipeImage">
 					<div className="recipe-main-image-container">
-						<img src={this.state.main_image} style={{width: 200, height: 200}} alt="blah"/>
+						<img src={this.state.mainImage} style={{width: 200, height: 200}} alt="blah"/>
 					</div>
 				</div>
 

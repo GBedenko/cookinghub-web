@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Login.css'
-import login_avatar from './img/login_avatar.png'
+import loginAvatar from './img/login_avatar.png'
 
 class Login extends Component {
 
@@ -44,8 +44,6 @@ class Login extends Component {
 		newErrors.txtUsername = this.state.txtUsername === '' ? true:false
 		newErrors.txtPassword = this.state.txtPassword === '' ? true:false
 
-		console.log(newErrors)
-
 		this.setState({errors: newErrors})
 	}
 
@@ -56,7 +54,7 @@ class Login extends Component {
 			<div className="loginForm">
 				<form action="action_page.php">
 					<div className="imgcontainer">
-						<img src={login_avatar} alt="Avatar" className="avatar" />
+						<img src={loginAvatar} alt="Avatar" className="avatar" />
 					</div>
 					<div className="container">
 						<label htmlFor="txtUsername"><b>Username</b></label>

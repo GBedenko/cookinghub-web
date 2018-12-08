@@ -10,7 +10,7 @@ class Grid extends Component {
 
 	// GridRow requires and array of cards it is going to make and the index of the row
 	GridRow(cards, id){
-		console.log(cards)
+
 		// Check that the cards row/array has been passed
 		if(cards == null){
 			return null

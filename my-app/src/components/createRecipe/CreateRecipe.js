@@ -50,7 +50,9 @@ class CreateRecipe extends Component {
 						<div className="form-group" id="fields">
 							<div className="controls" id="profs">
 								<form className="input-append">
-									<div id="field"><input autoComplete="off" className="input" id="field1" name="prof1" type="text" placeholder="Add Ingredient..." data-items="8"/><button id="b1" className="btn add-more" type="button">+</button></div>
+									<div id="field">
+										<input autoComplete="off" className="input" id="field1" name="prof1" type="text" placeholder="Add Ingredient..." data-items="8"/><button id="b1" className="btn add-more" type="button">+</button>
+									</div>
 								</form>
 								<br/>
 								<small>Press + to add another form field :)</small>
@@ -80,7 +82,6 @@ class CreateRecipe extends Component {
 					</div>
 				</form>
 				<button type="submit" form="createRecipeForm" value="publish_recipe">Publish Recipe</button>
-				<button type="submit" form="createRecipeForm" value="save_recipe">Save Recipe for Later (Won't be published)</button>
 			</div>
 		)
 	}

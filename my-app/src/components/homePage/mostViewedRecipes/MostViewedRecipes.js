@@ -10,7 +10,6 @@ class MostViewedRecipes extends Component {
 
 	handleThumbnailClicked(key){
 
-		console.log('item with id:' + key + ' was clicked')
 	}
 
 	render() {
