@@ -11,6 +11,7 @@ import UserDashboard from './components/userDashboard/UserDashboard'
 import Login from './components/login/Login'
 import Signup from './components/signup/Signup'
 import CreateRecipe from './components/createRecipe/CreateRecipe'
+import SearchResults from './components/searchResults/SearchResults'
 
 
 ReactDOM.render(<Router>
@@ -20,7 +21,8 @@ ReactDOM.render(<Router>
 		</head>
 		<Route path="/" component={Header}/>
 		<Route path="/" exact component={HomePage}/>
-		<Route path="/recipes" component={Recipe}/>
+		<Route path="/recipe" component={Recipe}/>
+		<Route path="/recipes" component={SearchResults}/>
 		<Route path="/user" component={UserDashboard}/>
 		<Route path="/login" component={Login}/>
 		<Route path="/register" component={Signup}/>
