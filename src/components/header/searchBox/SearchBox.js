@@ -5,12 +5,12 @@ class SearchBox extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			searchQuery: ""
+			searchQuery: ''
 		}
 
 		// Ensures that the functions understand what 'this' object is
-		this.onChange = this.onChange.bind(this);
-		this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+		this.onChange = this.onChange.bind(this)
+		this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
 	}
 
 	onChange(event) {
