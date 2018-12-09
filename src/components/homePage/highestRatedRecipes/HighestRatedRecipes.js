@@ -15,7 +15,7 @@ class HighestRatedRecipes extends Component {
 			<div className="HighestRatedRecipes">
 				<h3>Highest Rated Recipes:</h3>
 				<div>
-					<Grid items={this.props.recipes_list} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
+					<Grid items={this.props.recipes_list} colClass="col-m-3" rowLength={4} />
 				</div>
 			</div>
 		)

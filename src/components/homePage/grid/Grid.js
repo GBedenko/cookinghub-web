@@ -24,7 +24,6 @@ class Grid extends Component {
 						<Card image={item.main_image}
 							title={item.name}
 							article={item.article}
-							onClick = {this.props.onClick}
 							id ={item._id}
 						/>
 					</div>
