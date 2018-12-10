@@ -10,14 +10,14 @@ class CreateRecipe extends Component {
 
 		// Default values for a new recipe (which will be populated from values in form)
 		this.state = {
-			name: "",
-			category: "Main",
-			description: "",
-			main_image: "",
-			ingredients: [],
+			name: '',
+			category: 'Main',
+			description: '',
+			main_image: '',
+			ingredients: [''],
 			steps: [],
 			steps_images: [],
-			user: "",
+			user: '',
 			views: 0,
 			likes: 0,
 			dislikes: 0
@@ -26,6 +26,7 @@ class CreateRecipe extends Component {
 		// Ensures that the functions understand what 'this' object is
 		this.handleInputChange = this.handleInputChange.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
+		this.addIngredient = this.addIngredient.bind(this)
 	}
 
 	handleInputChange(event) {
@@ -33,22 +34,29 @@ class CreateRecipe extends Component {
 		const target = event.target
 		const value = target.type === 'checkbox' ? target.checked : target.value
 		const name = target.name
-	
+
 		this.setState({
 			[name]: value
 		})
 	}
 
 	handleSubmit(event) {
-		
+
 		event.preventDefault()
 
-		axios.post('http://localhost:8080/api/v1.0/recipes', this.state, {headers: { "Content-Type": "application/json"}})
+		axios.post('http://localhost:8080/api/v1.0/recipes', this.state, {headers: { 'Content-Type': 'application/json'}})
 
 		window.location = '/recipes'
 	}
 
+	addIngredient = (e) => {
+		this.setState((prevState) => ({
+			ingredients: [...prevState.ingredients, ''],
+		}))
+	}
+
 	render() {
+		const {ingredients} = this.state
 
 		return (
 
@@ -100,33 +108,22 @@ class CreateRecipe extends Component {
 							onChange={this.handleInputChange}/>
 					</div>
 
-					{/* <div className="form-group">
-						<input type="hidden" name="count" value="1" />
-						<label className="control-label" htmlFor="field1">Ingredients:</label>
-						<br/>
-						<div className="form-group" id="fields">
-							<div className="controls" id="profs">
-								<form className="input-append">
-									<div id="field">
-										<input autoComplete="off" className="input" id="field1" name="prof1" type="text" placeholder="Add Ingredient..." data-items="8"/><button id="b1" className="btn add-more" type="button">+</button>
-									</div>
-								</form>
-								<br/>
-								<small>Press + to add another form field :)</small>
+					<h4>Ingredients:</h4>
+					{ingredients.map( (val, idx) => {
+						const ingredientId = `ingredient-${idx}`
+						return (
+							<div key={idx}>
+								<label htmlFor={ingredientId}>{`Ingredient ${idx + 1}: `}</label>
+								<input
+									type="text"
+									name={ingredientId}
+									className="ingredient"
+									onChange={this.handleInputChange}
+								/>
 							</div>
-						</div>
-					</div>
-
-					<div className="form-group">
-						<label htmlFor="exampleFormControlFile1">Preperation Steps:</label>
-						<p>1.</p><textarea className="form-control" rows="3"></textarea>
-						<br/>
-						<label htmlFor="exampleFormControlFile1">Step Image:</label>
-						<br/>
-						<input type="file" className="form-control-file"/>
-						<br/>
-						<small>Press + to add another form field :)</small>
-					</div> */}
+						)
+					})}
+					<a onClick={this.addIngredient}>Add New Ingredient</a>
 
 					<div className="form-group">
 						<label htmlFor="exampleFormControlFile1">Video File:</label>
