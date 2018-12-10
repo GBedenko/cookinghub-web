@@ -1,9 +1,9 @@
 
 .loginForm {
     width: 30%;
-    margin: 25px auto;
-    border: 3px solid #f1f1f1;
+    margin: 25px auto;    
 }
+
 /* Full-width inputs */
 .loginForm input[type=text], input[type=password] {
     width: 100%;

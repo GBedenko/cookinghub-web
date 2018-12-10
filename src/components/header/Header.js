@@ -37,7 +37,7 @@ class Header extends Component {
 
 	checkIfRequired(path) {
 
-		return !/login$/g.test(path)
+		return !/login|register|welcome$/g.test(path)
 	}
 
 	render() {
