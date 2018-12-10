@@ -19,29 +19,19 @@ class HomePage extends Component {
 		}
 	}
 
-	componentDidMount(){
-
-		axios.get('http://localhost:8080/api/v1.0/recipes')
-			.then( resp => {
-				this.setState({
-					all_recipes: resp.data
-				})
-			})
-	}
-
 	render() {
 
 		return (
 
 			<div className="HomePage">
-				<FilterCategoryRecipes recipes_list={this.state.all_recipes} />
+				{/* <FilterCategoryRecipes recipes_list={this.state.all_recipes} /> */}
 				<HighestRatedRecipes recipes_list={this.state.all_recipes} />
 				<MostRecentRecipes recipes_list={this.state.all_recipes} />
 				<MostViewedRecipes recipes_list={this.state.all_recipes} />
-				<CustomListRecipes title="Your Favourite Recipes:" recipes_list={this.state.all_recipes} />
+				{/* <CustomListRecipes title="Your Favourite Recipes:" recipes_list={this.state.all_recipes} />
 				<CustomListRecipes title="Recipes from Authors you Follow:" recipes_list={this.state.all_recipes} />
 				<CustomListRecipes title="Recipes you created:" recipes_list={this.state.all_recipes} />
-				<CustomListRecipes title="Recipes Custom List Name:" recipes_list={this.state.all_recipes} />
+				<CustomListRecipes title="Recipes Custom List Name:" recipes_list={this.state.all_recipes} /> */}
 			</div>
 		)
 	}
