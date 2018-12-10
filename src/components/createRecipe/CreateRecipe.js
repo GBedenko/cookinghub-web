@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {Redirect} from 'react-router-dom'
 
 import './CreateRecipe.css'
 
@@ -46,7 +47,7 @@ class CreateRecipe extends Component {
 
 		axios.post('http://localhost:8080/api/v1.0/recipes', this.state, {headers: { 'Content-Type': 'application/json'}})
 
-		window.location = '/recipes'
+		return <Redirect to={'/app/user'}/>
 	}
 
 	addIngredient = (e) => {

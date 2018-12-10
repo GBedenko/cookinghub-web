@@ -19,11 +19,11 @@ class Welcome extends Component {
 		return (
 
 			<div className="Welcome">
-				<div className="row">
-					<div className="LoginForm">
+				<div className="row m-0 p-0">
+					<div className="LoginForm col-6" >
 						<Login />
 					</div>
-					<div className="RegisterForm">
+					<div className="RegisterForm col-6">
 						<Register />
 					</div>
 				</div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 import './Login.css'
 
 class Login extends Component {
@@ -42,8 +43,17 @@ class Login extends Component {
 
 		newErrors.username = this.state.username === '' ? true:false
 		newErrors.password = this.state.password === '' ? true:false
-
 		this.setState({errors: newErrors})
+
+		const header = 'Basic asdfasdf'
+
+		// axios
+		// validate
+
+		// if correct
+		this.props.onSuccess(header)
+
+		return <Redirect to={'/app/user'}/>
 	}
 
 	render() {
