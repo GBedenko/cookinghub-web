@@ -1,3 +1,4 @@
+
 export default function createAuthHeader(username, password) {
 	// Using Basic Authorizations standards for authentication requests between user and backend APIs
 

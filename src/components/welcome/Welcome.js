@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import './Welcome.css'
-
-import Login from './login/Login'
-import Register from './register/Register'
+import {BrowserRouter as Redirect} from 'react-router-dom'
 
 class Welcome extends Component {
 
@@ -16,19 +14,11 @@ class Welcome extends Component {
 
 	render() {
 
-		return (
-
-			<div className="Welcome">
-				<div className="row m-0 p-0">
-					<div className="LoginForm col-6" >
-						<Login />
-					</div>
-					<div className="RegisterForm col-6">
-						<Register />
-					</div>
-				</div>
-			</div>
-		)
+		if(this.props.authHeader) {
+			return <Redirect to={'/app/all_recipes'}/>
+		} else {
+			return <Redirect to={'/login'}/>
+		}
 	}
 }
 export default Welcome

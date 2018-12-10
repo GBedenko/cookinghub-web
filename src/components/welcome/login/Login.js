@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 import './Login.css'
+import BasicAuth from '../../../modules/BasicAuth'
+import axios from 'axios'
 
 class Login extends Component {
 
@@ -13,7 +15,8 @@ class Login extends Component {
 			password: '',
 			errors: {
 				username: false,
-				password: false
+				password: false,
+				incorrect: false
 			}
 		}
 
@@ -44,19 +47,37 @@ class Login extends Component {
 		newErrors.username = this.state.username === '' ? true:false
 		newErrors.password = this.state.password === '' ? true:false
 		this.setState({errors: newErrors})
+		console.log(this.state.username)
+		console.log(this.state.password)
+		// Create a Basic Auth header based on the username and password entered
+		const authHeader = BasicAuth(this.state.username, this.state.password)
 
-		const header = 'Basic asdfasdf'
+		console.log(authHeader)
+		// axios validate
+		axios({
+			method: 'head', //you can set what request you want to be
+			url: 'http://localhost:8080/api/v1.0/login',
+			headers: {
+			  Authorization: authHeader
+			}
+		}).then((response) => {
+			console.log(response)
+			this.props.onSuccess(authHeader)
+			this.setState({redirect: true})
+		})
+		.catch((reason) => {
+			console.log(reason)
+			this.setState({errors: {incorrect: true}})
+		})
 
-		// axios
-		// validate
-
-		// if correct
-		this.props.onSuccess(header)
-
-		return <Redirect to={'/app/user'}/>
+		// axios.head("http://localhost:8080/api/v1.0/login", { Authorization: authHeader})
+			
+			
 	}
 
 	render() {
+
+		if(this.state.redirect) return <Redirect to={'/app/home'}/>
 
 		return (
 
@@ -69,8 +90,10 @@ class Login extends Component {
 					{this.state.errors.username ? <div className="error">Username is required</div>: null}
 
 					<label htmlFor="txtPassword" ><b>Password</b></label>
-					<input type="password" placeholder="Enter Password" name="txtPassword" onChange={this.handleInputChange} value={this.state.password} />
+					<input type="password" placeholder="Enter Password" name="password" onChange={this.handleInputChange} value={this.state.password} />
 					{this.state.errors.password ? <div className="error">password is required</div>: null}
+					
+					{this.state.errors.incorrect ? <div className="error">Login details were incorrect. Please check username and password</div>: null}
 
 					<button type="submit" style={this.state.loginButtonColor} onClick={this.handleLoginClick}>Login</button>
 				</form>

@@ -16,7 +16,7 @@ class Card extends Component {
 	onClickHandler(event){
 
 		event.preventDefault()
-		window.location = '/recipe/' + this.props.id
+		window.location = '/app/recipe/' + this.props.id
 	}
 
 	render() {

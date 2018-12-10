@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import './Register.css'
+import BasicAuth from '../../../modules/BasicAuth'
+import axios from 'axios'
+import bcrypt from 'bcryptjs'
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 
 class Register extends Component {
 
@@ -12,8 +16,10 @@ class Register extends Component {
 			password: '',
 			errors: {
 				username: false,
-				password: false
-			}
+				password: false,
+				incorrect: false
+			},
+			redirect: false
 		}
 
 		this.handleInputChange = this.handleInputChange.bind(this)
@@ -42,11 +48,30 @@ class Register extends Component {
 
 		newErrors.username = this.state.username === '' ? true:false
 		newErrors.password = this.state.password === '' ? true:false
-
 		this.setState({errors: newErrors})
+
+		// Create a Basic Auth header based on the username and password entered
+		const authHeader = BasicAuth(this.state.username, this.state.password)
+		
+		// Define salt for hashing password
+		const salt = 10
+
+		// Hash the password using bcrypt
+		const passwordHash = bcrypt.hashSync(this.state.password, salt)
+
+		axios.post('http://localhost:8080/api/v1.0/users', {username: this.state.username, passwordHash: passwordHash})
+			.then((response) => {
+				this.props.onSuccess(authHeader)
+				console.log("got here")
+				this.setState({redirect: true})
+			})
+			.catch((reason) => this.setState({errors: {incorrect: true}}))
+
 	}
 
 	render() {
+
+		if(this.state.redirect) return <Redirect to={'/app/all_recipes'}/>	
 
 		return (
 
@@ -61,6 +86,8 @@ class Register extends Component {
 					<label htmlFor="password" ><b>Password</b></label>
 					<input type="password" placeholder="Enter Password" name="password" onChange={this.handleInputChange} value={this.state.password} />
 					{this.state.errors.password ? <div className="error">password is required</div>: null}
+
+					{this.state.errors.incorrect ? <div className="error">Details were incorrect</div>: null}
 
 					<button type="submit" style={this.state.registerButtonColor} onClick={this.handleRegisterClick}>Register</button>
 				</form>
