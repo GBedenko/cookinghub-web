@@ -12,8 +12,11 @@ class HomePage extends Component {
 		super(props)
 
 		this.state = {
-			all_recipes: []
+			all_recipes: [],
+			authHeader: ''
 		}
+		this.setState({authHeader: this.props.authHeader})
+		console.log(this.state.authHeader)
 	}
 
 	render() {
@@ -21,9 +24,9 @@ class HomePage extends Component {
 		return (
 
 			<div className="HomePage">
-				<HighestRatedRecipes recipes_list={this.state.all_recipes} />
-				<MostRecentRecipes recipes_list={this.state.all_recipes} />
-				<MostViewedRecipes recipes_list={this.state.all_recipes} />
+				<HighestRatedRecipes recipes_list={this.state.all_recipes} authHeader={this.state.authHeader} />
+				<MostRecentRecipes recipes_list={this.state.all_recipes} authHeader={this.state.authHeader} />
+				<MostViewedRecipes recipes_list={this.state.all_recipes} authHeader={this.state.authHeader} />
 			</div>
 		)
 	}

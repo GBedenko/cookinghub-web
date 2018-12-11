@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 import './Login.css'
-import BasicAuth from '../../../modules/BasicAuth'
+import CreateAuthHeader from '../../../modules/create_basic_auth_header'
 import axios from 'axios'
+import logo from '../../../img/logo-full-rectangle.png'
 
 class Login extends Component {
 
@@ -17,7 +18,8 @@ class Login extends Component {
 				username: false,
 				password: false,
 				incorrect: false
-			}
+			},
+			redirect: false
 		}
 
 		this.handleInputChange = this.handleInputChange.bind(this)
@@ -50,7 +52,7 @@ class Login extends Component {
 		console.log(this.state.username)
 		console.log(this.state.password)
 		// Create a Basic Auth header based on the username and password entered
-		const authHeader = BasicAuth(this.state.username, this.state.password)
+		const authHeader = CreateAuthHeader(this.state.username, this.state.password)
 
 		console.log(authHeader)
 		// axios validate
@@ -83,7 +85,8 @@ class Login extends Component {
 
 			<div className="loginForm">
 
-				<h1>Login to an Existing Account:</h1>
+				<img src={logo}/>
+				<h1 className="text-center">Login:</h1>
 				<form>
 					<label htmlFor="username"><b>Username</b></label>
 					<input type="text" placeholder="Enter Username" name="username" onChange={this.handleInputChange} value={this.state.username} />
@@ -97,6 +100,7 @@ class Login extends Component {
 
 					<button type="submit" style={this.state.loginButtonColor} onClick={this.handleLoginClick}>Login</button>
 				</form>
+				<p>Don't have an account? <a href="/register">Create one.</a></p>
 			</div>
 
 		)

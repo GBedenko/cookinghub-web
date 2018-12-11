@@ -5,8 +5,7 @@ import './App.css'
 
 import Login from './components/welcome/login/Login'
 import Register from './components/welcome/register/Register'
-import Welcome from './components/welcome/Welcome'
-import Protected from './components/protected/Protected'
+import Protected from './Protected'
 
 class App extends Component {
 
@@ -28,8 +27,7 @@ class App extends Component {
 
 		return (
 			<React.Fragment>
-				<Route path="/" render={(props) => <Welcome authHeader={this.state.authHeader}/> } />
-				<Route path="/login" render={(props) => <Login onSuccess={this.onSetAuthHeader}/> } />
+				<Route exact path="/" render={(props) => <Login onSuccess={this.onSetAuthHeader}/> } />
 				<Route path="/register" render={(props) => <Register onSuccess={this.onSetAuthHeader}/> } />
 				<Route path="/app" render={(props) => <Protected authHeader={this.state.authHeader}/>} />
 			</React.Fragment>

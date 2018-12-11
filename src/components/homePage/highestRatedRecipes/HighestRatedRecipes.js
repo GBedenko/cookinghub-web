@@ -13,7 +13,7 @@ class HighestRatedRecipes extends Component {
 			recipes_list: []
 		}
 	}
-
+	
 	componentDidMount(){
 
 		axios.get('http://localhost:8080/api/v1.0/recipes?limit=4&likes=1')

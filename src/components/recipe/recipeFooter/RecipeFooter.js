@@ -12,8 +12,10 @@ class RecipeFooter extends Component {
 		super(props)
 
 		this.state = {
+			recipeID: ''
 		}
 
+		this.setState({recipeID: this.props.recipeID})
 	}
 
 	render() {
@@ -21,10 +23,10 @@ class RecipeFooter extends Component {
 		return (
 
 			<div className="RecipeFooter">
+				<RecipeSharingOptions recipeID={this.state.recipeID}/>
 				<RecipeComments/>
 				<RecipeCommentBox/>
-				<RecipeAboutAuthor/>
-				<RecipeSharingOptions/>
+				<RecipeAboutAuthor recipeID={this.state.recipeID}/>
 			</div>
 		)
 	}

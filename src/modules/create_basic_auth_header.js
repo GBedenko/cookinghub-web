@@ -1,5 +1,5 @@
 
-export default function createAuthHeader(username, password) {
+export default (username, password) => {
 	// Using Basic Authorizations standards for authentication requests between user and backend APIs
 
 	// Join the username and password with a colon seperator

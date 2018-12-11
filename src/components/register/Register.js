@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import './Register.css'
-import BasicAuth from '../../../modules/BasicAuth'
+import CreateAuthHeader from '../../../modules/create_basic_auth_header'
 import axios from 'axios'
 import bcrypt from 'bcryptjs'
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
+import logo from '../../../img/logo-full-rectangle.png'
 
 class Register extends Component {
 
@@ -51,7 +52,7 @@ class Register extends Component {
 		this.setState({errors: newErrors})
 
 		// Create a Basic Auth header based on the username and password entered
-		const authHeader = BasicAuth(this.state.username, this.state.password)
+		const authHeader = CreateAuthHeader(this.state.username, this.state.password)
 		
 		// Define salt for hashing password
 		const salt = 10
@@ -71,13 +72,14 @@ class Register extends Component {
 
 	render() {
 
-		if(this.state.redirect) return <Redirect to={'/app/all_recipes'}/>	
+		if(this.state.redirect) return <Redirect to={'/app/home'}/>	
 
 		return (
 
 			<div className="registerForm">
 
-				<h1>Create a New Account:</h1>
+				<img src={logo}/>
+				<h1 className="text-center">Register:</h1>
 				<form>
 					<label htmlFor="username"><b>Username</b></label>
 					<input type="text" placeholder="Enter Username" name="username" onChange={this.handleInputChange} value={this.state.username} />

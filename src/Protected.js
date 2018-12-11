@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 
-import HomePage from '../homePage/HomePage'
-import Recipe from '../recipe/Recipe'
-import UserDashboard from '../userDashboard/UserDashboard'
-import CreateRecipe from '../createRecipe/CreateRecipe'
-import SearchResults from '../searchResults/SearchResults'
-import Header from '../header/Header'
+import HomePage from './components/homePage/HomePage'
+import Recipe from './components/recipe/Recipe'
+import UserDashboard from './components/userDashboard/UserDashboard'
+import CreateRecipe from './components/createRecipe/CreateRecipe'
+import SearchResults from './components/searchResults/SearchResults'
+import Header from './components/header/Header'
 
 class Protected extends Component {
 

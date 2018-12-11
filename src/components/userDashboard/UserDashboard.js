@@ -12,6 +12,7 @@ class UserDashboard extends Component {
 		super(props)
 
 		this.state = {
+			username: ''
 		}
 	}
 
@@ -19,11 +20,8 @@ class UserDashboard extends Component {
 
 		return (
 			<div className="UserDashboard">
-				<h1>Username's Dashboard:</h1>
+				<h1>{this.state.username}'s Dashboard:</h1>
 				<UserRecipes/>
-				<UserNotifications/>
-				<UserFavouriteRecipes/>
-				<UserCustomList/>
 			</div>
 		)
 	}

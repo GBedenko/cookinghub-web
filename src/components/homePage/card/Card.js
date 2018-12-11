@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './Card.css'
+import {BrowserRouter as Redirect} from 'react-router-dom'
 
 class Card extends Component {
 
@@ -16,7 +17,7 @@ class Card extends Component {
 	onClickHandler(event){
 
 		event.preventDefault()
-		window.location = '/app/recipe/' + this.props.id
+		return <Redirect to={'/app/recipe/' + this.props.id}/>
 	}
 
 	render() {
