@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './Card.css'
+import {BrowserRouter as Redirect} from 'react-router-dom'
 
 class Card extends Component {
 
@@ -16,19 +17,16 @@ class Card extends Component {
 	onClickHandler(event){
 
 		event.preventDefault()
-		this.props.onClick(this.props.id)
+		return <Redirect to={'/app/recipe/' + this.props.id}/>
 	}
 
 	render() {
 
 		return (
 
-		//this is JSX code which is very similar to HTML we already know
-		//note that when a card has its title clicked it will call the event handler
-		//which was passed from the grid to the card
 			<div className="card">
 				<div className="cardImage">
-					<img src={this.props.image} alt={this.props.imgAlt} style={{width: '200px', height: '200px'}} />
+					<img onClick={this.onClickHandler} src={this.props.image} alt={this.props.imgAlt} style={{width: '200px', height: '200px'}} />
 				</div>
 				<div className="container">
 					<button onClick={this.onClickHandler} className="linkButton"><h4><b>{this.props.title}</b></h4></button>

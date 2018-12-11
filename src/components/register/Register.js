@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
-import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
-import './Login.css'
+import './Register.css'
 import CreateAuthHeader from '../../../modules/create_basic_auth_header'
 import axios from 'axios'
+import bcrypt from 'bcryptjs'
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 import logo from '../../../img/logo-full-rectangle.png'
 
-class Login extends Component {
+class Register extends Component {
 
 	constructor(props){
 		super(props)
 
 		this.state = {
-			loginButtonColor: {backgroundColor: this.props.loginButtonColor},
+			registerButtonColor: {backgroundColor: this.props.registerButtonColor},
 			username: '',
 			password: '',
 			errors: {
@@ -23,7 +24,7 @@ class Login extends Component {
 		}
 
 		this.handleInputChange = this.handleInputChange.bind(this)
-		this.handleLoginClick = this.handleLoginClick.bind(this)
+		this.handleRegisterClick = this.handleRegisterClick.bind(this)
 	}
 
 	handleInputChange(event){
@@ -38,7 +39,7 @@ class Login extends Component {
 		})
 	}
 
-	handleLoginClick(event){
+	handleRegisterClick(event){
 
 		//prevent form submission
 		event.preventDefault()
@@ -49,61 +50,52 @@ class Login extends Component {
 		newErrors.username = this.state.username === '' ? true:false
 		newErrors.password = this.state.password === '' ? true:false
 		this.setState({errors: newErrors})
-		console.log(this.state.username)
-		console.log(this.state.password)
+
 		// Create a Basic Auth header based on the username and password entered
 		const authHeader = CreateAuthHeader(this.state.username, this.state.password)
+		
+		// Define salt for hashing password
+		const salt = 10
 
-		console.log(authHeader)
-		// axios validate
-		axios({
-			method: 'head', //you can set what request you want to be
-			url: 'http://localhost:8080/api/v1.0/login',
-			headers: {
-			  Authorization: authHeader
-			}
-		}).then((response) => {
-			console.log(response)
-			this.props.onSuccess(authHeader)
-			this.setState({redirect: true})
-		})
-		.catch((reason) => {
-			console.log(reason)
-			this.setState({errors: {incorrect: true}})
-		})
+		// Hash the password using bcrypt
+		const passwordHash = bcrypt.hashSync(this.state.password, salt)
 
-		// axios.head("http://localhost:8080/api/v1.0/login", { Authorization: authHeader})
-			
-			
+		axios.post('http://localhost:8080/api/v1.0/users', {username: this.state.username, passwordHash: passwordHash})
+			.then((response) => {
+				this.props.onSuccess(authHeader)
+				console.log("got here")
+				this.setState({redirect: true})
+			})
+			.catch((reason) => this.setState({errors: {incorrect: true}}))
+
 	}
 
 	render() {
 
-		if(this.state.redirect) return <Redirect to={'/app/home'}/>
+		if(this.state.redirect) return <Redirect to={'/app/home'}/>	
 
 		return (
 
-			<div className="loginForm">
+			<div className="registerForm">
 
 				<img src={logo}/>
-				<h1 className="text-center">Login:</h1>
+				<h1 className="text-center">Register:</h1>
 				<form>
 					<label htmlFor="username"><b>Username</b></label>
 					<input type="text" placeholder="Enter Username" name="username" onChange={this.handleInputChange} value={this.state.username} />
 					{this.state.errors.username ? <div className="error">Username is required</div>: null}
 
-					<label htmlFor="txtPassword" ><b>Password</b></label>
+					<label htmlFor="password" ><b>Password</b></label>
 					<input type="password" placeholder="Enter Password" name="password" onChange={this.handleInputChange} value={this.state.password} />
 					{this.state.errors.password ? <div className="error">password is required</div>: null}
-					
-					{this.state.errors.incorrect ? <div className="error">Login details were incorrect. Please check username and password</div>: null}
 
-					<button type="submit" style={this.state.loginButtonColor} onClick={this.handleLoginClick}>Login</button>
+					{this.state.errors.incorrect ? <div className="error">Details were incorrect</div>: null}
+
+					<button type="submit" style={this.state.registerButtonColor} onClick={this.handleRegisterClick}>Register</button>
 				</form>
-				<p>Don't have an account? <a href="/register">Create one.</a></p>
 			</div>
 
 		)
 	}
 }
-export default Login
+export default Register
