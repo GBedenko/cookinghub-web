@@ -1,40 +1,49 @@
 import React, { Component } from 'react'
+import { Redirect, withRouter } from 'react-router-dom'
 
 class SearchBox extends Component {
 
 	constructor(props){
 		super(props)
 		this.state = {
-			searchQuery: ''
+			searchQuery: '',
+			redirect: false,
+			link: ''
 		}
-
+		
 		// Ensures that the functions understand what 'this' object is
+		// this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
 		this.onChange = this.onChange.bind(this)
-		this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
+		this.submitSearch = this.submitSearch.bind(this)
 	}
 
+	// handleSearchSubmit(event) {
+	// 	//prevent the form to be submitted to its action url
+	// 	event.preventDefault()
+	// 	this.setState({redirect: true})		
+	// }
+
 	onChange(event) {
-		// Update the state of the searchQuery value to whatever was entered in the field
+		event.preventDefault()
 		this.setState({searchQuery: event.target.value})
 	}
 
-	handleSearchSubmit(event) {
-		//prevent the form to be submitted to its action url
+	submitSearch(event) {
 		event.preventDefault()
-		window.location = '/recipes?query=' + this.state.searchQuery
-	}
 
+		this.props.history.push('/app/recipes?query=' + this.state.searchQuery)
+	}
 	render() {
 
 		return (
 			<div className="SearchBox">
 				<form onSubmit={this.handleSearchSubmit}>
 					<input type="text" placeholder="Search Recipes..." name="query" onChange={this.onChange} />
-					<button type="submit" onClick={this.handleSearchSubmit}>Search</button>
+					<button type="submit" value={this.state.searchQuery} onClick={this.submitSearch}>Search</button>
 				</form>
 			</div>
 		)
 	}
 }
 
-export default SearchBox
+export default withRouter(SearchBox)

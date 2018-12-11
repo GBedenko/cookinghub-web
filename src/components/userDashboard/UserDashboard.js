@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 
-import UserFavouriteRecipes from './userFavouriteRecipes/UserFavouriteRecipes'
-import UserNotifications from './userNotifications/UserNotifications'
 import UserRecipes from './userRecipes/UserRecipes'
-import UserCustomList from './userCustomLists/UserCustomList'
-
 
 class UserDashboard extends Component {
 

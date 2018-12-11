@@ -3,6 +3,8 @@ import axios from 'axios'
 import {Redirect} from 'react-router-dom'
 
 import './CreateRecipe.css'
+import IngredientInput from './inputs/IngredientInput'
+import PreperationStepInput from './inputs/IngredientInput'
 
 class CreateRecipe extends Component {
 
@@ -11,23 +13,26 @@ class CreateRecipe extends Component {
 
 		// Default values for a new recipe (which will be populated from values in form)
 		this.state = {
-			name: '',
-			category: 'Main',
-			description: '',
-			main_image: '',
-			ingredients: [''],
-			steps: [],
-			steps_images: [],
-			user: '',
-			views: 0,
-			likes: 0,
-			dislikes: 0
+			new_recipe: { 
+				name: '',
+				category: 'Starter',
+				description: '',
+				main_image: '',
+				ingredients: [''],
+				steps: [''],
+				views: 0,
+				likes: 0,
+				dislikes: 0},
+			redirect: false
 		}
 
 		// Ensures that the functions understand what 'this' object is
 		this.handleInputChange = this.handleInputChange.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.addIngredient = this.addIngredient.bind(this)
+		this.handleIngredientArraySubmit = this.handleIngredientArraySubmit.bind(this)
+		this.addStep = this.addStep.bind(this)
+		this.handleStepArraySubmit = this.handleStepArraySubmit.bind(this)
 	}
 
 	handleInputChange(event) {
@@ -45,19 +50,52 @@ class CreateRecipe extends Component {
 
 		event.preventDefault()
 
-		axios.post('http://localhost:8080/api/v1.0/recipes', this.state, {headers: { 'Content-Type': 'application/json'}})
+		axios.post('http://localhost:8080/api/v1.0/recipes', this.state.new_recipe, {headers: { 'Content-Type': 'application/json'}})
 
-		return <Redirect to={'/app/user'}/>
+		this.setState({redirect: true})
 	}
 
-	addIngredient = (e) => {
-		this.setState((prevState) => ({
-			ingredients: [...prevState.ingredients, ''],
+	handleIngredientArraySubmit(event, index) {
+		console.log(`${event.target.name} changed value to ${event.target.value} at index ${index}`)
+		let ingr = Array.from(this.state.new_recipe.ingredients)
+		ingr[index] = event.target.value
+		let recipe = Object.assign({},this.state.new_recipe,{ingredients: ingr})
+		this.setState({
+			new_recipe: recipe
+		})
+	}
+
+	addIngredient = (event) => {
+		console.log(this.state.new_recipe.ingredients)
+		event.preventDefault()
+		let newIngredients = this.state.new_recipe.ingredients.push("")
+		this.setState(({
+			ingredients: newIngredients
+		}))
+	}
+
+	handleStepArraySubmit(event, index) {
+		console.log(`${event.target.name} changed value to ${event.target.value} at index ${index}`)
+		let step = Array.from(this.state.new_recipe.steps)
+		step[index] = event.target.value
+		let recipe = Object.assign({},this.state.new_recipe,{steps: step})
+		this.setState({
+			new_recipe: recipe
+		})
+	}
+
+	addStep = (event) => {
+		console.log(this.state.new_recipe.steps)
+		event.preventDefault()
+		let newSteps = this.state.new_recipe.steps.push("")
+		this.setState(({
+			steps: newSteps
 		}))
 	}
 
 	render() {
-		const {ingredients} = this.state
+
+		if(this.state.redirect) return <Redirect to={'/app/user'}/>	
 
 		return (
 
@@ -105,26 +143,35 @@ class CreateRecipe extends Component {
 							type="text"
 							className="form-control"
 							name="main_image"
-							placeholder="Description of Recipe"
+							placeholder="Image of Finished Recipe"
 							onChange={this.handleInputChange}/>
 					</div>
 
 					<h4>Ingredients:</h4>
-					{ingredients.map( (val, idx) => {
-						const ingredientId = `ingredient-${idx}`
+					{this.state.new_recipe.ingredients.map( (val, idx) => {
+						
 						return (
-							<div key={idx}>
-								<label htmlFor={ingredientId}>{`Ingredient ${idx + 1}: `}</label>
-								<input
-									type="text"
-									name={ingredientId}
-									className="ingredient"
-									onChange={this.handleInputChange}
-								/>
-							</div>
+							<IngredientInput index={idx} 
+							key={"ingredient"+idx} 
+							onChange={this.handleIngredientArraySubmit} 
+							value={this.state.new_recipe.ingredients[idx]}
+							id={"ingredient"+idx} />
 						)
 					})}
-					<a onClick={this.addIngredient}>Add New Ingredient</a>
+					<button onClick={this.addIngredient}>Add New Ingredient</button>
+
+					<h4>Preperation Steps:</h4>
+					{this.state.new_recipe.steps.map( (val, idx) => {
+						
+						return (
+							<PreperationStepInput index={idx} 
+							key={"step"+idx} 
+							onChange={this.handleStepArraySubmit} 
+							value={this.state.new_recipe.steps[idx]}
+							id={"step"+idx} />
+						)
+					})}
+					<button onClick={this.addStep}>Add New Preperation Step</button>
 
 					<div className="form-group">
 						<label htmlFor="exampleFormControlFile1">Video File:</label>

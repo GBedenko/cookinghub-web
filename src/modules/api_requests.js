@@ -12,11 +12,11 @@ class ApiRequests {
 
     login(authHeader) {
         axios({
-			method: 'head', //you can set what request you want to be
-			url: 'http://localhost:8080/api/v1.0/login',
-			headers: {
-			  Authorization: authHeader
-			}
+          method: 'head',
+          url: 'http://localhost:8080/api/v1.0/login',
+          headers: {
+            Authorization: authHeader
+        }
 		})
     }
 

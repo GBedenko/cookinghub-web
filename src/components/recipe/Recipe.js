@@ -3,8 +3,6 @@ import RecipeHeader from './recipeHeader/RecipeHeader'
 import RecipeContent from './recipeContent/RecipeContent'
 import RecipeFooter from './recipeFooter/RecipeFooter'
 
-import cookingLogo from './img/recipe_logo.png'
-
 class Recipe extends Component {
 
 	constructor(props){
@@ -22,7 +20,7 @@ class Recipe extends Component {
 
 		return (
 			<div className="recipe">
-				<RecipeHeader recipeImage={cookingLogo} recipeID={this.state.recipeID}/>
+				<RecipeHeader recipeID={this.state.recipeID}/>
 				<RecipeContent recipeID={this.state.recipeID}/>
 				<RecipeFooter recipeID={this.state.recipeID}/>
 			</div>

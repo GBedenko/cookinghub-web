@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 import './Login.css'
-import CreateAuthHeader from '../../../modules/create_basic_auth_header'
+import CreateAuthHeader from '../../modules/create_basic_auth_header'
 import axios from 'axios'
-import logo from '../../../img/logo-full-rectangle.png'
+import logo from '../../img/logo-full-rectangle.png'
 
 class Login extends Component {
 
@@ -49,12 +49,10 @@ class Login extends Component {
 		newErrors.username = this.state.username === '' ? true:false
 		newErrors.password = this.state.password === '' ? true:false
 		this.setState({errors: newErrors})
-		console.log(this.state.username)
-		console.log(this.state.password)
+		
 		// Create a Basic Auth header based on the username and password entered
 		const authHeader = CreateAuthHeader(this.state.username, this.state.password)
 
-		console.log(authHeader)
 		// axios validate
 		axios({
 			method: 'head', //you can set what request you want to be
@@ -63,12 +61,10 @@ class Login extends Component {
 			  Authorization: authHeader
 			}
 		}).then((response) => {
-			console.log(response)
 			this.props.onSuccess(authHeader)
 			this.setState({redirect: true})
 		})
 		.catch((reason) => {
-			console.log(reason)
 			this.setState({errors: {incorrect: true}})
 		})
 

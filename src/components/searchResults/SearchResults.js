@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './SearchResults.css'
 import axios from 'axios'
+import {BrowserRouter as Router, Route, Redirect, withRouter} from 'react-router-dom'
 
 class SearchResults extends Component {
 
@@ -15,6 +16,7 @@ class SearchResults extends Component {
 
 	componentDidMount(){
 
+		console.log(this.props)
 		axios.get('http://localhost:8080/api/v1.0/recipes' + this.props.location.search)
 			.then(({ data }) => {
 				this.setState({
@@ -47,4 +49,4 @@ class SearchResults extends Component {
 	}
 }
 
-export default SearchResults
+export default withRouter(SearchResults)

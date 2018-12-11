@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Redirect, withRouter} from 'react-router-dom'
 
 import './Header.css'
 
@@ -14,8 +16,9 @@ class Header extends Component {
 
 		// Maintains the state of the header's attributes, including the value of the search field in the header
 		this.state = {
-			searchTerm: ''
+			searchQuery: ''
 		}
+
 	}
 
 	checkIfRequired(path) {
@@ -31,16 +34,18 @@ class Header extends Component {
 				{this.checkIfRequired(this.props.location.pathname) &&
 
 				<div className="Header">
-					<a href="/"><img src={yummyRecipesLogo} alt="Yummy Recipes Logo" /></a>
+					<Link to={"/app/home"}><img src={yummyRecipesLogo} alt="Yummy Recipes Logo" /></Link>
 					<div className="row">
 						<ul className="navigationMenu">
-							<li><a href="/app/home">Home</a></li>
-							<li><a href="/app/createRecipe">Create a Recipe</a></li>
-							<li><a href="/app/user">My Recipes and Lists</a></li>
+							<li><Link to={"/app/home"}>Home</Link></li>
+							<li><Link to={"/app/create-recipe"}>Create a Recipe</Link></li>
+							<li><Link to={"/app/user"}>My Recipes and Lists</Link></li>
 						</ul>
 						<div className="searchBoxContainer">
-							<SearchBox/>
+							<SearchBox submitSearch={this.submitSearch}/>
 						</div>
+
+							<li><a class="text-danger" href="/">Logout</a></li>
 					</div>
 				</div> }
 
@@ -48,4 +53,4 @@ class Header extends Component {
 		)
 	}
 }
-export default Header
+export default withRouter(Header)
