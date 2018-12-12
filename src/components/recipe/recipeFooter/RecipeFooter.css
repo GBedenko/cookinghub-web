@@ -2,4 +2,7 @@
     background-color: rgb(175, 233, 122);
     margin: 20px;
     padding: 10px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }

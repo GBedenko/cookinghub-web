@@ -4,7 +4,7 @@ import {Redirect} from 'react-router-dom'
 
 import './CreateRecipe.css'
 import IngredientInput from './inputs/IngredientInput'
-import PreperationStepInput from './inputs/IngredientInput'
+import PreperationStepInput from './inputs/PreperationStepInput'
 
 class CreateRecipe extends Component {
 
@@ -41,8 +41,9 @@ class CreateRecipe extends Component {
 		const value = target.type === 'checkbox' ? target.checked : target.value
 		const name = target.name
 
+		let updated_recipe = Object.assign({},this.state.new_recipe,{[name]: value})
 		this.setState({
-			[name]: value
+			new_recipe: updated_recipe
 		})
 	}
 
@@ -102,20 +103,19 @@ class CreateRecipe extends Component {
 			<div className="CreateRecipe">
 				<form id="createRecipeForm" onSubmit={this.handleSubmit}>
 
+					<h4>Recipe Name:</h4>
 					<div className="form-group">
-						<label htmlFor="exampleFormControlInput1">Name:</label>
-						<br/>
 						<input
 							type="text"
 							className="form-control"
 							name="name"
 							placeholder="What is the name of your Recipe?"
-							onChange={this.handleInputChange}/>
+							onChange={this.handleInputChange}
+							value={this.state.new_recipe.name}/>
 					</div>
 
+					<h4>Category:</h4>
 					<div className="form-group">
-						<label htmlFor="exampleFormControlSelect1">Category:</label>
-						<br/>
 						<select className="form-control" name="category" onChange={this.handleInputChange}>
 							<option>Starter</option>
 							<option>Main</option>
@@ -125,26 +125,26 @@ class CreateRecipe extends Component {
 						</select>
 					</div>
 
+					<h4>Recipe Description:</h4>
 					<div className="form-group">
-						<label htmlFor="exampleFormControlTextarea1">Description:</label>
-						<br/>
 						<input
 							type="text"
 							className="form-control"
 							name="description"
 							placeholder="Description of Recipe"
-							onChange={this.handleInputChange}/>
+							onChange={this.handleInputChange}
+							value={this.state.new_recipe.description}/>
 					</div>
 
+					<h4>Recipe Image:</h4>
 					<div className="form-group">
-						<label htmlFor="exampleFormControlFile1">Main Image:</label>
-						<br/>
 						<input
 							type="text"
 							className="form-control"
 							name="main_image"
 							placeholder="Image of Finished Recipe"
-							onChange={this.handleInputChange}/>
+							onChange={this.handleInputChange}
+							value={this.state.new_recipe.main_image}/>
 					</div>
 
 					<h4>Ingredients:</h4>
@@ -158,7 +158,8 @@ class CreateRecipe extends Component {
 							id={"ingredient"+idx} />
 						)
 					})}
-					<button onClick={this.addIngredient}>Add New Ingredient</button>
+					<button className="btn btn-primary" onClick={this.addIngredient}>Add New Ingredient</button>
+					<br/>
 
 					<h4>Preperation Steps:</h4>
 					{this.state.new_recipe.steps.map( (val, idx) => {
@@ -171,33 +172,34 @@ class CreateRecipe extends Component {
 							id={"step"+idx} />
 						)
 					})}
-					<button onClick={this.addStep}>Add New Preperation Step</button>
+					<button className="btn btn-primary" onClick={this.addStep}>Add New Preperation Step</button>
+					<br/>
 
+					<h4>Video:</h4>
 					<div className="form-group">
-						<label htmlFor="exampleFormControlFile1">Video File:</label>
-						<br/>
 						<input
 							type="text"
 							className="form-control"
 							name="video"
 							placeholder="Video link for Recipe"
-							onChange={this.handleInputChange}/>
+							onChange={this.handleInputChange}
+							value={this.state.new_recipe.video}/>
 					</div>
 
+					<h4>Audio:</h4>
 					<div className="form-group">
-						<label htmlFor="exampleFormControlFile1">Audio File:</label>
-						<br/>
 						<input
 							type="text"
 							className="form-control"
 							name="audio"
 							placeholder="Audio link for Recipe"
-							onChange={this.handleInputChange}/>
+							onChange={this.handleInputChange}
+							value={this.state.new_recipe.audio}/>
 						<br/>
 					</div>
 
 				</form>
-				<button type="submit" form="createRecipeForm" value="publish_recipe">Publish Recipe</button>
+				<button type="submit" class="btn btn-primary btn-lg" form="createRecipeForm" value="publish_recipe">Publish Recipe</button>
 			</div>
 		)
 	}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Card.css'
-import {BrowserRouter as Redirect} from 'react-router-dom'
+import {BrowserRouter as Redirect, Link} from 'react-router-dom'
 
 class Card extends Component {
 
@@ -8,31 +8,26 @@ class Card extends Component {
 		super(props)
 
 		this.state = {
-			cardStyle: {backgroundColor: this.props.backgroundColor}
+			cardStyle: {backgroundColor: this.props.backgroundColor},
+			redirect: false
 		}
 
-		this.onClickHandler = this.onClickHandler.bind(this)
-	}
-
-	onClickHandler(event){
-
-		event.preventDefault()
-		return <Redirect to={'/app/recipe/' + this.props.id}/>
 	}
 
 	render() {
 
 		return (
 
+			<Link to={'/app/recipe/' + this.props.id}>
 			<div className="card">
 				<div className="cardImage">
-					<img onClick={this.onClickHandler} src={this.props.image} alt={this.props.imgAlt} style={{width: '200px', height: '200px'}} />
+					<img src={this.props.image} alt={this.props.imgAlt} style={{width: '200px', height: '200px'}} />
 				</div>
 				<div className="container">
-					<button onClick={this.onClickHandler} className="linkButton"><h4><b>{this.props.title}</b></h4></button>
-					<p>{this.props.article}</p>
+					<button className="linkButton"><h4><b>{this.props.title}</b></h4></button>
 				</div>
 			</div>
+			</Link>
 		)
 	}
 }

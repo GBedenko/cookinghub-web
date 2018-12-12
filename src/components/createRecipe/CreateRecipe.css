@@ -1,6 +1,11 @@
 .CreateRecipe {
-    border-style: solid;
     margin: auto;
-    width: 50%;
     padding: 10px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button {
+    margin-bottom: 2%;
 }

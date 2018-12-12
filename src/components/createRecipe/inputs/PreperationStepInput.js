@@ -11,7 +11,7 @@ const StepInput = ({index, onChange, id, value}) => {
             <input
                 type="text"
                 name={id}
-                className="step"
+                className="form-control"
                 value={value}
                 onChange={onChangeInput}
             />

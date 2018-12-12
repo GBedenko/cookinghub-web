@@ -27,7 +27,7 @@ class Protected extends Component {
 			<React.Fragment>
 				<Route path="/" component={Header}/>
 				<Route exact path="/app/home" render={(props) => <HomePage /> } />
-				<Route exact path="/app/recipe" render={(props) => <Recipe /> } />
+				<Route exact path="/app/recipe/:id" render={(props) => <Recipe /> } />
 				<Route exact path="/app/recipes" render={(props) => <SearchResults /> } />
 				<Route exact path="/app/user" render={(props) => <UserDashboard /> } />
 				<Route exact path="/app/create-recipe" render={(props) => <CreateRecipe /> } />

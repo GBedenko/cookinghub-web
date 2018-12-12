@@ -11,7 +11,7 @@ const IngredientInput = ({index, onChange, id, value}) => {
             <input
                 type="text"
                 name={id}
-                className="ingredient"
+                className="form-control"
                 value={value}
                 onChange={onChangeInput}
             />

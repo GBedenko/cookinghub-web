@@ -1,4 +1,11 @@
-/* My CSS */
+.navigationMenu, .logoutLink {
+    margin-top: 3%;
+}
+.searchBoxContainer {
+    margin-top: 3%;
+    margin-left: 10%;
+}
+
 .Header li {
     display: inline;
     font-size: 400pt;
@@ -9,7 +16,6 @@
     margin-right: 5%;
 }
 
-/* CSS from Lab */
 .Header {
     overflow: hidden;
     background-color: #05386b;
@@ -25,9 +31,7 @@
     text-align: center;
     padding: 12px;
     text-decoration: none;
-    font-size: 18px;
-    line-height: 25px;
-    border-radius: 4px;
+    font-size: 32px;
 }
 
 .Header img {

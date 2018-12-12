@@ -39,13 +39,14 @@ class Header extends Component {
 						<ul className="navigationMenu">
 							<li><Link to={"/app/home"}>Home</Link></li>
 							<li><Link to={"/app/create-recipe"}>Create a Recipe</Link></li>
-							<li><Link to={"/app/user"}>My Recipes and Lists</Link></li>
+							<li><Link to={"/app/recipes"}>View All Recipes</Link></li>
 						</ul>
 						<div className="searchBoxContainer">
 							<SearchBox submitSearch={this.submitSearch}/>
 						</div>
-
-							<li><a class="text-danger" href="/">Logout</a></li>
+						<div className="logoutLink">
+							<a class="text-danger" href="/">Logout</a>
+						</div>
 					</div>
 				</div> }
 
