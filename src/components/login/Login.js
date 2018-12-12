@@ -1,38 +1,60 @@
+// Import React and React Router
 import React, { Component } from 'react'
-import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
+
+// Import CSS
 import './Login.css'
+
+// Import function from module to create a Basic Authentication Header
 import CreateAuthHeader from '../../modules/create_basic_auth_header'
+
+// Import other modules this component uses
 import axios from 'axios'
+
+// Import logo image from img directory
 import logo from '../../img/logo-full-rectangle.png'
 
+// Login component using Basic Authentication to force users to require a login to access the application
 class Login extends Component {
 
 	constructor(props){
+
+		// Uses parent 'React Component' properties variables
 		super(props)
 
+		// State variables for this component
 		this.state = {
-			loginButtonColor: {backgroundColor: this.props.loginButtonColor},
+
+			// State of login field forms and any errors from incorrect inputs
 			username: '',
 			password: '',
+			// State of any potential errors from the login inputs
 			errors: {
 				username: false,
 				password: false,
 				incorrect: false
 			},
-			redirect: false
+			redirect: false // Redirect state changed when user successfully logs in
 		}
 
+		// Ensures the functions in this component understand the 'this' keyword refers to the component functions
 		this.handleInputChange = this.handleInputChange.bind(this)
 		this.handleLoginClick = this.handleLoginClick.bind(this)
 	}
 
+	// Handles change of an input field
 	handleInputChange(event){
 
+		// Find the field target for the event
 		const target = event.target
 
+		// Retrieve the name of the field for this input field
 		const name = target.name
+
+		// Retrieve the value from the target
 		const value = target.value
 
+		// Set state for whichever attribute's input field was used with the new value
 		this.setState({
 			[name]: value
 		})
@@ -40,48 +62,52 @@ class Login extends Component {
 
 	handleLoginClick(event){
 
-		//prevent form submission
+		// Prevent default html submit button logic
 		event.preventDefault()
 
-		//create new object to assign new error values
+		// Errors object to assign any error values when checking the form details
 		const newErrors = {}
 
+		// If trying to login but username/password are empty strings then new errors object state is true
 		newErrors.username = this.state.username === '' ? true:false
 		newErrors.password = this.state.password === '' ? true:false
+
+		// Set the component's errors state to the newly created errors object
 		this.setState({errors: newErrors})
 		
 		// Create a Basic Auth header based on the username and password entered
 		const authHeader = CreateAuthHeader(this.state.username, this.state.password)
 
-		// axios validate
+		// Call backend API to authenticate the user credentials using the created authentication header
 		axios({
-			method: 'head', //you can set what request you want to be
+			method: 'head', // Only needs to be a HEAD request for login endpoint (only sending auth header)
 			url: 'http://localhost:8080/api/v1.0/login',
 			headers: {
 			  Authorization: authHeader
 			}
 		}).then((response) => {
+			// If login successful, set application auth header for the user state (function sent from App component)
 			this.props.onSuccess(authHeader)
-			this.setState({redirect: true})
+			this.setState({redirect: true}) // Set redirect true to navigate the user to within the application
 		})
 		.catch((reason) => {
+			// If login unsuccessful, set state of errors object to show the login details were invalid
 			this.setState({errors: {incorrect: true}})
 		})
-
-		// axios.head("http://localhost:8080/api/v1.0/login", { Authorization: authHeader})
-			
-			
 	}
 
 	render() {
 
+		// If redirect flag is true, next run of render will redirect to home as the user logged in successfully
 		if(this.state.redirect) return <Redirect to={'/app/home'}/>
-
+		
 		return (
 
+			// Form with logo to prompt for login details or go to register screen if user doesn't have an account
 			<div className="loginForm">
 
 				<img src={logo}/>
+
 				<h1 className="text-center">Login:</h1>
 				<form>
 					<label htmlFor="username"><b>Username</b></label>
@@ -94,12 +120,15 @@ class Login extends Component {
 					
 					{this.state.errors.incorrect ? <div className="error">Login details were incorrect. Please check username and password</div>: null}
 
-					<button type="submit" style={this.state.loginButtonColor} onClick={this.handleLoginClick}>Login</button>
+					<button type="submit" onClick={this.handleLoginClick}>Login</button>
 				</form>
-				<p>Don't have an account? <a href="/register">Create one.</a></p>
-			</div>
 
+				<p>Don't have an account? <a href="/register">Create one.</a></p>
+
+			</div>
 		)
 	}
 }
+
+// Export component so it can be imported
 export default Login

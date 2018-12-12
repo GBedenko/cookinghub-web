@@ -50,7 +50,7 @@ class CreateRecipe extends Component {
 		// Find the field target for the event
 		const target = event.target
 
-		// Retrieve the value from the targer
+		// Retrieve the value from the target
 		const value = target.type === 'checkbox' ? target.checked : target.value
 		
 		// Retrieve the name of the field for this input field
