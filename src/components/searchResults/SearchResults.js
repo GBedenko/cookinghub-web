@@ -1,24 +1,33 @@
+// Import React and React Router
 import React, { Component } from 'react'
-import './SearchResults.css'
-import axios from 'axios'
 import {Link, withRouter} from 'react-router-dom'
 
+// Import CSS
+import './SearchResults.css'
+
+// Import other modules this component uses
+import axios from 'axios'
+
+// SearchResults is assigned to recipes endpoint to show all recipes matching search criteria
 class SearchResults extends Component {
 
 	constructor(props){
+
+		// Uses parent 'React Component' properties variables
 		super(props)
 
+		// State variables for this component
 		this.state = {
-			recipes: []
+			recipes: [] // List of recipe object which will be retrieved according to query on backend API
 		}
-
 	}
 
 	componentDidMount(){
 
-		console.log(this.props)
+		// Call backend API for all recipes and send the url params as search query
 		axios.get('http://localhost:8080/api/v1.0/recipes' + this.props.location.search)
 			.then(({ data }) => {
+				// Set the data for all retrieved recipes to the component's state
 				this.setState({
 					recipes: data
 				})
@@ -29,6 +38,7 @@ class SearchResults extends Component {
 
 		return (
 
+			// Map each recipe to HTML displaying the name, category likes and image of the recipe, all wrapped within a React Link
 			<div className="SearchResults">
 
 				<h3>Your search query found {this.state.recipes.length} results:</h3>
@@ -52,4 +62,5 @@ class SearchResults extends Component {
 	}
 }
 
+// Export component so it can be imported
 export default withRouter(SearchResults)
