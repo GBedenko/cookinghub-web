@@ -41,7 +41,6 @@ class SearchResults extends Component {
 								<div className="col-3"><p>{recipe.name}</p></div>
 								<div className="col-3"><p><b>Category: </b>{recipe.category}</p></div>
 								<div className="col-3"><p>Likes: {recipe.likes}</p></div>
-								<div className="col-3"><p>Views: {recipe.views}</p></div>
 								<div className="col-3"><img src={recipe.main_image} style={{width: '100px', height: '100px'}}/></div>
 							</div>
 						</div>

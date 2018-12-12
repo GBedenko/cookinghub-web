@@ -20,7 +20,6 @@ class CreateRecipe extends Component {
 				main_image: '',
 				ingredients: [''],
 				steps: [''],
-				views: 0,
 				likes: 0,
 				dislikes: 0},
 			redirect: false
@@ -96,7 +95,7 @@ class CreateRecipe extends Component {
 
 	render() {
 
-		if(this.state.redirect) return <Redirect to={'/app/user'}/>	
+		if(this.state.redirect) return <Redirect to={'/app/home'}/>	
 
 		return (
 

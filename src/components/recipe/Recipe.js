@@ -29,9 +29,7 @@ class Recipe extends Component {
 					recipe: data
 				})
 				
-			})
-			// .then(axios.patch('http://localhost:8080/api/v1.0/recipes/'+ this.state.recipeID, {views: this.recipe.views + 1})
-			// .then(console.log("hererherherh")))		
+			})	
 	}
 
 	render() {
