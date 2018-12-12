@@ -1,8 +1,8 @@
 //Import React
 import React, { Component } from 'react'
 
-// Import other modules this component uses
-import axios from 'axios'
+// Import module for making requests to backend API
+import ApiRequests from '../../../modules/api_requests'
 
 // RecipeSharingOptions contains recipe info on ratings and sharing the recipe to other users or elsewhere
 class RecipeSharingOptions extends Component {
@@ -33,7 +33,7 @@ class RecipeSharingOptions extends Component {
 		event.preventDefault()
 
 		// Send a patch request to backend API to increment the likes count for the recipe
-		axios.patch('http://localhost:8080/api/v1.0/recipes/' + this.state.recipeID, {likes: this.state.likes + 1})
+		ApiRequests.updateRecipe(this.props.authHeader, this.state.recipeID, {likes: this.state.likes + 1})
 	}
 
 	// Handles logic for when user clicks to dislike a recipe
@@ -43,7 +43,7 @@ class RecipeSharingOptions extends Component {
 		event.preventDefault()
 
 		// Send a patch request to backend API to increment the dislikes count for the recipe
-		axios.patch('http://localhost:8080/api/v1.0/recipes/' + this.state.recipeID, {dislikes: this.state.dislikes + 1})
+		ApiRequests.updateRecipe(this.props.authHeader, this.state.recipeID, {likes: this.state.dislikes + 1})
 	}
 
 	render() {

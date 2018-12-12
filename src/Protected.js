@@ -24,7 +24,9 @@ class Protected extends Component {
 		this.state = {
 			authHeader: '' // Authorization header after user logs in/creates account is store here for all sub-components to access
 		}
+	}
 
+	componentDidMount(){	
 		// Assign the authorization header to this component's state passed from parent
 		this.setState({authHeader: this.props.authHeader})
 	}
@@ -39,9 +41,9 @@ class Protected extends Component {
 		return(
 			<React.Fragment>
 				<Route path="/" component={Header}/>
-				<Route exact path="/app/home" render={(props) => <HomePage /> } />
-				<Route exact path="/app/recipe/:id" render={(props) => <Recipe /> } />
-				<Route exact path="/app/recipes" render={(props) => <SearchResults /> } />
+				<Route exact path="/app/home" render={(props) => <HomePage authHeader={this.state.authHeader} /> } />
+				<Route exact path="/app/recipe/:id" render={(props) => <Recipe authHeader={this.state.authHeader} /> } />
+				<Route exact path="/app/recipes" render={(props) => <SearchResults authHeader={this.state.authHeader}/> } />
 				<Route exact path="/app/user" render={(props) => <UserDashboard /> } />
 				<Route exact path="/app/create-recipe" render={(props) => <CreateRecipe /> } />
 			</React.Fragment>

@@ -2,8 +2,8 @@
 import React, { Component } from 'react'
 import {Redirect} from 'react-router-dom'
 
-// Import other modules this component uses
-import axios from 'axios'
+// Import module for making requests to backend API
+import ApiRequests from '../../modules/api_requests'
 
 // Import CSS
 import './CreateRecipe.css'
@@ -70,9 +70,9 @@ class CreateRecipe extends Component {
 
 		// Prevent default html submit button logic (which would refresh the page, so needs to be avoided in SPA)
 		event.preventDefault()
-
+		
 		// POST request to backend API to create the new recipe
-		axios.post('http://localhost:8080/api/v1.0/recipes', this.state.new_recipe, {headers: { 'Content-Type': 'application/json'}})
+		ApiRequests.addRecipe(this.props.authHeader, this.state.new_recipe)
 
 		// Change value of redirect, which will refresh render of component and use React Redirect
 		this.setState({redirect: true})

@@ -1,8 +1,8 @@
 // Import React
 import React, { Component } from 'react'
 
-// Import other modules this component uses
-import axios from 'axios'
+// Import module for making requests to backend API
+import ApiRequests from '../../../modules/api_requests'
 
 // Import CSS
 import './RecipeContent.css'
@@ -32,15 +32,19 @@ class RecipeContent extends Component {
 
 	componentDidMount(){
 
-		// Request backend API for recipe data for the recipe being viewed
-		axios.get('http://localhost:8080/api/v1.0/recipes/' + this.props.recipeID)
-			.then(({ data }) => {
-				this.setState({
-					// Sets values from returned data only for values relevant to this component
-					ingredients: data.ingredients,
-					steps: data.steps,
-					video: data.video})
-			})
+		// Request backend API for recipe data object for the recipe id being viewed
+		ApiRequests.getRecipe(this.props.authHeader, this.props.recipeID)
+					.then(({ data }) => {
+						// Once data retrieved, set it to the state of the component's recipe data
+						this.setState({
+							ingredients: data.ingredients,
+							steps: data.steps,
+							video: data.video
+						})				
+					})
+					.catch((reason) => {						
+						console.log(reason)
+					})
 	}
 
 	render() {

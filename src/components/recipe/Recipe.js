@@ -7,9 +7,6 @@ import RecipeHeader from './recipeHeader/RecipeHeader'
 import RecipeContent from './recipeContent/RecipeContent'
 import RecipeFooter from './recipeFooter/RecipeFooter'
 
-// Import other modules this component uses
-import axios from 'axios'
-
 // Recipe component containing child components for different sections of how a recipe is displayed
 class Recipe extends Component {
 
@@ -24,21 +21,14 @@ class Recipe extends Component {
 		// State variables for this component
 		this.state = {
 			recipeID: recipeIdFromURL, // ID of the current recipe being viewed
-			recipe: {} // Recipe object to be retrieved from backend API
+			recipe: {}, // Recipe object to be retrieved from backend API
+			authHeader: '' // Authorisation header saved to this component as it makes HTTP calls to backend API
 		}
 	}
 	
-	componentDidMount(){
-		
-		// Request backend API for the data related to the recipe the user is wanting to view
-		axios.get('http://localhost:8080/api/v1.0/recipes/' + this.state.recipeID)
-			.then(({ data }) => {
-				// Once data retrieved, set it to the state of the component's recipe data
-				this.setState({
-					recipe: data
-				})
-				
-			})	
+	componentDidMount(){		
+		// Set the authorization header state to the one passed from parent
+		this.setState({authHeader: this.props.authHeader})
 	}
 
 	render() {

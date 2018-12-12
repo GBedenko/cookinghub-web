@@ -4,8 +4,8 @@ import React, { Component } from 'react'
 // Import CSS
 import './RecipeHeader.css'
 
-// Import other modules this component uses
-import axios from 'axios'
+// Import module for making requests to backend API
+import ApiRequests from '../../../modules/api_requests'
 
 // RecipeHeader component containing summary of the recipe details
 class RecipeHeader extends Component {
@@ -21,22 +21,26 @@ class RecipeHeader extends Component {
 			name: '',
 			category: '',
 			description: '',
-			image: ''
+			main_image: ''
 		}
 	}
 
 	componentDidMount(){
 
 		// Request backend API for recipe data object for the recipe id being viewed
-		axios.get('http://localhost:8080/api/v1.0/recipes/' + this.props.recipeID)
-			.then(({ data }) => {
-				this.setState({
-					// Set state for only the attributes the header uses
-					name: data.name,
-					description: data.description,
-					category: data.category,
-					mainImage: data.main_image})
-			})
+		ApiRequests.getRecipe(this.props.authHeader, this.props.recipeID)
+					.then(({ data }) => {
+						// Once data retrieved, set it to the state of the component's recipe data
+						this.setState({
+							name: data.name,
+							category: data.category,
+							description: data.description,
+							main_image: data.main_image
+						})				
+					})
+					.catch((reason) => {						
+						console.log(reason)
+					})
 	}
 
 	render() {
@@ -50,7 +54,7 @@ class RecipeHeader extends Component {
 				</div>
 				<div className="RecipeImage">
 					<div className="recipe-main-image-container">
-						<img src={this.state.mainImage} style={{width: 200, height: 200}} alt="Recipe Image"/>
+						<img src={this.state.main_image} style={{width: 200, height: 200}} alt="Recipe Image"/>
 					</div>
 				</div>
 

@@ -49,7 +49,7 @@ class Header extends Component {
 							<SearchBox submitSearch={this.submitSearch}/>
 						</div>
 						<div className="logoutLink">
-							<a class="text-danger" href="/">Logout</a>
+							<a className="text-danger" href="/">Logout</a>
 						</div>
 					</div>
 				</div> }

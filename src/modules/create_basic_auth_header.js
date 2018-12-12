@@ -1,5 +1,6 @@
 // Module responsible for creating a Basic authorization header string from a username and password
 export default (username, password) => {
+
 	// Using Basic Authorizations standards for authentication requests between user and backend APIs
 
 	// Join the username and password with a colon seperator

@@ -1,8 +1,8 @@
 // Import React
 import React, { Component } from 'react'
 
-// Import other modules this component uses
-import axios from 'axios'
+// Import module for making requests to backend API
+import ApiRequests from '../../../modules/api_requests'
 
 // Import CSS
 import './MostViewedRecipes.css'
@@ -20,20 +20,23 @@ class MostViewedRecipes extends Component {
 
 		// State variables for this component
 		this.state = {
-			recipes_list: [] // List of recipe objects which will be retrieve from backend API
+			recipes_list: [], // List of recipe objects which will be retrieve from backend API
+			authHeader: ''
 		}
 	}
 
 	componentDidMount(){
+		// Assign the authorization header to this component's state passed from parent
+		this.setState({authHeader: this.props.authHeader})
 
-		// Request backend API for recipes with params limit of 4 and sorted by views attribute
-		axios.get('http://localhost:8080/api/v1.0/recipes?limit=4&views=1')
-				.then( resp => {
-					// Set state of recipes list to object retrieved from GET request
-					this.setState({
-						recipes_list: resp.data
+		// Request backend API for recipes with params limit of 4 and sorted by timestamp attribute descending
+		ApiRequests.getRecipes(this.props.authHeader, '?limit=4&view=1')
+					.then( resp => {
+						this.setState({
+							// Set state of recipes list to object retrieved from GET request
+							recipes_list: resp.data
+						})
 					})
-				})
 	}
 
 	render() {
