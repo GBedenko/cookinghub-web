@@ -1,23 +1,24 @@
+// Import React and React Router
 import React, { Component } from 'react'
-import './Card.css'
-import {BrowserRouter as Redirect, Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
+// Import CSS
+import './Card.css'
+
+// Card component for displaying an image and heading in a tile/card format
 class Card extends Component {
 
 	constructor(props){
+
+		// Uses parent 'React Component' properties variables
 		super(props)
-
-		this.state = {
-			cardStyle: {backgroundColor: this.props.backgroundColor},
-			redirect: false
-		}
-
 	}
 
 	render() {
 
+		// Card component displays an image and title passed from parent component
 		return (
-
+			// Entire Card component wrapped in a React Link so clicking anywhere on the Card will move to the recipe's page
 			<Link to={'/app/recipe/' + this.props.id}>
 			<div className="card">
 				<div className="cardImage">
@@ -31,4 +32,6 @@ class Card extends Component {
 		)
 	}
 }
+
+// Export component so it can be imported
 export default Card
