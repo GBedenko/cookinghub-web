@@ -24,16 +24,18 @@ class Protected extends Component {
 		this.state = {
 			authHeader: '' // Authorization header after user logs in/creates account is store here for all sub-components to access
 		}
-		
+
 		// Assign the authorization header to this component's state passed from parent
 		this.setState({authHeader: this.props.authHeader})
 	}
 
 	render() {
 
+		// If the authorization header isn't present, then logout of application by redirecting to login page
 		if (!this.props.authHeader ) {
 			return <Redirect to={'/'} />
 		}
+		// If authorization header is saved to this component's state, then it can render protected sub components
 		return(
 			<React.Fragment>
 				<Route path="/" component={Header}/>
@@ -47,4 +49,5 @@ class Protected extends Component {
 	}
 }
 
+// Export the component
 export default Protected
