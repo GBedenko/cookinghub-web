@@ -1,20 +1,23 @@
+// Import React
 import React, { Component } from 'react'
+
+// Import CSS
 import './RecipeVideo.css'
 
+// Component to display an embedded video for the recipe
 class RecipeVideo extends Component {
 
 	constructor(props){
+
+		// Uses parent 'React Component' properties variables
 		super(props)
-
-		this.state = {
-		}
-
 	}
 
 	render() {
 
 		return (
 
+			// JSX for displaying an embedded video using the video link passed from parent
 			<div className="RecipeVideo">
 				<h3>Step by Step Video:</h3>
 				<div className="EmbeddedVideo">
@@ -24,4 +27,6 @@ class RecipeVideo extends Component {
 		)
 	}
 }
+
+// Export component so it can be imported
 export default RecipeVideo

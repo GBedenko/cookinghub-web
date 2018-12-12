@@ -1,18 +1,23 @@
+// Import React
 import React, { Component } from 'react'
+
+// Import CSS
 import './Ingredients.css'
 
+// Ingredients component is an unordered list for what the recipe requires
 class Ingredients extends Component {
 
 	constructor(props){
-		super(props)
 
-		this.state = {
-		}
+		// Uses parent 'React Component' properties variables
+		super(props)
 	}
 
 	render() {
 
 		return (
+
+			// Component maps the ingredients list passed from parent to a list of unordered list items 
 			<div className="Ingredients">
 				<h3>Ingredients:</h3>
 				<ul>
@@ -22,4 +27,6 @@ class Ingredients extends Component {
 		)
 	}
 }
+
+// Export component so it can be imported
 export default Ingredients
