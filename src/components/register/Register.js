@@ -1,44 +1,67 @@
+// Import React and React Router
 import React, { Component } from 'react'
+import { Redirect} from 'react-router-dom'
+
+// Import CSS
 import './Register.css'
+
+// Import function from module to create a Basic Authentication Header
 import CreateAuthHeader from '../../modules/create_basic_auth_header'
+
+// Import other modules this component uses
 import axios from 'axios'
 import bcrypt from 'bcryptjs'
-import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
+
+// Import logo image from img directory
 import logo from '../../img/logo-full-rectangle.png'
 
+// Register component to force users to require an account, creates a new user in backend API
 class Register extends Component {
 
 	constructor(props){
+
+		// Uses parent 'React Component' properties variables
 		super(props)
 
+		// State variables for this component
 		this.state = {
-			registerButtonColor: {backgroundColor: this.props.registerButtonColor},
+
+			// State of new user object being created using register input fields
 			user: {
 				full_name: '',
 				username: '',
 				password: ''
-			},			
+			},
+			// State of any potential errors from the register account inputs
 			errors: {
 				username: false,
 				password: false,
 				incorrect: false
 			},
-			redirect: false
+			redirect: false // Redirect state changed when user successfully creates a new account
 		}
 
+		// Ensures the functions in this component understand the 'this' keyword refers to the component functions
 		this.handleInputChange = this.handleInputChange.bind(this)
 		this.handleRegisterClick = this.handleRegisterClick.bind(this)
 	}
 
+	// Handles change of an input field
 	handleInputChange(event){
 
+		// Find the field target for the event
 		const target = event.target
 
+		// Retrieve the name of the field for this input field
 		const name = target.name
+
+		// Retrieve the value from the target
 		const value = target.value
 
+		// From the component state, set a new object as just the user object from the state to include the new value
 		let newUser = Object.assign({}, this.state.user, {[name]: value})
 		
+		// Set the state of user object to the updated version
 		this.setState({
 			user: newUser
 		})
@@ -46,14 +69,17 @@ class Register extends Component {
 
 	handleRegisterClick(event){
 
-		//prevent form submission
+		// Prevent default html submit button logic
 		event.preventDefault()
 
-		//create new object to assign new error values
+		// Errors object to assign any error values when checking the form details
 		const newErrors = {}
 
+		// If trying to register but username/password are empty strings then new errors object state is true
 		newErrors.username = this.state.username === '' ? true:false
 		newErrors.password = this.state.password === '' ? true:false
+
+		// Set the component's errors state to the newly created errors object
 		this.setState({errors: newErrors})
 
 		// Create a Basic Auth header based on the username and password entered
@@ -65,27 +91,34 @@ class Register extends Component {
 		// Hash the password using bcrypt
 		const passwordHash = bcrypt.hashSync(this.state.user.password, salt)
 
+		// Assign the password attribute to now be the hashed version instead of plaintext
 		let newUser = Object.assign({}, this.state.user, {password: passwordHash})
-		console.log(this.state.user)
-		console.log(newUser)
+
+		// Call backend API to create a new user based on the user credentials entered
 		axios.post('http://localhost:8080/api/v1.0/users', newUser)
 			.then((response) => {
+				// If create user successful, set application auth header for the user state (function sent from App component)
 				this.props.onSuccess(authHeader)
-				this.setState({redirect: true})
+				this.setState({redirect: true}) // Set redirect true to navigate the user to within the application
 			})
-			.catch((reason) => this.setState({errors: {incorrect: true}}))
-
+			.catch((reason) => {
+				// If create new user unsuccessful, set state of errors object to show the details were invalid and the user should check them
+				this.setState({errors: {incorrect: true}})
+			})
 	}
 
 	render() {
 
+		// If redirect flag is true, next run of render will redirect to home as the user created account successfully		
 		if(this.state.redirect) return <Redirect to={'/app/home'}/>	
 
 		return (
 
+			// Form with logo to prompt for new user details or go back to login screen if user doesn't need to create a new account
 			<div className="registerForm">
 
 				<img src={logo}/>
+
 				<h1 className="text-center">Register:</h1>
 				<form>
 					<label htmlFor="full_name"><b>Full Name</b></label>
@@ -101,12 +134,15 @@ class Register extends Component {
 
 					{this.state.errors.incorrect ? <div className="error">Details were incorrect</div>: null}
 
-					<button type="submit" style={this.state.registerButtonColor} onClick={this.handleRegisterClick}>Register</button>
+					<button type="submit" onClick={this.handleRegisterClick}>Register</button>
 				</form>
+				
 				<p>Already have an account? <a href="/">Login.</a></p>
+			
 			</div>
-
 		)
 	}
 }
+
+// Export component so it can be imported
 export default Register

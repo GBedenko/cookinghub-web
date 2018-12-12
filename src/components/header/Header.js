@@ -1,38 +1,42 @@
+// Import React and React Router
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
-import {BrowserRouter as Router, Route, Redirect, withRouter} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 
+// Import CSS
 import './Header.css'
 
+// Import child components
 import SearchBox from './searchBox/SearchBox'
 
+// Import header image from img directory
 import yummyRecipesLogo from '../../img/logo-full.png'
 
+// Header component to show at the top of most pages within application
 class Header extends Component {
 
 	constructor(props){
-		// Uses parent 'Component' properties variables
+
+		// Uses parent 'React Component' properties variables
 		super(props)
-
-		// Maintains the state of the header's attributes, including the value of the search field in the header
-		this.state = {
-			searchQuery: ''
-		}
-
 	}
 
+	// Function to check if the header component should be rendered on the current page
 	checkIfRequired(path) {
 
-		return !/login|register|welcome$/g.test(path)
+		// Regex test to return false if the path contains login or register
+		return !/login|register$/g.test(path)
 	}
 
 	render() {
 
+		// Component for logo, navigation bar and search box component, also with logout option in header
 		return (
 
 			<React.Fragment>
+				{/* If the header should be rendered on the current page/pathname, then render it, else render nothing */}
 				{this.checkIfRequired(this.props.location.pathname) &&
 
+				// Header component using React Router Links instead of a tags so it can remain as SPA
 				<div className="Header">
 					<Link to={"/app/home"}><img src={yummyRecipesLogo} alt="Yummy Recipes Logo" /></Link>
 					<div className="row">
@@ -54,4 +58,6 @@ class Header extends Component {
 		)
 	}
 }
+
+// Export component so it can be imported and using React Router logic
 export default withRouter(Header)

@@ -1,14 +1,16 @@
+// Import React
 import React, { Component } from 'react'
+
+// Import CSS
 import './RecipeSoundFile.css'
 
+// Displays an audio track widget if the recipe has an audio file
 class RecipeSoundFile extends Component {
 
 	constructor(props){
+
+		// Uses parent 'React Component' properties variables
 		super(props)
-
-		this.state = {
-		}
-
 	}
 
 	render() {
@@ -24,4 +26,6 @@ class RecipeSoundFile extends Component {
 		)
 	}
 }
+
+// Export component so it can be imported
 export default RecipeSoundFile

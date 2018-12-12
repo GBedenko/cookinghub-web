@@ -1,20 +1,22 @@
+// Import React
 import React, { Component } from 'react'
+
+// Import CSS
 import './UserRecipes.css'
 
+// UserRecipes contains list of all recipes a user created and their statistics and status
 class UserRecipes extends Component {
 
 	constructor(props){
+
+		// Uses parent 'React Component' properties variables
 		super(props)
-
-		this.state = {
-		}
-
 	}
 
 	render() {
 
 		return (
-
+			// Table of recipes list and its statistics
 			<div className="UserRecipes">
 				<h4>Your Recipes:</h4>
 				<table>
@@ -51,4 +53,6 @@ class UserRecipes extends Component {
 		)
 	}
 }
+
+// Export component so it can be imported
 export default UserRecipes

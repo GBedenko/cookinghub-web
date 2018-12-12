@@ -1,18 +1,28 @@
+// Imports for React and React Router
 import React, { Component } from 'react'
-import axios from 'axios'
 import {Redirect} from 'react-router-dom'
 
+// Import other modules this component uses
+import axios from 'axios'
+
+// Import CSS
 import './CreateRecipe.css'
+
+// Import child components
 import IngredientInput from './inputs/IngredientInput'
 import PreperationStepInput from './inputs/PreperationStepInput'
 
+// CreateRecipe component for interface containing form to create new recipe
 class CreateRecipe extends Component {
 
 	constructor(props){
+
+		// Uses parent 'React Component' properties variables
 		super(props)
 
-		// Default values for a new recipe (which will be populated from values in form)
+		// State variables for this component
 		this.state = {
+			// Default values for a new recipe (which will be populated from values in form)
 			new_recipe: { 
 				name: '',
 				category: 'Starter',
@@ -20,13 +30,12 @@ class CreateRecipe extends Component {
 				main_image: '',
 				ingredients: [''],
 				steps: [''],
-				views: 0,
 				likes: 0,
 				dislikes: 0},
-			redirect: false
+			redirect: false // Redirect state changed when wanting to move to new screen
 		}
 
-		// Ensures that the functions understand what 'this' object is
+		// Ensures the functions in this component understand the 'this' keyword refers to the component functions
 		this.handleInputChange = this.handleInputChange.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.addIngredient = this.addIngredient.bind(this)
@@ -35,60 +44,101 @@ class CreateRecipe extends Component {
 		this.handleStepArraySubmit = this.handleStepArraySubmit.bind(this)
 	}
 
+	// Handles change of an input field
 	handleInputChange(event) {
 
+		// Find the field target for the event
 		const target = event.target
+
+		// Retrieve the value from the target
 		const value = target.type === 'checkbox' ? target.checked : target.value
+		
+		// Retrieve the name of the field for this input field
 		const name = target.name
 
+		// Take the current state of the recipe and update it with the new updated value
 		let updated_recipe = Object.assign({},this.state.new_recipe,{[name]: value})
+		
+		// Set state for the new recipe to contain the changed value
 		this.setState({
 			new_recipe: updated_recipe
 		})
 	}
 
+	// Handles logic for when submit button is clicked
 	handleSubmit(event) {
 
+		// Prevent default html submit button logic (which would refresh the page, so needs to be avoided in SPA)
 		event.preventDefault()
 
+		// POST request to backend API to create the new recipe
 		axios.post('http://localhost:8080/api/v1.0/recipes', this.state.new_recipe, {headers: { 'Content-Type': 'application/json'}})
 
+		// Change value of redirect, which will refresh render of component and use React Redirect
 		this.setState({redirect: true})
 	}
 
+	// Handles button for adding a new add ingredient input field
 	handleIngredientArraySubmit(event, index) {
-		console.log(`${event.target.name} changed value to ${event.target.value} at index ${index}`)
+		
+		// Use the current ingredients array from state
 		let ingr = Array.from(this.state.new_recipe.ingredients)
+
+		// At the given index, update the ingredients array with input field value
 		ingr[index] = event.target.value
+
+		// Take the current state of the recipe and update the ingredients array with new values
 		let recipe = Object.assign({},this.state.new_recipe,{ingredients: ingr})
+
+		// Set state for new recipe to be the updated one
 		this.setState({
 			new_recipe: recipe
 		})
 	}
 
+	// Adds an empty value to the ingredients array when new input field is created
 	addIngredient = (event) => {
-		console.log(this.state.new_recipe.ingredients)
+
+		// Prevent default html behaviour
 		event.preventDefault()
+
+		// Add an empty string to the ingredients array
 		let newIngredients = this.state.new_recipe.ingredients.push("")
+
+		// Set state of ingredients array to include the new empty ingredient
 		this.setState(({
 			ingredients: newIngredients
 		}))
 	}
 
+	// Handles button for adding a new add step input field
 	handleStepArraySubmit(event, index) {
-		console.log(`${event.target.name} changed value to ${event.target.value} at index ${index}`)
+		
+		// Use the current steps array from state
 		let step = Array.from(this.state.new_recipe.steps)
+
+		// At the given index, update the steps array with input field value
 		step[index] = event.target.value
+
+		// Take the current state of the recipe and update the steps array with new values
 		let recipe = Object.assign({},this.state.new_recipe,{steps: step})
+
+		// Set state for new recipe to be the updated one
 		this.setState({
 			new_recipe: recipe
 		})
 	}
 
+	// Adds an empty value to the steps array when new input field is created
 	addStep = (event) => {
-		console.log(this.state.new_recipe.steps)
+
+		// Prevent default html behaviour
 		event.preventDefault()
+
+		// Add an empty string to the steps array
 		let newSteps = this.state.new_recipe.steps.push("")
+				
+		// Set state of steps array to include the new empty step
 		this.setState(({
 			steps: newSteps
 		}))
@@ -96,10 +146,12 @@ class CreateRecipe extends Component {
 
 	render() {
 
-		if(this.state.redirect) return <Redirect to={'/app/user'}/>	
+		// If redirect flag is true, next run of render will redirect to home as the recipe was created
+		if(this.state.redirect) return <Redirect to={'/app/home'}/>	
 
 		return (
 
+			// Form for all input fields of a new recipe being created
 			<div className="CreateRecipe">
 				<form id="createRecipeForm" onSubmit={this.handleSubmit}>
 
@@ -199,9 +251,13 @@ class CreateRecipe extends Component {
 					</div>
 
 				</form>
+				
 				<button type="submit" class="btn btn-primary btn-lg" form="createRecipeForm" value="publish_recipe">Publish Recipe</button>
+			
 			</div>
 		)
 	}
 }
+
+// Export component so it can be imported
 export default CreateRecipe

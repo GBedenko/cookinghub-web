@@ -1,12 +1,14 @@
+// Import React
 import React, { Component } from 'react'
 
+// Import CSS
 import './Grid.css'
+
+// Import child components
 import Card from '../card/Card'
 
+// Grid component which will contain GridRows, which contain Card components
 class Grid extends Component {
-
-	// Grid is made up of GridRows
-	// Each GridRow consists of Card components
 
 	// GridRow requires and array of cards it is going to make and the index of the row
 	GridRow(cards, id){
@@ -29,9 +31,7 @@ class Grid extends Component {
 					</div>
 				)}
 			</div>
-
 		)
-
 	}
 
 	render() {
@@ -74,4 +74,6 @@ class Grid extends Component {
 		)
 	}
 }
+
+// Export component so it can be imported by others
 export default Grid
