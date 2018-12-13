@@ -1,6 +1,6 @@
 // Imports for React and React Router
 import React, { Component } from 'react'
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 // Import module for making requests to backend API
 import ApiRequests from '../../modules/api_requests'

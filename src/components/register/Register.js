@@ -9,7 +9,7 @@ import './Register.css'
 import CreateAuthHeader from '../../modules/create_basic_auth_header'
 
 // Import module for making requests to backend API
-import ApiRequests from '../../../modules/api_requests'
+import ApiRequests from '../../modules/api_requests'
 
 // Import other modules this component uses
 import bcrypt from 'bcryptjs'

@@ -33,10 +33,10 @@ class RecipeFooter extends Component {
 		return (
 
 			<div className="RecipeFooter">
-				<RecipeSharingOptions recipeID={this.state.recipeID}/>
-				<RecipeComments/>
-				<RecipeCommentBox/>
-				<RecipeAboutAuthor recipeID={this.state.recipeID}/>
+				<RecipeSharingOptions recipeID={this.props.recipeID}/>
+				{/* <RecipeComments/> */}
+				<RecipeCommentBox recipeID={this.props.recipeID}/>
+				<RecipeAboutAuthor recipeID={this.props.recipeID}/>
 			</div>
 		)
 	}

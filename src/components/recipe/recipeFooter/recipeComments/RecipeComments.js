@@ -18,8 +18,8 @@ class RecipeComments extends Component {
 		return (
 			// List of the comments and option to reply to a comment
 			<div className="RecipeComments">
-				<p>Comment 1...</p><a href="#">Reply to this comment</a>
-				{/* <p>Comment 2...</p><a href="#">Reply to this comment</a>
+				{/* <p>Comment 1...</p><a href="#">Reply to this comment</a>
+				<p>Comment 2...</p><a href="#">Reply to this comment</a>
 				<p>Comment 3...</p><a href="#">Reply to this comment</a>
 				<p>Comment 4...</p><a href="#">Reply to this comment</a>
 				<p>Comment 5...</p><a href="#">Reply to this comment</a> */}

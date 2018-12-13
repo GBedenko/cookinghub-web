@@ -30,7 +30,7 @@ class MostViewedRecipes extends Component {
 		this.setState({authHeader: this.props.authHeader})
 
 		// Request backend API for recipes with params limit of 4 and sorted by timestamp attribute descending
-		ApiRequests.getRecipes(this.props.authHeader, '?limit=4&view=1')
+		ApiRequests.getRecipes(this.props.authHeader, '?limit=4&view=-1')
 					.then( resp => {
 						this.setState({
 							// Set state of recipes list to object retrieved from GET request

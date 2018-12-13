@@ -30,8 +30,8 @@ class HighestRatedRecipes extends Component {
 		// Assign the authorization header to this component's state passed from parent
 		this.setState({authHeader: this.props.authHeader})
 
-		// Request backend API for recipes with params limit of 4 and sorted by likes attribute ascending
-		ApiRequests.getRecipes(this.props.authHeader, '?limit=4&likes=1')
+		// Request backend API for recipes with params limit of 4 and sorted by likes attribute descending
+		ApiRequests.getRecipes(this.props.authHeader, '?limit=4&likes=-1')
 					.then( resp => {
 						this.setState({
 							// Set state of recipes list to object retrieved from GET request

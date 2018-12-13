@@ -19,6 +19,9 @@ class RecipeCommentBox extends Component {
 
 			<div className="RecipeCommentBox">
 				<h4>Comment on this Recipe:</h4>
+				<textarea rows="4" cols="100" name="comment" form="usrform">Add a comment...</textarea>
+				<br/>
+				<button>Submit</button>
 			</div>
 		)
 	}
