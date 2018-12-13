@@ -18,13 +18,9 @@ class RecipeFooter extends Component {
 		// Uses parent 'React Component' properties variables
 		super(props)
 
-		// State variables for this component
 		this.state = {
-			recipeID: ''
+			authHeader: ''
 		}
-
-		// Set state of the recipe id as the one passed from parent component
-		this.setState({recipeID: this.props.recipeID})
 	}
 
 	render() {
@@ -33,10 +29,10 @@ class RecipeFooter extends Component {
 		return (
 
 			<div className="RecipeFooter">
-				<RecipeSharingOptions recipeID={this.props.recipeID}/>
+				<RecipeSharingOptions likes={this.props.likes} dislikes={this.props.dislikes} authHeader={this.props.authHeader} recipeID={this.props.recipeID} />
 				{/* <RecipeComments/> */}
-				<RecipeCommentBox recipeID={this.props.recipeID}/>
-				<RecipeAboutAuthor recipeID={this.props.recipeID}/>
+				<RecipeCommentBox />
+				<RecipeAboutAuthor />
 			</div>
 		)
 	}

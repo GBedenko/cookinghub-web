@@ -20,31 +20,6 @@ class RecipeContent extends Component {
 
 		// Uses parent 'React Component' properties variables
 		super(props)
-
-		// State variables for this component
-		this.state = {
-			// Save state of recipe data that is shown in the RecipeContent
-			ingredients: [],
-			steps: [],
-			video: ''
-		}
-	}
-
-	componentDidMount(){
-
-		// Request backend API for recipe data object for the recipe id being viewed
-		ApiRequests.getRecipe(this.props.authHeader, this.props.recipeID)
-					.then(({ data }) => {
-						// Once data retrieved, set it to the state of the component's recipe data
-						this.setState({
-							ingredients: data.ingredients,
-							steps: data.steps,
-							video: data.video
-						})				
-					})
-					.catch((reason) => {						
-						console.log(reason)
-					})
 	}
 
 	render() {
@@ -52,9 +27,9 @@ class RecipeContent extends Component {
 		// RecipeContent consists of smaller components to break down the UI structure
 		return (
 			<div className="recipeContent">
-				<Ingredients ingredients_list={this.state.ingredients}/>
-				<PreperationSteps preperation_steps_list={this.state.steps}/>
-				<RecipeVideo video={this.state.video}/>
+				<Ingredients ingredients_list={this.props.ingredients_list}/>
+				<PreperationSteps preperation_steps_list={this.props.preperation_steps_list}/>
+				<RecipeVideo video={this.props.video}/>
 				<RecipeSoundFile/>
 			</div>
 		)

@@ -19,36 +19,55 @@ class RecipeSharingOptions extends Component {
 		// State variables for this component
 		this.state = {
 			recipeID : '',
-			likes: 0,
-			dislikes: 0,
+			likes: -1,
+			dislikes: -1,
 			reload: false
 		}
 
 		// Set component states based on ones passed from parent component
-		this.setState({recipeID: this.props.recipeID,
-						likes: this.props.likes,
+		this.setState({likes: this.props.likes,
 						dislikes: this.props.dislikes})
 
 		// Ensures the functions in this component understand the 'this' keyword refers to the component functions
 		this.addLikeToRecipe = this.addLikeToRecipe.bind(this)
 		this.addDislikeToRecipe = this.addDislikeToRecipe.bind(this)
-
 	}
 
-	componentDidMount(){
+	// componentDidMount(){
 
-		// Request backend API for recipe data object for the recipe id being viewed
-		ApiRequests.getRecipe(this.props.authHeader, this.props.recipeID)
-					.then(({ data }) => {
-						// Once data retrieved, set it to the state of the component's recipe data
-						this.setState({
-							likes: data.likes,
-							dislikes: data.dislikes
-						})				
-					})
-					.catch((reason) => {						
-						console.log(reason)
-					})
+	// 	// // Request backend API for recipe data object for the recipe id being viewed
+	// 	ApiRequests.getRecipe(this.props.authHeader, this.props.recipeID)
+	// 				.then(({ data }) => {
+	// 					// Once data retrieved, set it to the state of the component's recipe data
+	// 					this.setState({
+	// 						likes: data.likes,
+	// 						dislikes: data.dislikes
+	// 					})				
+	// 				})
+	// 				.catch((reason) => {						
+	// 					console.log(reason)
+	// 				})
+	// }
+
+
+	// React lifecycle called to check if component should update
+	shouldComponentUpdate(nextProps) {
+		
+		// If authHeader prop has been passed to the component, need to update
+		return nextProps.likes >= 0
+	}
+
+
+	// React lifecycle function to update (used for if prop recieved after component mounts)
+	componentDidUpdate() {
+		
+		if(this.props.likes >= 0 && this.props.dislikes >= 0 && this.state.likes == -1 && this.state.dislikes == -1) {
+
+			this.setState({
+				likes: this.props.likes,
+				dislikes: this.props.dislikes
+			})
+		}
 	}
 
 	// Handles logic for when user clicks to like a recipe
@@ -58,7 +77,7 @@ class RecipeSharingOptions extends Component {
 		event.preventDefault()
 
 		// Increment number of likes for the recipe
-		const newLikesCount = this.state.likes + 1
+		const newLikesCount = this.props.likes + 1
 		
 		// Send a patch request to backend API to increment the likes count for the recipe
 		ApiRequests.updateRecipe(this.props.authHeader, this.props.recipeID, {likes: newLikesCount})
@@ -75,7 +94,7 @@ class RecipeSharingOptions extends Component {
 		event.preventDefault()
 
 		// Increment number of dislikes for the recipe
-		const newDislikesCount = this.state.dislikes + 1
+		const newDislikesCount = this.props.dislikes + 1
 
 		// Send a patch request to backend API to increment the dislikes count for the recipe
 		ApiRequests.updateRecipe(this.props.authHeader, this.props.recipeID, {dislikes: newDislikesCount})
@@ -99,8 +118,6 @@ class RecipeSharingOptions extends Component {
 					<li><button className="btn btn-danger" onClick={this.addDislikeToRecipe}>Dislike this Recipe</button></li>
 					<li><p>{this.state.dislikes} dislikes</p></li>
 				</ul>
-					
-					
 					{/* <li><a href="#">Recommend this Recipe to another user</a></li>
 					<li><a href="#">Follow this Author</a></li>
 					<li><a href="#">Share this Recipe to Social Media</a></li>

@@ -25,18 +25,31 @@ class MostRecentRecipes extends Component {
 		}
 	}
 
+	// React lifecycle called to check if component should update
+	shouldComponentUpdate(nextProps) {
+
+		// If authHeader prop has been passed to the component, need to update
+		return nextProps.authHeader.length > 0
+	}
+
+	// React lifecycle function to update (used for if prop recieved after component mounts)
+	componentDidUpdate() {
+
+		if(this.state.recipes_list.length == 0 && this.props.authHeader) {
+			// Request backend API for recipes with params limit of 4 and sorted by timestamp attribute descending
+			ApiRequests.getRecipes(this.props.authHeader, '?limit=4&created=1')
+						.then( resp => {
+							this.setState({
+								// Set state of recipes list to object retrieved from GET request
+								recipes_list: resp.data
+							})
+						})
+		}
+	}
+
 	componentDidMount(){
 		// Assign the authorization header to this component's state passed from parent
 		this.setState({authHeader: this.props.authHeader})
-
-		// Request backend API for recipes with params limit of 4 and sorted by timestamp attribute descending
-		ApiRequests.getRecipes(this.props.authHeader, '?limit=4&timestamp=-1')
-					.then( resp => {
-						this.setState({
-							// Set state of recipes list to object retrieved from GET request
-							recipes_list: resp.data
-						})
-					})
 	}
 
 	render() {

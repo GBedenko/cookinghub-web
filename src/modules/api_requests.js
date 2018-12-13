@@ -46,7 +46,7 @@ class ApiRequests {
         return axios({
                 method: 'GET',
                 baseURL: this.apiHost + this.apiPath,
-                url: '/recipes/' + searchQuery,
+                url: '/recipes' + searchQuery,
                 headers: {
                     Authorization: authHeader // Send the authorization header to be validated by the backend API
                 }
