@@ -10,7 +10,9 @@ import RecipeHeader from './recipeHeader/RecipeHeader'
 import RecipeContent from './recipeContent/RecipeContent'
 import RecipeFooter from './recipeFooter/RecipeFooter'
 
-// Recipe component containing child components for different sections of how a recipe is displayed
+/**
+ * @class Recipe component containing child components for different sections of how a recipe is displayed
+ */
 class Recipe extends Component {
 
 	constructor(props){
@@ -73,14 +75,15 @@ class Recipe extends Component {
 	}
 
 	componentDidMount(){
-
 		// Assign the authorization header to this component's state passed from parent
 		this.setState({authHeader: this.props.authHeader})
 	}
 
+	/**
+	 * Recipe component is made up of child components which it passes recipe data to
+	 */
 	render() {
-
-		// Recipe component is made up of child components which it passes recipe data to
+		
 		return (
 			<div className="recipe">
 				<RecipeHeader name={this.state.recipe.name} category={this.state.recipe.category} description={this.state.recipe.description} main_image={this.state.recipe.main_image} />

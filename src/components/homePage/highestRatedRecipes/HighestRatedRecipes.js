@@ -10,7 +10,9 @@ import './HighestRatedRecipes.css'
 // Import child components
 import Grid from '../grid/Grid'
 
-// HighestRatedRecipes component to contain list of recipe tiles sorted by likes count ascending
+/**
+ * @class HighestRatedRecipes component to contain list of recipe tiles sorted by likes count ascending
+ */
 class HighestRatedRecipes extends Component {
 
 	constructor(props){
@@ -53,9 +55,11 @@ class HighestRatedRecipes extends Component {
 		this.setState({authHeader: this.props.authHeader})
 	}
 
+	/**
+	 * Component is made up from a grid of 1 row containing 4 elements using the recipes data
+	 */
 	render() {
 
-		// Component is made up from a grid of 1 row containing 4 elements using the recipes data
 		return (
 
 			<div className="HighestRatedRecipes">

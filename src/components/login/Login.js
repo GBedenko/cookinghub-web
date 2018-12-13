@@ -14,7 +14,9 @@ import ApiRequests from '../../modules/api_requests'
 // Import logo image from img directory
 import logo from '../../img/logo-full-rectangle.png'
 
-// Login component using Basic Authentication to force users to require a login to access the application
+/**
+ * @class Login component using Basic Authentication to force users to require a login to access the application
+ */
 class Login extends Component {
 
 	constructor(props){
@@ -42,7 +44,10 @@ class Login extends Component {
 		this.handleLoginClick = this.handleLoginClick.bind(this)
 	}
 
-	// Handles change of an input field
+	/**
+	 * Handles change of an input field
+	 * @param {*} event Event from component to call this method 
+	 */
 	handleInputChange(event){
 
 		// Find the field target for the event
@@ -60,6 +65,10 @@ class Login extends Component {
 		})
 	}
 
+	/**
+	 * Handles behaviour when submitting login details
+	 * @param {*} event Event from component to call this method 
+	 */
 	handleLoginClick(event){
 
 		// Prevent default html submit button logic
@@ -91,14 +100,16 @@ class Login extends Component {
 			})
 	}
 
+	/**
+	 * Form with logo to prompt for login details or go to register screen if user doesn't have an account
+	 */
 	render() {
 
 		// If redirect flag is true, next run of render will redirect to home as the user logged in successfully
 		if(this.state.redirect) return <Redirect to={'/app/home'}/>
 
 		return (
-
-			// Form with logo to prompt for login details or go to register screen if user doesn't have an account
+			
 			<div className="loginForm">
 
 				<img src={logo}/>

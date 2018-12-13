@@ -10,7 +10,9 @@ import './MostViewedRecipes.css'
 // Import child components
 import Grid from '../grid/Grid'
 
-// MostViewedRecipes component to contain list of recipe tiles sorted by views ascending
+/**
+ * @class MostViewedRecipes component to contain list of recipe tiles sorted by views ascending
+ */
 class MostViewedRecipes extends Component {
 
 	constructor(props){
@@ -53,9 +55,11 @@ class MostViewedRecipes extends Component {
 		this.setState({authHeader: this.props.authHeader})
 	}
 
+	/**
+	 * Component is made up from a grid of 1 row containing 4 elements using the recipes data
+	 */
 	render() {
 
-		// Component is made up from a grid of 1 row containing 4 elements using the recipes data
 		return (
 
 			<div className="MostViewedRecipes">

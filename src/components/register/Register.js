@@ -17,7 +17,9 @@ import bcrypt from 'bcryptjs'
 // Import logo image from img directory
 import logo from '../../img/logo-full-rectangle.png'
 
-// Register component to force users to require an account, creates a new user in backend API
+/**
+ * @class Register component to force users to require an account, creates a new user in backend API
+ */
 class Register extends Component {
 
 	constructor(props){
@@ -49,7 +51,10 @@ class Register extends Component {
 		this.handleRegisterClick = this.handleRegisterClick.bind(this)
 	}
 
-	// Handles change of an input field
+	/**
+	 * Handles change of an input field
+	 * @param {*} event Event from component to call this method 
+	 */
 	handleInputChange(event){
 
 		// Find the field target for the event
@@ -70,6 +75,10 @@ class Register extends Component {
 		})
 	}
 
+	/**
+	 * Handles submission of registering account details from inputs
+	 * @param {*} event Event from component to call this method 
+	 */
 	handleRegisterClick(event){
 
 		// Prevent default html submit button logic
@@ -110,14 +119,16 @@ class Register extends Component {
 			})
 	}
 
+	/**
+	 * Form with logo to prompt for new user details or go back to login screen if user doesn't need to create a new account
+	 */
 	render() {
 
 		// If redirect flag is true, next run of render will redirect to home as the user created account successfully
 		if(this.state.redirect) return <Redirect to={'/app/home'}/>
 
 		return (
-
-			// Form with logo to prompt for new user details or go back to login screen if user doesn't need to create a new account
+			
 			<div className="registerForm">
 
 				<img src={logo}/>

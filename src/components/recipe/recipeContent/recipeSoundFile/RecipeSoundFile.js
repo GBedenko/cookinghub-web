@@ -4,7 +4,9 @@ import React, { Component } from 'react'
 // Import CSS
 import './RecipeSoundFile.css'
 
-// Displays an audio track widget if the recipe has an audio file
+/**
+ * @class Displays an audio track widget if the recipe has an audio file
+ */
 class RecipeSoundFile extends Component {
 
 	constructor(props){
@@ -13,6 +15,9 @@ class RecipeSoundFile extends Component {
 		super(props)
 	}
 
+	/**
+	 * Component displays an audio track widget
+	 */
 	render() {
 
 		return (

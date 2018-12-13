@@ -9,7 +9,9 @@ import Register from './components/register/Register'
 // Import Protected component, which has sub-components that can only be accessed once user is authenticated
 import Protected from './Protected'
 
-// App is the top level React component called by index
+/**
+ * @class App is the top level React component called by index
+ */
 class App extends Component {
 
 	constructor(props){
@@ -28,16 +30,21 @@ class App extends Component {
 		this.onSetAuthHeader = this.onSetAuthHeader.bind(this)
 	}
 
-	// Function which is passed to login/register components so that they can set the authorization header across the whole application
+	/**
+	 * Function which is passed to login/register components so that they can set the authorization header across the whole application
+	 * @param {*} newAuthHeader Basic authorization header string to be saved in the application's state
+	 */
 	onSetAuthHeader(newAuthHeader) {
 		this.setState({authHeader: newAuthHeader})
 	}
 
+	/**
+	 * App uses React Router, setting Login and Register components to public routes
+	 * Sets everything else with an /app endpoint using the Protected component
+	 * because every other page requires the user to be logged in
+	 */
 	render() {
 
-		// App uses React Router, setting Login and Register components to public routes
-		// Sets everything else with an /app endpoint using the Protected component
-		// - because every other page requires the user to be logged in
 		return (
 			<React.Fragment>
 				{/* Function to set the authHeader passed to Login and Register pages */}

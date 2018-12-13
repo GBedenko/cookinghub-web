@@ -5,7 +5,9 @@ import {Link} from 'react-router-dom'
 // Import CSS
 import './Card.css'
 
-// Card component for displaying an image and heading in a tile/card format
+/**
+ * @class Card component for displaying an image and heading in a tile/card format
+ */
 class Card extends Component {
 
 	constructor(props){
@@ -14,9 +16,11 @@ class Card extends Component {
 		super(props)
 	}
 
+	/**
+	 * Card component displays an image and title passed from parent component
+	 */
 	render() {
 
-		// Card component displays an image and title passed from parent component
 		return (
 			// Entire Card component wrapped in a React Link so clicking anywhere on the Card will move to the recipe's page
 			<Link to={'/app/recipe/' + this.props.id}>

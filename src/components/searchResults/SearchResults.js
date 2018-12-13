@@ -8,7 +8,9 @@ import './SearchResults.css'
 // Import module for making requests to backend API
 import ApiRequests from '../../modules/api_requests'
 
-// SearchResults is assigned to recipes endpoint to show all recipes matching search criteria
+/**
+ * @class SearchResults is assigned to recipes endpoint to show all recipes matching search criteria
+ */
 class SearchResults extends Component {
 
 	constructor(props){
@@ -37,11 +39,13 @@ class SearchResults extends Component {
 			})
 	}
 
+	/**
+	 * // Map each recipe to HTML displaying the name, category likes and image of the recipe, all wrapped within a React Link
+	 */
 	render() {
 
 		return (
-
-			// Map each recipe to HTML displaying the name, category likes and image of the recipe, all wrapped within a React Link
+			
 			<div className="SearchResults">
 
 				<h3>Your search query found {this.state.recipes.length} results:</h3>

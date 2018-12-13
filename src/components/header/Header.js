@@ -11,7 +11,9 @@ import SearchBox from './searchBox/SearchBox'
 // Import header image from img directory
 import yummyRecipesLogo from '../../img/logo-full.png'
 
-// Header component to show at the top of most pages within application
+/**
+ * @class Header component to show at the top of most pages within application
+ */
 class Header extends Component {
 
 	constructor(props){
@@ -20,16 +22,21 @@ class Header extends Component {
 		super(props)
 	}
 
-	// Function to check if the header component should be rendered on the current page
+	/**
+	 * Function to check if the header component should be rendered on the current page
+	 * @param {*} path URL path to run a regex test against
+	 */
 	checkIfRequired(path) {
 
 		// Regex test to return false if the path contains login or register
 		return !/login|register$/g.test(path)
 	}
 
+	/**
+	 * Component for logo, navigation bar and search box component, also with logout option in header
+	 */
 	render() {
 
-		// Component for logo, navigation bar and search box component, also with logout option in header
 		return (
 
 			<React.Fragment>

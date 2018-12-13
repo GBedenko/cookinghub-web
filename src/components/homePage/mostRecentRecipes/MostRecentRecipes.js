@@ -10,7 +10,9 @@ import './MostRecentRecipes.css'
 // Import child components
 import Grid from '../grid/Grid'
 
-// MostRecentRecipes component to contain list of recipe tiles sorted by timestamp of their creation descending
+/**
+ * @class MostRecentRecipes component to contain list of recipe tiles sorted by timestamp of their creation descending
+ */
 class MostRecentRecipes extends Component {
 
 	constructor(props){
@@ -52,9 +54,11 @@ class MostRecentRecipes extends Component {
 		this.setState({authHeader: this.props.authHeader})
 	}
 
+	/**
+	 * Component is made up from a grid of 1 row containing 4 elements using the recipes data
+	 */
 	render() {
-
-		// Component is made up from a grid of 1 row containing 4 elements using the recipes data
+		
 		return (
 
 			<div className="MostRecentRecipes">

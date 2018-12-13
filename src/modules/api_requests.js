@@ -1,7 +1,10 @@
 // Import axios to make HTTP requests to backend API
 import axios from 'axios'
 
-// Module responsible for HTTP requests to the backend API
+/**
+ * @module ApiRequests 
+ * Responsible for HTTP requests to the backend API
+ */
 class ApiRequests {
 
 	// Backend API Host Address
@@ -14,7 +17,10 @@ class ApiRequests {
 	static recipesEndpoint = ApiRequests.apiHost + ApiRequests.apiPath + '/recipes'
 	static usersEndpoint = ApiRequests.apiHost + ApiRequests.apiPath + '/users'
 
-	// Function to send a HEAD request to backend API on the /login endpoint
+	/**
+	 * Function to send a HEAD request to backend API on the /login endpoint
+	 * @param {*} authHeader Basic Authorization header for the API Request 
+	 */
 	static login(authHeader) {
 
 		return axios({
@@ -27,7 +33,11 @@ class ApiRequests {
 		})
 	}
 
-	// Function to send a GET request to backend API for one recipe using its id
+	/**
+	 * Function to send a GET request to backend API for one recipe using its id
+	 * @param {*} authHeader Basic Authorization header for the API Request 
+	 * @param {*} recipeID 
+	 */
 	static getRecipe(authHeader, recipeID) {
 
 		return axios({
@@ -40,7 +50,11 @@ class ApiRequests {
 		})
 	}
 
-	// Function to send a GET request to backend API for a recipes array matching a searchQuery string
+	/**
+	 * Function to send a GET request to backend API for a recipes array matching a searchQuery string
+	 * @param {*} authHeader Basic Authorization header for the API Request 
+	 * @param {*} searchQuery Optional query to specify which recipes to retrieve using GET request
+	 */
 	static getRecipes(authHeader, searchQuery) {
 
 		return axios({
@@ -53,7 +67,11 @@ class ApiRequests {
 		})
 	}
 
-	// Function to send a POST request to backend API to create a new recipe
+	/**
+	 * Function to send a POST request to backend API to create a new recipe
+	 * @param {*} authHeader Basic Authorization header for the API Request 
+	 * @param {*} newRecipe Object representing the new recipe to send using POST request
+	 */
 	static addRecipe(authHeader, newRecipe) {
 
 		return axios({
@@ -67,7 +85,12 @@ class ApiRequests {
 		})
 	}
 
-	// Function to send a PATCH request to backend API to update a recipe
+	/**
+	 * Function to send a PATCH request to backend API to update a recipe
+	 * @param {*} authHeader Basic Authorization header for the API Request 
+	 * @param {*} recipeID ID of the recipe you want to update using PATCH request
+	 * @param {*} updatedRecipe Object representing the new version of the recipe
+	 */
 	static updateRecipe(authHeader, recipeID, updatedRecipe) {
 
 		return axios({
@@ -81,7 +104,11 @@ class ApiRequests {
 		})
 	}
 
-	// Function to send a POST request to backend API to create a new user
+	/**
+	 * Function to send a POST request to backend API to create a new user
+	 * @param {*} authHeader Basic Authorization header for the API Request 
+	 * @param {*} newUser Object representing a new user to be created using POST request
+	 */
 	static addUser(authHeader, newUser) {
 
 		return axios({

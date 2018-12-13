@@ -4,7 +4,9 @@ import React, { Component } from 'react'
 // Import CSS
 import './Ingredients.css'
 
-// Ingredients component is an unordered list for what the recipe requires
+/**
+ * @class Ingredients component is an unordered list for what the recipe requires
+ */
 class Ingredients extends Component {
 
 	constructor(props){
@@ -13,11 +15,13 @@ class Ingredients extends Component {
 		super(props)
 	}
 
+	/**
+	 * Component maps the ingredients list passed from parent to a list of unordered list items
+	 */
 	render() {
 
 		return (
-
-			// Component maps the ingredients list passed from parent to a list of unordered list items
+			
 			<div className="Ingredients">
 				<h3>Ingredients:</h3>
 				<ul>

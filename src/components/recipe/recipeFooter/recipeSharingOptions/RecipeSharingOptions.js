@@ -8,7 +8,9 @@ import './RecipeSharingOptions.css'
 // Import module for making requests to backend API
 import ApiRequests from '../../../../modules/api_requests'
 
-// RecipeSharingOptions contains recipe info on ratings and sharing the recipe to other users or elsewhere
+/**
+ * @class RecipeSharingOptions contains recipe info on ratings and sharing the recipe to other users or elsewhere
+ */
 class RecipeSharingOptions extends Component {
 
 	constructor(props){
@@ -33,23 +35,6 @@ class RecipeSharingOptions extends Component {
 		this.addDislikeToRecipe = this.addDislikeToRecipe.bind(this)
 	}
 
-	// componentDidMount(){
-
-	// 	// // Request backend API for recipe data object for the recipe id being viewed
-	// 	ApiRequests.getRecipe(this.props.authHeader, this.props.recipeID)
-	// 				.then(({ data }) => {
-	// 					// Once data retrieved, set it to the state of the component's recipe data
-	// 					this.setState({
-	// 						likes: data.likes,
-	// 						dislikes: data.dislikes
-	// 					})
-	// 				})
-	// 				.catch((reason) => {
-	// 					console.log(reason)
-	// 				})
-	// }
-
-
 	// React lifecycle called to check if component should update
 	shouldComponentUpdate(nextProps) {
 
@@ -70,7 +55,10 @@ class RecipeSharingOptions extends Component {
 		}
 	}
 
-	// Handles logic for when user clicks to like a recipe
+	/**
+	 * Handles logic for when user clicks to like a recipe
+	 * @param {*} event Event from component to call this method 
+	 */
 	addLikeToRecipe(event){
 
 		// Prevent default html behaviour of the submit button
@@ -87,7 +75,10 @@ class RecipeSharingOptions extends Component {
 			})
 	}
 
-	// Handles logic for when user clicks to dislike a recipe
+	/**
+	 * Handles logic for when user clicks to dislike a recipe
+	 * @param {*} event Event from component to call this method 
+	 */
 	addDislikeToRecipe(event){
 
 		// Prevent default html behaviour of the submit button
@@ -104,13 +95,15 @@ class RecipeSharingOptions extends Component {
 			})
 	}
 
+	/**
+	 * Component is one unordered list of the different ways you can share/rate/follow the recipe
+	 */
 	render() {
 
 		if(this.state.reload) return <Redirect to={'/app/recipes/' + this.props.recipeID}/>
 
 		return (
-
-			// Component is one unordered list of the different ways you can share/rate/follow the recipe
+			
 			<div className="RecipeSharingOptions">
 				<ul>
 					<li><button className="btn btn-success" onClick={this.addLikeToRecipe}>Like this Recipe</button></li>

@@ -2,7 +2,9 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-// SearchBox component for a search bar within the header component
+/**
+ * @class SearchBox component for a search bar within the header component
+ */
 class SearchBox extends Component {
 
 	constructor(props){
@@ -20,7 +22,10 @@ class SearchBox extends Component {
 		this.submitSearch = this.submitSearch.bind(this)
 	}
 
-	// Handles change of search bar field
+	/**
+	 * Handles change of search bar field
+	 * @param {*} event Event from component to call this method 
+	 */
 	onChange(event) {
 
 		// Prevent default html behaviour
@@ -30,7 +35,10 @@ class SearchBox extends Component {
 		this.setState({searchQuery: event.target.value})
 	}
 
-	// Handles logic when submit search button is clicked
+	/**
+	 * Handles logic when submit search button is clicked
+	 * @param {*} event Event from component to call this method 
+	 */
 	submitSearch(event) {
 
 		// Prevent default html behaviour for when a submit button is clicked
@@ -40,9 +48,11 @@ class SearchBox extends Component {
 		this.props.history.push('/app/recipes?query=' + this.state.searchQuery)
 	}
 
+	/**
+	 * JSX form for an input field and submit button as the search box component
+	 */
 	render() {
-
-		// JSX form for an input field and submit button as the search box component
+		
 		return (
 			<div className="SearchBox">
 				<form onSubmit={this.handleSearchSubmit}>

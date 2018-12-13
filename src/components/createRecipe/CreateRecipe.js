@@ -12,7 +12,9 @@ import './CreateRecipe.css'
 import IngredientInput from './inputs/IngredientInput'
 import PreperationStepInput from './inputs/PreperationStepInput'
 
-// CreateRecipe component for interface containing form to create new recipe
+/**
+ * @class CreateRecipe component for interface containing form to create new recipe
+ */
 class CreateRecipe extends Component {
 
 	constructor(props){
@@ -20,7 +22,7 @@ class CreateRecipe extends Component {
 		// Uses parent 'React Component' properties variables
 		super(props)
 
-		// State variables for this component
+    	// State variables for this component
 		this.state = {
 			// Default values for a new recipe (which will be populated from values in form)
 			new_recipe: {
@@ -44,7 +46,10 @@ class CreateRecipe extends Component {
 		this.handleStepArraySubmit = this.handleStepArraySubmit.bind(this)
 	}
 
-	// Handles change of an input field
+	/**
+	 * Handles change of an input field
+	 * @param {*} event Event from component to call this method 
+	 */
 	handleInputChange(event) {
 
 		// Find the field target for the event
@@ -65,7 +70,10 @@ class CreateRecipe extends Component {
 		})
 	}
 
-	// Handles logic for when submit button is clicked
+	/**
+	 * Handles logic for when submit button is clicked
+	 * @param {*} event Event from component to call this method 
+	 */
 	handleSubmit(event) {
 
 		// Prevent default html submit button logic (which would refresh the page, so needs to be avoided in SPA)
@@ -78,7 +86,11 @@ class CreateRecipe extends Component {
 		this.setState({redirect: true})
 	}
 
-	// Handles button for adding a new add ingredient input field
+	/**
+	 * Handles button for adding a new add ingredient input field
+	 * @param {*} event Event from component to call this method 
+	 * @param {*} index Index of ingredients input fields that called this method
+	 */
 	handleIngredientArraySubmit(event, index) {
 
 		// Use the current ingredients array from state
@@ -96,8 +108,11 @@ class CreateRecipe extends Component {
 		})
 	}
 
-	// Adds an empty value to the ingredients array when new input field is created
-	addIngredient = (event) => {
+	/**
+	 * Adds an empty value to the ingredients array when new input field is created
+	 * @param {*} event Event from component to call this method 
+	 */
+	addIngredient(event) {
 
 		// Prevent default html behaviour
 		event.preventDefault()
@@ -111,7 +126,11 @@ class CreateRecipe extends Component {
 		})
 	}
 
-	// Handles button for adding a new add step input field
+	/**
+	 * Handles button for adding a new add step input field
+	 * @param {*} event Event from component to call this method 
+	 * @param {*} index Index of steps input fields that called this method
+	 */
 	handleStepArraySubmit(event, index) {
 
 		// Use the current steps array from state
@@ -129,8 +148,11 @@ class CreateRecipe extends Component {
 		})
 	}
 
-	// Adds an empty value to the steps array when new input field is created
-	addStep = (event) => {
+	/**
+	 * Adds an empty value to the steps array when new input field is created
+	 * @param {*} event Event from component to call this method 
+	 */
+	addStep(event) {
 
 		// Prevent default html behaviour
 		event.preventDefault()
@@ -144,6 +166,9 @@ class CreateRecipe extends Component {
 		})
 	}
 
+	/**
+	 * Form for all input fields of a new recipe being created
+	 */
 	render() {
 
 		// If redirect flag is true, next run of render will redirect to home as the recipe was created
@@ -151,7 +176,6 @@ class CreateRecipe extends Component {
 
 		return (
 
-			// Form for all input fields of a new recipe being created
 			<div className="CreateRecipe">
 				<form id="createRecipeForm" onSubmit={this.handleSubmit}>
 

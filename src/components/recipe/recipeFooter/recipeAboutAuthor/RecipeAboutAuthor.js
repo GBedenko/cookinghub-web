@@ -4,7 +4,9 @@ import React, { Component } from 'react'
 // Import CSS
 import './RecipeAboutAuthor.css'
 
-// To show the author of the recipe and their user details
+/**
+ * @class To show the author of the recipe and their user details
+ */
 class RecipeAboutAuthor extends Component {
 
 	constructor(props){
@@ -13,6 +15,9 @@ class RecipeAboutAuthor extends Component {
 		super(props)
 	}
 
+	/**
+	 * UI components showing author of the recipe and their user details
+	 */
 	render() {
 
 		return (

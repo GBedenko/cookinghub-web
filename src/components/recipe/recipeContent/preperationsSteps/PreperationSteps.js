@@ -4,7 +4,9 @@ import React, { Component } from 'react'
 // Import CSS
 import './PreperationSteps.css'
 
-// PreperationSteps component is an ordered list for the method of the recipe
+/**
+ * @class PreperationSteps component is an ordered list for the method of the recipe
+ */
 class PreperationSteps extends Component {
 
 	constructor(props){
@@ -13,11 +15,13 @@ class PreperationSteps extends Component {
 		super(props)
 	}
 
+	/**
+	 * Component maps the steps list passed from parent to a list of ordered list items
+	 */
 	render() {
 
 		return (
 
-			// Component maps the steps list passed from parent to a list of ordered list items
 			<div className="preperation-steps-container">
 				<h3>Preperations Steps:</h3>
 				<ol>
