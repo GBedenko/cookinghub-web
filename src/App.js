@@ -21,7 +21,7 @@ class App extends Component {
 		this.state = {
 			// Authorization Header stored to App component so that all sub-components have access to it once set
 			// after the user has logged in or created an account
-			authHeader: '' 
+			authHeader: ''
 		}
 
 		// Ensures the functions in this component understand the 'this' keyword refers to the component functions
@@ -41,11 +41,11 @@ class App extends Component {
 		return (
 			<React.Fragment>
 				{/* Function to set the authHeader passed to Login and Register pages */}
-				<Route exact path="/" render={(props) => <Login onSuccess={this.onSetAuthHeader}/> } />
-				<Route path="/register" render={(props) => <Register onSuccess={this.onSetAuthHeader}/> } />
-				
+				<Route exact path="/" render={() => <Login onSuccess={this.onSetAuthHeader}/> } />
+				<Route path="/register" render={() => <Register onSuccess={this.onSetAuthHeader}/> } />
+
 				{/* State of the authHeader is passed to all other UI components in the application */}
-				<Route path="/app" render={(props) => <Protected authHeader={this.state.authHeader}/>} />
+				<Route path="/app" render={() => <Protected authHeader={this.state.authHeader}/>} />
 			</React.Fragment>
 		)
 	}

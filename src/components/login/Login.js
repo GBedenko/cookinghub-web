@@ -74,28 +74,28 @@ class Login extends Component {
 
 		// Set the component's errors state to the newly created errors object
 		this.setState({errors: newErrors})
-		
+
 		// Create a Basic Auth header based on the username and password entered
 		const authHeader = CreateAuthHeader(this.state.username, this.state.password)
 
 		// Call backend API to authenticate the user credentials using the created authentication header
 		ApiRequests.login(authHeader)
-					.then((response) => {
-						// If login successful, set application auth header for the user state (function sent from App component)
-						this.props.onSuccess(authHeader)
-						this.setState({redirect: true}) // Set redirect true to navigate the user to within the application
-					})
-					.catch((reason) => {						
-						// If login unsuccessful, set state of errors object to show the login details were invalid
-						this.setState({errors: {incorrect: true}})
-					})
+			.then((response) => {
+				// If login successful, set application auth header for the user state (function sent from App component)
+				this.props.onSuccess(authHeader)
+				this.setState({redirect: true}) // Set redirect true to navigate the user to within the application
+			})
+			.catch((reason) => {
+				// If login unsuccessful, set state of errors object to show the login details were invalid
+				this.setState({errors: {incorrect: true}})
+			})
 	}
 
 	render() {
 
 		// If redirect flag is true, next run of render will redirect to home as the user logged in successfully
 		if(this.state.redirect) return <Redirect to={'/app/home'}/>
-		
+
 		return (
 
 			// Form with logo to prompt for login details or go to register screen if user doesn't have an account
@@ -112,7 +112,7 @@ class Login extends Component {
 					<label htmlFor="txtPassword" ><b>Password</b></label>
 					<input type="password" placeholder="Enter Password" name="password" onChange={this.handleInputChange} value={this.state.password} />
 					{this.state.errors.password ? <div className="error">password is required</div>: null}
-					
+
 					{this.state.errors.incorrect ? <div className="error">Login details were incorrect. Please check username and password</div>: null}
 
 					<button type="submit" onClick={this.handleLoginClick}>Login</button>

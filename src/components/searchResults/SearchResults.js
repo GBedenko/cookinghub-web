@@ -29,12 +29,12 @@ class SearchResults extends Component {
 
 		// Call backend API for all recipes and send the url params as search query
 		ApiRequests.getRecipes(this.props.authHeader, this.props.location.search)
-					.then(({ data }) => {
-						// Set the data for all retrieved recipes to the component's state
-						this.setState({
-							recipes: data
-						})
-					})
+			.then(({ data }) => {
+				// Set the data for all retrieved recipes to the component's state
+				this.setState({
+					recipes: data
+				})
+			})
 	}
 
 	render() {
@@ -48,7 +48,7 @@ class SearchResults extends Component {
 
 				{this.state.recipes.map((recipe) =>
 
-					<Link to={'/app/recipe/' + recipe._id}>
+					<Link to={'/app/recipe/' + recipe._id} key={recipe._id}>
 						<div className="SearchResult" key={recipe._id}>
 							<div className="row">
 								<div className="col-3"><p>{recipe.name}</p></div>

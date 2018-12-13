@@ -17,7 +17,7 @@ class Ingredients extends Component {
 
 		return (
 
-			// Component maps the ingredients list passed from parent to a list of unordered list items 
+			// Component maps the ingredients list passed from parent to a list of unordered list items
 			<div className="Ingredients">
 				<h3>Ingredients:</h3>
 				<ul>

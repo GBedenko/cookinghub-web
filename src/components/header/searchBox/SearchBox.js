@@ -14,7 +14,7 @@ class SearchBox extends Component {
 		this.state = {
 			searchQuery: '' // State of the current query in the searchbox
 		}
-				
+
 		// Ensures the functions in this component understand the 'this' keyword refers to the component functions
 		this.onChange = this.onChange.bind(this)
 		this.submitSearch = this.submitSearch.bind(this)

@@ -38,12 +38,12 @@ class MostRecentRecipes extends Component {
 		if(this.state.recipes_list.length == 0 && this.props.authHeader) {
 			// Request backend API for recipes with params limit of 4 and sorted by timestamp attribute descending
 			ApiRequests.getRecipes(this.props.authHeader, '?limit=4&created=1')
-						.then( resp => {
-							this.setState({
-								// Set state of recipes list to object retrieved from GET request
-								recipes_list: resp.data
-							})
-						})
+				.then( resp => {
+					this.setState({
+						// Set state of recipes list to object retrieved from GET request
+						recipes_list: resp.data
+					})
+				})
 		}
 	}
 

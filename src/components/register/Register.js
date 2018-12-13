@@ -61,8 +61,8 @@ class Register extends Component {
 		const value = target.value
 
 		// From the component state, set a new object as just the user object from the state to include the new value
-		let newUser = Object.assign({}, this.state.user, {[name]: value})
-		
+		const newUser = Object.assign({}, this.state.user, {[name]: value})
+
 		// Set the state of user object to the updated version
 		this.setState({
 			user: newUser
@@ -85,8 +85,8 @@ class Register extends Component {
 		this.setState({errors: newErrors})
 
 		// Create a Basic Auth header based on the username and password entered
-		const authHeader = CreateAuthHeader(this.state.username, this.state.password)
-		
+		const authHeader = CreateAuthHeader(this.state.user.username, this.state.user.password)
+
 		// Define salt for hashing password
 		const salt = 10
 
@@ -94,25 +94,25 @@ class Register extends Component {
 		const passwordHash = bcrypt.hashSync(this.state.user.password, salt)
 
 		// Assign the password attribute to now be the hashed version instead of plaintext
-		let newUser = Object.assign({}, this.state.user, {password: passwordHash})
+		const newUser = Object.assign({}, this.state.user, {password: passwordHash})
 
 		// Call backend API to create a new user based on the user credentials entered
 		ApiRequests.addUser(authHeader, newUser)
-					.then((response) => {
-						// If create user successful, set application auth header for the user state (function sent from App component)
-						this.props.onSuccess(authHeader)
-						this.setState({redirect: true}) // Set redirect true to navigate the user to within the application
-					})
-					.catch((reason) => {
-						// If create new user unsuccessful, set state of errors object to show the details were invalid and the user should check them
-						this.setState({errors: {incorrect: true}})
-					})
+			.then((response) => {
+				// If create user successful, set application auth header for the user state (function sent from App component)
+				this.props.onSuccess(authHeader)
+				this.setState({redirect: true}) // Set redirect true to navigate the user to within the application
+			})
+			.catch((reason) => {
+				// If create new user unsuccessful, set state of errors object to show the details were invalid and the user should check them
+				this.setState({errors: {incorrect: true}})
+			})
 	}
 
 	render() {
 
-		// If redirect flag is true, next run of render will redirect to home as the user created account successfully		
-		if(this.state.redirect) return <Redirect to={'/app/home'}/>	
+		// If redirect flag is true, next run of render will redirect to home as the user created account successfully
+		if(this.state.redirect) return <Redirect to={'/app/home'}/>
 
 		return (
 
@@ -125,7 +125,7 @@ class Register extends Component {
 				<form>
 					<label htmlFor="full_name"><b>Full Name</b></label>
 					<input type="text" placeholder="Enter Name" name="full_name" onChange={this.handleInputChange} value={this.state.user.full_name} />
-					
+
 					<label htmlFor="username"><b>Username</b></label>
 					<input type="text" placeholder="Enter Username" name="username" onChange={this.handleInputChange} value={this.state.user.username} />
 					{this.state.errors.username ? <div className="error">Username is required</div>: null}
@@ -138,9 +138,9 @@ class Register extends Component {
 
 					<button type="submit" onClick={this.handleRegisterClick}>Register</button>
 				</form>
-				
+
 				<p>Already have an account? <a href="/">Login.</a></p>
-			
+
 			</div>
 		)
 	}

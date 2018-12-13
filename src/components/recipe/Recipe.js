@@ -32,51 +32,48 @@ class Recipe extends Component {
 				ingredients_list: [],
 				preperation_steps_list: [],
 				video: ''
-			}, 
+			},
 			authHeader: '' // Authorisation header saved to this component as it makes HTTP calls to backend API
 		}
 	}
-	
+
 	// React lifecycle called to check if component should update
 	shouldComponentUpdate(nextProps) {
-		
+
 		// If authHeader prop has been passed to the component, need to update
 		return nextProps.authHeader.length > 0
 	}
 
 	// React lifecycle function to update (used for if prop recieved after component mounts)
 	componentDidUpdate() {
-		
+
 		if(this.props.authHeader && this.state.recipe.name.length == 0) {
 
 			// Request backend API for recipe data object for the recipe id being viewed
 			ApiRequests.getRecipe(this.props.authHeader, this.state.recipeID)
-						.then(({ data }) => {
-							let retrievedRecipe = {
-								name: data.name,
-								category: data.category,
-								description: data.description,
-								main_image: data.main_image,
-								ingredients_list: data.ingredients,
-								preperation_steps_list: data.steps,
-								video: data.video,
-								likes: data.likes,
-								dislikes: data.dislikes
-							}
+				.then(({ data }) => {
+					const retrievedRecipe = {
+						name: data.name,
+						category: data.category,
+						description: data.description,
+						main_image: data.main_image,
+						ingredients_list: data.ingredients,
+						preperation_steps_list: data.steps,
+						video: data.video,
+						likes: data.likes,
+						dislikes: data.dislikes
+					}
 
-							// Once data retrieved, set it to the state of the component's recipe data
-							this.setState({
-								recipe: retrievedRecipe
-							})				
-						})
-						.catch((reason) => {						
-							console.log(reason)
-						})
+					// Once data retrieved, set it to the state of the component's recipe data
+					this.setState({
+						recipe: retrievedRecipe
+					})
+				})
 		}
 	}
 
 	componentDidMount(){
-		
+
 		// Assign the authorization header to this component's state passed from parent
 		this.setState({authHeader: this.props.authHeader})
 	}

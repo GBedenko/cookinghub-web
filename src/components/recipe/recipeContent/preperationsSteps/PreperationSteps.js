@@ -17,7 +17,7 @@ class PreperationSteps extends Component {
 
 		return (
 
-			// Component maps the steps list passed from parent to a list of ordered list items 
+			// Component maps the steps list passed from parent to a list of ordered list items
 			<div className="preperation-steps-container">
 				<h3>Preperations Steps:</h3>
 				<ol>

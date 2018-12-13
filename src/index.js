@@ -12,8 +12,8 @@ import App from'./App'
 
 // Top level component is the App set to the 'root' HTML div tag
 ReactDOM.render(<Router>
-					<Route path="/" component={App}/>
-				</Router>, document.getElementById('root')
+	<Route path="/" component={App}/>
+</Router>, document.getElementById('root')
 )
 
 serviceWorker.unregister()

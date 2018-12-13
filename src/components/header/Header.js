@@ -38,12 +38,12 @@ class Header extends Component {
 
 				// Header component using React Router Links instead of a tags so it can remain as SPA
 				<div className="Header">
-					<Link to={"/app/home"}><img src={yummyRecipesLogo} alt="Yummy Recipes Logo" /></Link>
+					<Link to={'/app/home'}><img src={yummyRecipesLogo} alt="Yummy Recipes Logo" /></Link>
 					<div className="row">
 						<ul className="navigationMenu">
-							<li><Link to={"/app/home"}>Home</Link></li>
-							<li><Link to={"/app/create-recipe"}>Create a Recipe</Link></li>
-							<li><Link to={"/app/recipes"}>View All Recipes</Link></li>
+							<li><Link to={'/app/home'}>Home</Link></li>
+							<li><Link to={'/app/create-recipe'}>Create a Recipe</Link></li>
+							<li><Link to={'/app/recipes'}>View All Recipes</Link></li>
 						</ul>
 						<div className="searchBoxContainer">
 							<SearchBox submitSearch={this.submitSearch}/>
