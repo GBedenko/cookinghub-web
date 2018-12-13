@@ -16,6 +16,16 @@ class HomePage extends Component {
 
 		// Uses parent 'React Component' properties variables
 		super(props)
+
+		// State variables for this component
+		this.state = {
+			authHeader: ''
+		}
+	}
+
+	componentDidMount(){
+		// Assign the authorization header to this component's state passed from parent
+		this.setState({authHeader: this.props.authHeader})
 	}
 
 	render() {
@@ -24,9 +34,9 @@ class HomePage extends Component {
 		return (
 
 			<div className="HomePage">
-				<HighestRatedRecipes />
-				<MostRecentRecipes />
-				<MostViewedRecipes />
+				<HighestRatedRecipes authHeader={this.props.authHeader}/>
+				<MostRecentRecipes authHeader={this.props.authHeader} />
+				<MostViewedRecipes authHeader={this.props.authHeader} />
 			</div>
 		)
 	}

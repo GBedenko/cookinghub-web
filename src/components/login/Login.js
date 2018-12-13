@@ -8,8 +8,8 @@ import './Login.css'
 // Import function from module to create a Basic Authentication Header
 import CreateAuthHeader from '../../modules/create_basic_auth_header'
 
-// Import other modules this component uses
-import axios from 'axios'
+// Import module for making requests to backend API
+import ApiRequests from '../../modules/api_requests'
 
 // Import logo image from img directory
 import logo from '../../img/logo-full-rectangle.png'
@@ -79,21 +79,16 @@ class Login extends Component {
 		const authHeader = CreateAuthHeader(this.state.username, this.state.password)
 
 		// Call backend API to authenticate the user credentials using the created authentication header
-		axios({
-			method: 'head', // Only needs to be a HEAD request for login endpoint (only sending auth header)
-			url: 'http://localhost:8080/api/v1.0/login',
-			headers: {
-			  Authorization: authHeader
-			}
-		}).then((response) => {
-			// If login successful, set application auth header for the user state (function sent from App component)
-			this.props.onSuccess(authHeader)
-			this.setState({redirect: true}) // Set redirect true to navigate the user to within the application
-		})
-		.catch((reason) => {
-			// If login unsuccessful, set state of errors object to show the login details were invalid
-			this.setState({errors: {incorrect: true}})
-		})
+		ApiRequests.login(authHeader)
+					.then((response) => {
+						// If login successful, set application auth header for the user state (function sent from App component)
+						this.props.onSuccess(authHeader)
+						this.setState({redirect: true}) // Set redirect true to navigate the user to within the application
+					})
+					.catch((reason) => {						
+						// If login unsuccessful, set state of errors object to show the login details were invalid
+						this.setState({errors: {incorrect: true}})
+					})
 	}
 
 	render() {

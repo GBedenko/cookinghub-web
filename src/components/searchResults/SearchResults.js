@@ -5,8 +5,8 @@ import {Link, withRouter} from 'react-router-dom'
 // Import CSS
 import './SearchResults.css'
 
-// Import other modules this component uses
-import axios from 'axios'
+// Import module for making requests to backend API
+import ApiRequests from '../../modules/api_requests'
 
 // SearchResults is assigned to recipes endpoint to show all recipes matching search criteria
 class SearchResults extends Component {
@@ -18,20 +18,23 @@ class SearchResults extends Component {
 
 		// State variables for this component
 		this.state = {
-			recipes: [] // List of recipe object which will be retrieved according to query on backend API
+			recipes: [], // List of recipe object which will be retrieved according to query on backend API
+			authHeader: ''
 		}
 	}
 
 	componentDidMount(){
+		// Set the authorization header state to the one passed from parent
+		this.setState({authHeader: this.props.authHeader})
 
 		// Call backend API for all recipes and send the url params as search query
-		axios.get('http://localhost:8080/api/v1.0/recipes' + this.props.location.search)
-			.then(({ data }) => {
-				// Set the data for all retrieved recipes to the component's state
-				this.setState({
-					recipes: data
-				})
-			})
+		ApiRequests.getRecipes(this.props.authHeader, this.props.location.search)
+					.then(({ data }) => {
+						// Set the data for all retrieved recipes to the component's state
+						this.setState({
+							recipes: data
+						})
+					})
 	}
 
 	render() {

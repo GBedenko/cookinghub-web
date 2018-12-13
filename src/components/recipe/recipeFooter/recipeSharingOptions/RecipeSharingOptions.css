@@ -1,0 +1,14 @@
+.RecipeSharingOptions {
+    padding: 10px;
+    margin-bottom: 2%;
+}
+
+.RecipeSharingOptions ul {
+    list-style-type: none;
+}
+
+.RecipeSharingOptions li {
+    float: left;
+    margin-left: 1%;
+}
+  

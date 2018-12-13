@@ -18,8 +18,8 @@ class RecipeAboutAuthor extends Component {
 		return (
 
 			<div className="RecipeAboutAuthor">
-				<h3>About this Recipe's Author:</h3>
-				<p>Username</p>
+				{/* <h3>About this Recipe's Author:</h3>
+				<p>Username</p> */}
 			</div>
 		)
 	}

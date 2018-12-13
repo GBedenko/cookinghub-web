@@ -1,8 +1,13 @@
 .navigationMenu, .logoutLink {
     margin-top: 3%;
 }
+
+.navigationMenu a:hover {
+    color: green;
+}
+
 .searchBoxContainer {
-    margin-top: 3%;
+    margin-top: 4%;
     margin-left: 10%;
 }
 
@@ -29,7 +34,7 @@
     float: left;
     color: white;
     text-align: center;
-    padding: 12px;
+    padding: 25px;
     text-decoration: none;
     font-size: 32px;
 }

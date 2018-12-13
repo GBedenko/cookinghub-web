@@ -8,8 +8,10 @@ import './Register.css'
 // Import function from module to create a Basic Authentication Header
 import CreateAuthHeader from '../../modules/create_basic_auth_header'
 
+// Import module for making requests to backend API
+import ApiRequests from '../../modules/api_requests'
+
 // Import other modules this component uses
-import axios from 'axios'
 import bcrypt from 'bcryptjs'
 
 // Import logo image from img directory
@@ -95,16 +97,16 @@ class Register extends Component {
 		let newUser = Object.assign({}, this.state.user, {password: passwordHash})
 
 		// Call backend API to create a new user based on the user credentials entered
-		axios.post('http://localhost:8080/api/v1.0/users', newUser)
-			.then((response) => {
-				// If create user successful, set application auth header for the user state (function sent from App component)
-				this.props.onSuccess(authHeader)
-				this.setState({redirect: true}) // Set redirect true to navigate the user to within the application
-			})
-			.catch((reason) => {
-				// If create new user unsuccessful, set state of errors object to show the details were invalid and the user should check them
-				this.setState({errors: {incorrect: true}})
-			})
+		ApiRequests.addUser(authHeader, newUser)
+					.then((response) => {
+						// If create user successful, set application auth header for the user state (function sent from App component)
+						this.props.onSuccess(authHeader)
+						this.setState({redirect: true}) // Set redirect true to navigate the user to within the application
+					})
+					.catch((reason) => {
+						// If create new user unsuccessful, set state of errors object to show the details were invalid and the user should check them
+						this.setState({errors: {incorrect: true}})
+					})
 	}
 
 	render() {

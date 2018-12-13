@@ -43,6 +43,7 @@ class App extends Component {
 				{/* Function to set the authHeader passed to Login and Register pages */}
 				<Route exact path="/" render={(props) => <Login onSuccess={this.onSetAuthHeader}/> } />
 				<Route path="/register" render={(props) => <Register onSuccess={this.onSetAuthHeader}/> } />
+				
 				{/* State of the authHeader is passed to all other UI components in the application */}
 				<Route path="/app" render={(props) => <Protected authHeader={this.state.authHeader}/>} />
 			</React.Fragment>
