@@ -32,7 +32,8 @@ class Register extends Component {
 			user: {
 				full_name: '',
 				username: '',
-				password: ''
+				password: '',
+				role: 'viewer' // Default permissions of a user
 			},
 			// State of any potential errors from the register account inputs
 			errors: {
@@ -133,6 +134,17 @@ class Register extends Component {
 					<label htmlFor="password" ><b>Password</b></label>
 					<input type="password" placeholder="Enter Password" name="password" onChange={this.handleInputChange} value={this.state.user.password} />
 					{this.state.errors.password ? <div className="error">password is required</div>: null}
+
+
+					<label htmlFor="role" ><b>Account Type</b></label><br/>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="role" onChange={this.handleInputChange} id="permissions1" value="viewer" checked/>
+						<label class="form-check-label" for="permissions1">I want to view recipes only</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="role" onChange={this.handleInputChange} id="permissions2" value="creator"/>
+						<label class="form-check-label" for="permissions2">I want to create and view recipes</label>
+					</div>
 
 					{this.state.errors.incorrect ? <div className="error">Details were incorrect</div>: null}
 

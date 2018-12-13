@@ -30,7 +30,7 @@ class RecipeContent extends Component {
 				<Ingredients ingredients_list={this.props.ingredients_list}/>
 				<PreperationSteps preperation_steps_list={this.props.preperation_steps_list}/>
 				<RecipeVideo video={this.props.video}/>
-				<RecipeSoundFile/>
+				{/* <RecipeSoundFile/> */}
 			</div>
 		)
 	}
