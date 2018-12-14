@@ -23,6 +23,7 @@ class RecipeSharingOptions extends Component {
 			recipeID: '',
 			likes: -1,
 			dislikes: -1,
+			views: -1,
 			reload: false
 		}
 
@@ -32,7 +33,7 @@ class RecipeSharingOptions extends Component {
 
 		// Ensures the functions in this component understand the 'this' keyword refers to the component functions
 		this.addLikeToRecipe = this.addLikeToRecipe.bind(this)
-		this.addDislikeToRecipe = this.addDislikeToRecipe.bind(this)
+		this.addDislikeToRecipe = this.addDislikeToRecipe.bind(this)		
 	}
 
 	// React lifecycle called to check if component should update
@@ -50,9 +51,20 @@ class RecipeSharingOptions extends Component {
 
 			this.setState({
 				likes: this.props.likes,
-				dislikes: this.props.dislikes
+				dislikes: this.props.dislikes,
+				views: this.props.views
 			})
 		}
+
+		// Increment number of views the recipe has
+		const incrementedViewsCount = this.props.views + 1
+
+		// Send a patch request to backend API to increment the views count for the recipe
+		ApiRequests.updateRecipe(this.props.authHeader, this.props.recipeID, {views: incrementedViewsCount})
+			.then((response) => {
+				// If successfully updated in the backend, update the views count in the component state
+				this.setState({views: incrementedViewsCount})
+			})
 	}
 
 	/**

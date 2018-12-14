@@ -33,7 +33,10 @@ class Recipe extends Component {
 				main_image: '',
 				ingredients_list: [],
 				preperation_steps_list: [],
-				video: ''
+				video: '',
+				likes: -1,
+				dislikes: -1,
+				views: -1
 			},
 			authHeader: '' // Authorisation header saved to this component as it makes HTTP calls to backend API
 		}
@@ -63,7 +66,8 @@ class Recipe extends Component {
 						preperation_steps_list: data.steps,
 						video: data.video,
 						likes: data.likes,
-						dislikes: data.dislikes
+						dislikes: data.dislikes,
+						views: data.views
 					}
 
 					// Once data retrieved, set it to the state of the component's recipe data
@@ -88,7 +92,7 @@ class Recipe extends Component {
 			<div className="recipe">
 				<RecipeHeader name={this.state.recipe.name} category={this.state.recipe.category} description={this.state.recipe.description} main_image={this.state.recipe.main_image} />
 				<RecipeContent ingredients_list={this.state.recipe.ingredients_list} preperation_steps_list={this.state.recipe.preperation_steps_list} video={this.state.recipe.video} />
-				<RecipeFooter likes={this.state.recipe.likes} dislikes={this.state.recipe.dislikes} authHeader={this.props.authHeader} recipeID={this.state.recipeID} />
+				<RecipeFooter likes={this.state.recipe.likes} dislikes={this.state.recipe.dislikes} authHeader={this.props.authHeader} recipeID={this.state.recipeID} views={this.state.recipe.views}/>
 			</div>
 		)
 	}
