@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/register/Register.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/register/Register.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// Import React and React Router
+import React, { Component } from 'react'
+import { Redirect} from 'react-router-dom'
+
+// Import CSS
+import './Register.css'
+
+// Import function from module to create a Basic Authentication Header
+import CreateAuthHeader from '../../modules/create_basic_auth_header'
+
+// Import module for making requests to backend API
+import ApiRequests from '../../modules/api_requests'
+
+// Import other modules this component uses
+import bcrypt from 'bcryptjs'
+
+// Import logo image from img directory
+import logo from '../../img/logo-full-rectangle.png'
+
+/**
+ * @class Register component to force users to require an account, creates a new user in backend API
+ */
+class Register extends Component {
+
+	constructor(props){
+
+		// Uses parent 'React Component' properties variables
+		super(props)
+
+		// State variables for this component
+		this.state = {
+
+			// State of new user object being created using register input fields
+			user: {
+				full_name: '',
+				username: '',
+				password: '',
+				role: 'viewer' // Default permissions of a user
+			},
+			// State of any potential errors from the register account inputs
+			errors: {
+				username: false,
+				password: false,
+				incorrect: false
+			},
+			redirect: false // Redirect state changed when user successfully creates a new account
+		}
+
+		// Ensures the functions in this component understand the 'this' keyword refers to the component functions
+		this.handleInputChange = this.handleInputChange.bind(this)
+		this.handleRegisterClick = this.handleRegisterClick.bind(this)
+	}
+
+	/**
+	 * Handles change of an input field
+	 * @param {*} event Event from component to call this method 
+	 */
+	handleInputChange(event){
+
+		// Find the field target for the event
+		const target = event.target
+
+		// Retrieve the name of the field for this input field
+		const name = target.name
+
+		// Retrieve the value from the target
+		const value = target.value
+
+		// From the component state, set a new object as just the user object from the state to include the new value
+		const newUser = Object.assign({}, this.state.user, {[name]: value})
+
+		// Set the state of user object to the updated version
+		this.setState({
+			user: newUser
+		})
+	}
+
+	/**
+	 * Handles submission of registering account details from inputs
+	 * @param {*} event Event from component to call this method 
+	 */
+	handleRegisterClick(event){
+
+		// Prevent default html submit button logic
+		event.preventDefault()
+
+		// Errors object to assign any error values when checking the form details
+		const newErrors = {}
+
+		// If trying to register but username/password are empty strings then new errors object state is true
+		newErrors.username = this.state.username === '' ? true:false
+		newErrors.password = this.state.password === '' ? true:false
+
+		// Set the component's errors state to the newly created errors object
+		this.setState({errors: newErrors})
+
+		// Create a Basic Auth header based on the username and password entered
+		const authHeader = CreateAuthHeader(this.state.user.username, this.state.user.password)
+
+		// Define salt for hashing password
+		const salt = 10
+
+		// Hash the password using bcrypt
+		const passwordHash = bcrypt.hashSync(this.state.user.password, salt)
+
+		// Assign the password attribute to now be the hashed version instead of plaintext
+		const newUser = Object.assign({}, this.state.user, {password: passwordHash})
+
+		// Call backend API to create a new user based on the user credentials entered
+		ApiRequests.addUser(authHeader, newUser)
+			.then((response) => {
+				// If create user successful, set application auth header for the user state (function sent from App component)
+				this.props.onSuccess(authHeader)
+				this.setState({redirect: true}) // Set redirect true to navigate the user to within the application
+			})
+			.catch((reason) => {
+				// If create new user unsuccessful, set state of errors object to show the details were invalid and the user should check them
+				this.setState({errors: {incorrect: true}})
+			})
+	}
+
+	/**
+	 * Form with logo to prompt for new user details or go back to login screen if user doesn't need to create a new account
+	 */
+	render() {
+
+		// If redirect flag is true, next run of render will redirect to home as the user created account successfully
+		if(this.state.redirect) return &lt;Redirect to={'/app/home'}/>
+
+		return (
+			
+			&lt;div className="registerForm">
+
+				&lt;img src={logo}/>
+
+				&lt;h1 className="text-center">Register:&lt;/h1>
+				&lt;form>
+					&lt;label htmlFor="full_name">&lt;b>Full Name&lt;/b>&lt;/label>
+					&lt;input type="text" placeholder="Enter Name" name="full_name" onChange={this.handleInputChange} value={this.state.user.full_name} />
+
+					&lt;label htmlFor="username">&lt;b>Username&lt;/b>&lt;/label>
+					&lt;input type="text" placeholder="Enter Username" name="username" onChange={this.handleInputChange} value={this.state.user.username} />
+					{this.state.errors.username ? &lt;div className="error">Username is required&lt;/div>: null}
+
+					&lt;label htmlFor="password" >&lt;b>Password&lt;/b>&lt;/label>
+					&lt;input type="password" placeholder="Enter Password" name="password" onChange={this.handleInputChange} value={this.state.user.password} />
+					{this.state.errors.password ? &lt;div className="error">password is required&lt;/div>: null}
+
+
+					&lt;label htmlFor="role" >&lt;b>Account Type&lt;/b>&lt;/label>&lt;br/>
+					&lt;div class="form-check form-check-inline">
+						&lt;input class="form-check-input" type="radio" name="role" onChange={this.handleInputChange} id="permissions1" value="viewer" checked/>
+						&lt;label class="form-check-label" for="permissions1">I want to view recipes only&lt;/label>
+					&lt;/div>
+					&lt;div class="form-check form-check-inline">
+						&lt;input class="form-check-input" type="radio" name="role" onChange={this.handleInputChange} id="permissions2" value="creator"/>
+						&lt;label class="form-check-label" for="permissions2">I want to create and view recipes&lt;/label>
+					&lt;/div>
+
+					{this.state.errors.incorrect ? &lt;div className="error">Details were incorrect&lt;/div>: null}
+
+					&lt;button type="submit" onClick={this.handleRegisterClick}>Register&lt;/button>
+				&lt;/form>
+
+				&lt;p>Already have an account? &lt;a href="/">Login.&lt;/a>&lt;/p>
+
+			&lt;/div>
+		)
+	}
+}
+
+// Export component so it can be imported
+export default Register
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="ApiRequests%2520%250AResponsible%2520for%2520HTTP%2520requests%2520to%2520the%2520backend%2520APImodule_.html">ApiRequests 
+Responsible for HTTP requests to the backend API</a></li><li><a href="CreateBasicAuthHeader%2520%250AResponsible%2520for%2520creating%2520a%2520Basic%2520authorization%2520header%2520string%2520from%2520a%2520username%2520and%2520passwordmodule_.html">CreateBasicAuthHeader 
+Responsible for creating a Basic authorization header string from a username and password</a></li></ul><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="Card.html">Card</a></li><li><a href="CreateRecipe.html">CreateRecipe</a></li><li><a href="Grid.html">Grid</a></li><li><a href="Header.html">Header</a></li><li><a href="HighestRatedRecipes.html">HighestRatedRecipes</a></li><li><a href="HomePage.html">HomePage</a></li><li><a href="Ingredients.html">Ingredients</a></li><li><a href="Login.html">Login</a></li><li><a href="MostRecentRecipes.html">MostRecentRecipes</a></li><li><a href="MostViewedRecipes.html">MostViewedRecipes</a></li><li><a href="PreperationSteps.html">PreperationSteps</a></li><li><a href="Recipe.html">Recipe</a></li><li><a href="RecipeAboutAuthor.html">RecipeAboutAuthor</a></li><li><a href="RecipeCommentBox.html">RecipeCommentBox</a></li><li><a href="RecipeComments.html">RecipeComments</a></li><li><a href="RecipeContent.html">RecipeContent</a></li><li><a href="RecipeFooter.html">RecipeFooter</a></li><li><a href="RecipeHeader.html">RecipeHeader</a></li><li><a href="RecipeSharingOptions.html">RecipeSharingOptions</a></li><li><a href="RecipeSoundFile.html">RecipeSoundFile</a></li><li><a href="RecipeVideo.html">RecipeVideo</a></li><li><a href="Register.html">Register</a></li><li><a href="SearchBox.html">SearchBox</a></li><li><a href="SearchResults.html">SearchResults</a></li><li><a href="UserDashboard.html">UserDashboard</a></li><li><a href="UserRecipes.html">UserRecipes</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Dec 14 2018 14:18:28 GMT+0000 (Greenwich Mean Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
