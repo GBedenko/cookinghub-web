@@ -43,9 +43,9 @@ class Protected extends Component {
 				<Route path="/" component={Header}/>
 				<Route exact path="/app/home" render={() => <HomePage authHeader={this.state.authHeader} /> } />
 				<Route exact path="/app/recipe/:id" render={() => <Recipe authHeader={this.state.authHeader} /> } />
-				<Route exact path="/app/recipes" render={() => <SearchResults authHeader={this.state.authHeader}/> } />
-				<Route exact path="/app/user" render={() => <UserDashboard /> } />
-				<Route exact path="/app/create-recipe" render={() => <CreateRecipe /> } />
+				<Route exact path="/app/recipes" render={() => <SearchResults authHeader={this.state.authHeader} /> } />
+				<Route exact path="/app/user" render={() => <UserDashboard authHeader={this.state.authHeader} /> } />
+				<Route exact path="/app/create-recipe" render={() => <CreateRecipe authHeader={this.state.authHeader} /> } />
 			</React.Fragment>
 		)
 	}

@@ -34,7 +34,8 @@ class CreateRecipe extends Component {
 				steps: [''],
 				likes: 0,
 				dislikes: 0},
-			redirect: false // Redirect state changed when wanting to move to new screen
+			redirect: false, // Redirect state changed when wanting to move to new screen
+			authHeaderReceived: false
 		}
 
 		// Ensures the functions in this component understand the 'this' keyword refers to the component functions
@@ -81,9 +82,11 @@ class CreateRecipe extends Component {
 
 		// POST request to backend API to create the new recipe
 		ApiRequests.addRecipe(this.props.authHeader, this.state.new_recipe)
+					.then(() => {
+						// Change value of redirect, which will refresh render of component and use React Redirect
+						this.setState({redirect: true})
+					})
 
-		// Change value of redirect, which will refresh render of component and use React Redirect
-		this.setState({redirect: true})
 	}
 
 	/**
