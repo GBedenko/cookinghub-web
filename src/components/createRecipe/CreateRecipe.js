@@ -259,18 +259,6 @@ class CreateRecipe extends Component {
 							value={this.state.new_recipe.video}/>
 					</div>
 
-					<h4>Audio:</h4>
-					<div className="form-group">
-						<input
-							type="text"
-							className="form-control"
-							name="audio"
-							placeholder="Audio link for Recipe"
-							onChange={this.handleInputChange}
-							value={this.state.new_recipe.audio}/>
-						<br/>
-					</div>
-
 				</form>
 
 				<button type="submit" className="btn btn-primary btn-lg" form="createRecipeForm" value="publish_recipe">Publish Recipe</button>
