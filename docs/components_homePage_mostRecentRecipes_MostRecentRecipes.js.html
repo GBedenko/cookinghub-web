@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/homePage/mostRecentRecipes/MostRecentRecipes.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/homePage/mostRecentRecipes/MostRecentRecipes.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// Import React
+import React, { Component } from 'react'
+
+// Import module for making requests to backend API
+import ApiRequests from '../../../modules/api_requests'
+
+// Import CSS
+import './MostRecentRecipes.css'
+
+// Import child components
+import Grid from '../grid/Grid'
+
+/**
+ * @class MostRecentRecipes component to contain list of recipe tiles sorted by timestamp of their creation descending
+ */
+class MostRecentRecipes extends Component {
+
+	constructor(props){
+
+		// Uses parent 'React Component' properties variables
+		super(props)
+
+		// State variables for this component
+		this.state = {
+			recipes_list: [], // List of recipe objects which will be retrieve from backend API
+			authHeader: ''
+		}
+	}
+
+	// React lifecycle called to check if component should update
+	shouldComponentUpdate(nextProps) {
+
+		// If authHeader prop has been passed to the component, need to update
+		return nextProps.authHeader.length > 0
+	}
+
+	// React lifecycle function to update (used for if prop recieved after component mounts)
+	componentDidUpdate() {
+
+		if(this.state.recipes_list.length == 0 &amp;&amp; this.props.authHeader) {
+			// Request backend API for recipes with params limit of 4 and sorted by timestamp attribute descending
+			ApiRequests.getRecipes(this.props.authHeader, '?limit=4&amp;created=-1')
+				.then( resp => {
+					this.setState({
+						// Set state of recipes list to object retrieved from GET request
+						recipes_list: resp.data
+					})
+				})
+		}
+	}
+
+	componentDidMount(){
+		// Assign the authorization header to this component's state passed from parent
+		this.setState({authHeader: this.props.authHeader})
+	}
+
+	/**
+	 * Component is made up from a grid of 1 row containing 4 elements using the recipes data
+	 */
+	render() {
+		
+		return (
+
+			&lt;div className="MostRecentRecipes">
+				&lt;h3>Most Recent Recipes:&lt;/h3>
+				&lt;div>
+					&lt;Grid items={this.state.recipes_list} colClass="col-m-3" onClick={this.handleThumbnailClicked} rowLength={4} />
+				&lt;/div>
+			&lt;/div>
+		)
+	}
+}
+
+// Export component so it can be imported by others
+export default MostRecentRecipes
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="ApiRequests%2520%250AResponsible%2520for%2520HTTP%2520requests%2520to%2520the%2520backend%2520APImodule_.html">ApiRequests 
+Responsible for HTTP requests to the backend API</a></li><li><a href="CreateBasicAuthHeader%2520%250AResponsible%2520for%2520creating%2520a%2520Basic%2520authorization%2520header%2520string%2520from%2520a%2520username%2520and%2520passwordmodule_.html">CreateBasicAuthHeader 
+Responsible for creating a Basic authorization header string from a username and password</a></li></ul><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="Card.html">Card</a></li><li><a href="CreateRecipe.html">CreateRecipe</a></li><li><a href="Grid.html">Grid</a></li><li><a href="Header.html">Header</a></li><li><a href="HighestRatedRecipes.html">HighestRatedRecipes</a></li><li><a href="HomePage.html">HomePage</a></li><li><a href="Ingredients.html">Ingredients</a></li><li><a href="Login.html">Login</a></li><li><a href="MostRecentRecipes.html">MostRecentRecipes</a></li><li><a href="MostViewedRecipes.html">MostViewedRecipes</a></li><li><a href="PreperationSteps.html">PreperationSteps</a></li><li><a href="Recipe.html">Recipe</a></li><li><a href="RecipeAboutAuthor.html">RecipeAboutAuthor</a></li><li><a href="RecipeCommentBox.html">RecipeCommentBox</a></li><li><a href="RecipeComments.html">RecipeComments</a></li><li><a href="RecipeContent.html">RecipeContent</a></li><li><a href="RecipeFooter.html">RecipeFooter</a></li><li><a href="RecipeHeader.html">RecipeHeader</a></li><li><a href="RecipeSharingOptions.html">RecipeSharingOptions</a></li><li><a href="RecipeSoundFile.html">RecipeSoundFile</a></li><li><a href="RecipeVideo.html">RecipeVideo</a></li><li><a href="Register.html">Register</a></li><li><a href="SearchBox.html">SearchBox</a></li><li><a href="SearchResults.html">SearchResults</a></li><li><a href="UserDashboard.html">UserDashboard</a></li><li><a href="UserRecipes.html">UserRecipes</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Dec 14 2018 14:18:28 GMT+0000 (Greenwich Mean Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
