@@ -21,20 +21,41 @@ class SearchResults extends Component {
 		// State variables for this component
 		this.state = {
 			recipes: [], // List of recipe object which will be retrieved according to query on backend API
-			authHeader: ''
+			authHeader: '',
+			searchQuery: ''
 		}
 	}
 
-	componentDidMount(){
-		// Set the authorization header state to the one passed from parent
-		this.setState({authHeader: this.props.authHeader})
+	// React lifecycle called to check if component should update
+	shouldComponentUpdate(nextProps) {
+
+		// If new search prop has been passed to the component, need to update
+		return nextProps.location.search != this.state.searchQuery
+	}
+
+	// React lifecycle function to update (used for if prop recieved after component mounts)
+	componentDidUpdate() {
 
 		// Call backend API for all recipes and send the url params as search query
 		ApiRequests.getRecipes(this.props.authHeader, this.props.location.search)
 			.then(({ data }) => {
 				// Set the data for all retrieved recipes to the component's state
 				this.setState({
-					recipes: data
+					recipes: data,
+					searchQuery: this.props.location.search
+				})
+			})
+	}
+
+	componentDidMount(){
+
+		// Call backend API for all recipes and send the url params as search query
+		ApiRequests.getRecipes(this.props.authHeader, this.props.location.search)
+			.then(({ data }) => {
+				// Set the data for all retrieved recipes to the component's state
+				this.setState({
+					recipes: data,
+					searchQuery: this.props.location.search
 				})
 			})
 	}

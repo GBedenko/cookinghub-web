@@ -53,7 +53,7 @@ class Header extends Component {
 							<li><Link to={'/app/recipes'}>View All Recipes</Link></li>
 						</ul>
 						<div className="searchBoxContainer">
-							<SearchBox submitSearch={this.submitSearch}/>
+							<SearchBox />
 						</div>
 						<div className="logoutLink">
 							<a className="text-danger" href="/">Logout</a>
