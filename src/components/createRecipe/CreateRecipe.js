@@ -12,7 +12,9 @@ import './CreateRecipe.css'
 import IngredientInput from './inputs/IngredientInput'
 import PreperationStepInput from './inputs/PreperationStepInput'
 
-// CreateRecipe component for interface containing form to create new recipe
+/**
+ * @class CreateRecipe component for interface containing form to create new recipe
+ */
 class CreateRecipe extends Component {
 
 	constructor(props){
@@ -20,10 +22,10 @@ class CreateRecipe extends Component {
 		// Uses parent 'React Component' properties variables
 		super(props)
 
-		// State variables for this component
+    	// State variables for this component
 		this.state = {
 			// Default values for a new recipe (which will be populated from values in form)
-			new_recipe: { 
+			new_recipe: {
 				name: '',
 				category: 'Starter',
 				description: '',
@@ -32,7 +34,8 @@ class CreateRecipe extends Component {
 				steps: [''],
 				likes: 0,
 				dislikes: 0},
-			redirect: false // Redirect state changed when wanting to move to new screen
+			redirect: false, // Redirect state changed when wanting to move to new screen
+			authHeaderReceived: false
 		}
 
 		// Ensures the functions in this component understand the 'this' keyword refers to the component functions
@@ -44,7 +47,10 @@ class CreateRecipe extends Component {
 		this.handleStepArraySubmit = this.handleStepArraySubmit.bind(this)
 	}
 
-	// Handles change of an input field
+	/**
+	 * Handles change of an input field
+	 * @param {*} event Event from component to call this method 
+	 */
 	handleInputChange(event) {
 
 		// Find the field target for the event
@@ -52,43 +58,52 @@ class CreateRecipe extends Component {
 
 		// Retrieve the value from the target
 		const value = target.type === 'checkbox' ? target.checked : target.value
-		
+
 		// Retrieve the name of the field for this input field
 		const name = target.name
 
 		// Take the current state of the recipe and update it with the new updated value
-		let updated_recipe = Object.assign({},this.state.new_recipe,{[name]: value})
-		
+		const updatedRecipe = Object.assign({},this.state.new_recipe,{[name]: value})
+
 		// Set state for the new recipe to contain the changed value
 		this.setState({
-			new_recipe: updated_recipe
+			new_recipe: updatedRecipe
 		})
 	}
 
-	// Handles logic for when submit button is clicked
+	/**
+	 * Handles logic for when submit button is clicked
+	 * @param {*} event Event from component to call this method 
+	 */
 	handleSubmit(event) {
 
 		// Prevent default html submit button logic (which would refresh the page, so needs to be avoided in SPA)
 		event.preventDefault()
-		
+
 		// POST request to backend API to create the new recipe
 		ApiRequests.addRecipe(this.props.authHeader, this.state.new_recipe)
+					.then(() => {
+						// Change value of redirect, which will refresh render of component and use React Redirect
+						this.setState({redirect: true})
+					})
 
-		// Change value of redirect, which will refresh render of component and use React Redirect
-		this.setState({redirect: true})
 	}
 
-	// Handles button for adding a new add ingredient input field
+	/**
+	 * Handles button for adding a new add ingredient input field
+	 * @param {*} event Event from component to call this method 
+	 * @param {*} index Index of ingredients input fields that called this method
+	 */
 	handleIngredientArraySubmit(event, index) {
-		
+
 		// Use the current ingredients array from state
-		let ingr = Array.from(this.state.new_recipe.ingredients)
+		const ingr = Array.from(this.state.new_recipe.ingredients)
 
 		// At the given index, update the ingredients array with input field value
 		ingr[index] = event.target.value
 
 		// Take the current state of the recipe and update the ingredients array with new values
-		let recipe = Object.assign({},this.state.new_recipe,{ingredients: ingr})
+		const recipe = Object.assign({},this.state.new_recipe,{ingredients: ingr})
 
 		// Set state for new recipe to be the updated one
 		this.setState({
@@ -96,32 +111,39 @@ class CreateRecipe extends Component {
 		})
 	}
 
-	// Adds an empty value to the ingredients array when new input field is created
-	addIngredient = (event) => {
+	/**
+	 * Adds an empty value to the ingredients array when new input field is created
+	 * @param {*} event Event from component to call this method 
+	 */
+	addIngredient(event) {
 
 		// Prevent default html behaviour
 		event.preventDefault()
 
 		// Add an empty string to the ingredients array
-		let newIngredients = this.state.new_recipe.ingredients.push("")
+		const newIngredients = this.state.new_recipe.ingredients.push('')
 
 		// Set state of ingredients array to include the new empty ingredient
-		this.setState(({
+		this.setState({
 			ingredients: newIngredients
-		}))
+		})
 	}
 
-	// Handles button for adding a new add step input field
+	/**
+	 * Handles button for adding a new add step input field
+	 * @param {*} event Event from component to call this method 
+	 * @param {*} index Index of steps input fields that called this method
+	 */
 	handleStepArraySubmit(event, index) {
-		
+
 		// Use the current steps array from state
-		let step = Array.from(this.state.new_recipe.steps)
+		const step = Array.from(this.state.new_recipe.steps)
 
 		// At the given index, update the steps array with input field value
 		step[index] = event.target.value
 
 		// Take the current state of the recipe and update the steps array with new values
-		let recipe = Object.assign({},this.state.new_recipe,{steps: step})
+		const recipe = Object.assign({},this.state.new_recipe,{steps: step})
 
 		// Set state for new recipe to be the updated one
 		this.setState({
@@ -129,29 +151,34 @@ class CreateRecipe extends Component {
 		})
 	}
 
-	// Adds an empty value to the steps array when new input field is created
-	addStep = (event) => {
+	/**
+	 * Adds an empty value to the steps array when new input field is created
+	 * @param {*} event Event from component to call this method 
+	 */
+	addStep(event) {
 
 		// Prevent default html behaviour
 		event.preventDefault()
 
 		// Add an empty string to the steps array
-		let newSteps = this.state.new_recipe.steps.push("")
-				
+		const newSteps = this.state.new_recipe.steps.push('')
+
 		// Set state of steps array to include the new empty step
-		this.setState(({
+		this.setState({
 			steps: newSteps
-		}))
+		})
 	}
 
+	/**
+	 * Form for all input fields of a new recipe being created
+	 */
 	render() {
 
 		// If redirect flag is true, next run of render will redirect to home as the recipe was created
-		if(this.state.redirect) return <Redirect to={'/app/home'}/>	
+		if(this.state.redirect) return <Redirect to={'/app/home'}/>
 
 		return (
 
-			// Form for all input fields of a new recipe being created
 			<div className="CreateRecipe">
 				<form id="createRecipeForm" onSubmit={this.handleSubmit}>
 
@@ -200,30 +227,24 @@ class CreateRecipe extends Component {
 					</div>
 
 					<h4>Ingredients:</h4>
-					{this.state.new_recipe.ingredients.map( (val, idx) => {
-						
-						return (
-							<IngredientInput index={idx} 
-							key={"ingredient"+idx} 
-							onChange={this.handleIngredientArraySubmit} 
+					{this.state.new_recipe.ingredients.map( (val, idx) =>
+						<IngredientInput index={idx}
+							key={'ingredient'+idx}
+							onChange={this.handleIngredientArraySubmit}
 							value={this.state.new_recipe.ingredients[idx]}
-							id={"ingredient"+idx} />
-						)
-					})}
+							id={'ingredient'+idx} />
+					)}
 					<button className="btn btn-primary" onClick={this.addIngredient}>Add New Ingredient</button>
 					<br/>
 
 					<h4>Preperation Steps:</h4>
-					{this.state.new_recipe.steps.map( (val, idx) => {
-						
-						return (
-							<PreperationStepInput index={idx} 
-							key={"step"+idx} 
-							onChange={this.handleStepArraySubmit} 
+					{this.state.new_recipe.steps.map( (val, idx) =>
+						<PreperationStepInput index={idx}
+							key={'step'+idx}
+							onChange={this.handleStepArraySubmit}
 							value={this.state.new_recipe.steps[idx]}
-							id={"step"+idx} />
-						)
-					})}
+							id={'step'+idx} />
+					)}
 					<button className="btn btn-primary" onClick={this.addStep}>Add New Preperation Step</button>
 					<br/>
 
@@ -251,9 +272,9 @@ class CreateRecipe extends Component {
 					</div>
 
 				</form>
-				
-				<button type="submit" class="btn btn-primary btn-lg" form="createRecipeForm" value="publish_recipe">Publish Recipe</button>
-			
+
+				<button type="submit" className="btn btn-primary btn-lg" form="createRecipeForm" value="publish_recipe">Publish Recipe</button>
+
 			</div>
 		)
 	}

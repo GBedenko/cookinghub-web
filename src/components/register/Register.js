@@ -17,7 +17,9 @@ import bcrypt from 'bcryptjs'
 // Import logo image from img directory
 import logo from '../../img/logo-full-rectangle.png'
 
-// Register component to force users to require an account, creates a new user in backend API
+/**
+ * @class Register component to force users to require an account, creates a new user in backend API
+ */
 class Register extends Component {
 
 	constructor(props){
@@ -32,7 +34,8 @@ class Register extends Component {
 			user: {
 				full_name: '',
 				username: '',
-				password: ''
+				password: '',
+				role: 'viewer' // Default permissions of a user
 			},
 			// State of any potential errors from the register account inputs
 			errors: {
@@ -48,7 +51,10 @@ class Register extends Component {
 		this.handleRegisterClick = this.handleRegisterClick.bind(this)
 	}
 
-	// Handles change of an input field
+	/**
+	 * Handles change of an input field
+	 * @param {*} event Event from component to call this method 
+	 */
 	handleInputChange(event){
 
 		// Find the field target for the event
@@ -61,14 +67,18 @@ class Register extends Component {
 		const value = target.value
 
 		// From the component state, set a new object as just the user object from the state to include the new value
-		let newUser = Object.assign({}, this.state.user, {[name]: value})
-		
+		const newUser = Object.assign({}, this.state.user, {[name]: value})
+
 		// Set the state of user object to the updated version
 		this.setState({
 			user: newUser
 		})
 	}
 
+	/**
+	 * Handles submission of registering account details from inputs
+	 * @param {*} event Event from component to call this method 
+	 */
 	handleRegisterClick(event){
 
 		// Prevent default html submit button logic
@@ -85,8 +95,8 @@ class Register extends Component {
 		this.setState({errors: newErrors})
 
 		// Create a Basic Auth header based on the username and password entered
-		const authHeader = CreateAuthHeader(this.state.username, this.state.password)
-		
+		const authHeader = CreateAuthHeader(this.state.user.username, this.state.user.password)
+
 		// Define salt for hashing password
 		const salt = 10
 
@@ -94,29 +104,31 @@ class Register extends Component {
 		const passwordHash = bcrypt.hashSync(this.state.user.password, salt)
 
 		// Assign the password attribute to now be the hashed version instead of plaintext
-		let newUser = Object.assign({}, this.state.user, {password: passwordHash})
+		const newUser = Object.assign({}, this.state.user, {password: passwordHash})
 
 		// Call backend API to create a new user based on the user credentials entered
 		ApiRequests.addUser(authHeader, newUser)
-					.then((response) => {
-						// If create user successful, set application auth header for the user state (function sent from App component)
-						this.props.onSuccess(authHeader)
-						this.setState({redirect: true}) // Set redirect true to navigate the user to within the application
-					})
-					.catch((reason) => {
-						// If create new user unsuccessful, set state of errors object to show the details were invalid and the user should check them
-						this.setState({errors: {incorrect: true}})
-					})
+			.then((response) => {
+				// If create user successful, set application auth header for the user state (function sent from App component)
+				this.props.onSuccess(authHeader)
+				this.setState({redirect: true}) // Set redirect true to navigate the user to within the application
+			})
+			.catch((reason) => {
+				// If create new user unsuccessful, set state of errors object to show the details were invalid and the user should check them
+				this.setState({errors: {incorrect: true}})
+			})
 	}
 
+	/**
+	 * Form with logo to prompt for new user details or go back to login screen if user doesn't need to create a new account
+	 */
 	render() {
 
-		// If redirect flag is true, next run of render will redirect to home as the user created account successfully		
-		if(this.state.redirect) return <Redirect to={'/app/home'}/>	
+		// If redirect flag is true, next run of render will redirect to home as the user created account successfully
+		if(this.state.redirect) return <Redirect to={'/app/home'}/>
 
 		return (
-
-			// Form with logo to prompt for new user details or go back to login screen if user doesn't need to create a new account
+			
 			<div className="registerForm">
 
 				<img src={logo}/>
@@ -125,7 +137,7 @@ class Register extends Component {
 				<form>
 					<label htmlFor="full_name"><b>Full Name</b></label>
 					<input type="text" placeholder="Enter Name" name="full_name" onChange={this.handleInputChange} value={this.state.user.full_name} />
-					
+
 					<label htmlFor="username"><b>Username</b></label>
 					<input type="text" placeholder="Enter Username" name="username" onChange={this.handleInputChange} value={this.state.user.username} />
 					{this.state.errors.username ? <div className="error">Username is required</div>: null}
@@ -134,13 +146,24 @@ class Register extends Component {
 					<input type="password" placeholder="Enter Password" name="password" onChange={this.handleInputChange} value={this.state.user.password} />
 					{this.state.errors.password ? <div className="error">password is required</div>: null}
 
+
+					<label htmlFor="role" ><b>Account Type</b></label><br/>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="role" onChange={this.handleInputChange} id="permissions1" value="viewer" checked/>
+						<label class="form-check-label" for="permissions1">I want to view recipes only</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="role" onChange={this.handleInputChange} id="permissions2" value="creator"/>
+						<label class="form-check-label" for="permissions2">I want to create and view recipes</label>
+					</div>
+
 					{this.state.errors.incorrect ? <div className="error">Details were incorrect</div>: null}
 
 					<button type="submit" onClick={this.handleRegisterClick}>Register</button>
 				</form>
-				
+
 				<p>Already have an account? <a href="/">Login.</a></p>
-			
+
 			</div>
 		)
 	}

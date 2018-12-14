@@ -4,7 +4,9 @@ import React, { Component } from 'react'
 // Import CSS
 import './RecipeHeader.css'
 
-// RecipeHeader component containing summary of the recipe details
+/**
+ * @class RecipeHeader component containing summary of the recipe details
+ */
 class RecipeHeader extends Component {
 
 	constructor(props){
@@ -13,9 +15,11 @@ class RecipeHeader extends Component {
 		super(props)
 	}
 
+	/**
+	 * Recipe header component displays name, image, category and description of the recipe
+	 */
 	render() {
 
-		// Recipe header component displays name, image, category and description of the recipe
 		return (
 			<div className="RecipeHeader">
 				<div className="RecipeInfo">

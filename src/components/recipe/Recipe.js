@@ -10,7 +10,9 @@ import RecipeHeader from './recipeHeader/RecipeHeader'
 import RecipeContent from './recipeContent/RecipeContent'
 import RecipeFooter from './recipeFooter/RecipeFooter'
 
-// Recipe component containing child components for different sections of how a recipe is displayed
+/**
+ * @class Recipe component containing child components for different sections of how a recipe is displayed
+ */
 class Recipe extends Component {
 
 	constructor(props){
@@ -31,64 +33,66 @@ class Recipe extends Component {
 				main_image: '',
 				ingredients_list: [],
 				preperation_steps_list: [],
-				video: ''
-			}, 
+				video: '',
+				likes: -1,
+				dislikes: -1,
+				views: -1
+			},
 			authHeader: '' // Authorisation header saved to this component as it makes HTTP calls to backend API
 		}
 	}
-	
+
 	// React lifecycle called to check if component should update
 	shouldComponentUpdate(nextProps) {
-		
+
 		// If authHeader prop has been passed to the component, need to update
 		return nextProps.authHeader.length > 0
 	}
 
 	// React lifecycle function to update (used for if prop recieved after component mounts)
 	componentDidUpdate() {
-		
+
 		if(this.props.authHeader && this.state.recipe.name.length == 0) {
 
 			// Request backend API for recipe data object for the recipe id being viewed
 			ApiRequests.getRecipe(this.props.authHeader, this.state.recipeID)
-						.then(({ data }) => {
-							let retrievedRecipe = {
-								name: data.name,
-								category: data.category,
-								description: data.description,
-								main_image: data.main_image,
-								ingredients_list: data.ingredients,
-								preperation_steps_list: data.steps,
-								video: data.video,
-								likes: data.likes,
-								dislikes: data.dislikes
-							}
+				.then(({ data }) => {
+					const retrievedRecipe = {
+						name: data.name,
+						category: data.category,
+						description: data.description,
+						main_image: data.main_image,
+						ingredients_list: data.ingredients,
+						preperation_steps_list: data.steps,
+						video: data.video,
+						likes: data.likes,
+						dislikes: data.dislikes,
+						views: data.views
+					}
 
-							// Once data retrieved, set it to the state of the component's recipe data
-							this.setState({
-								recipe: retrievedRecipe
-							})				
-						})
-						.catch((reason) => {						
-							console.log(reason)
-						})
+					// Once data retrieved, set it to the state of the component's recipe data
+					this.setState({
+						recipe: retrievedRecipe
+					})
+				})
 		}
 	}
 
 	componentDidMount(){
-		
 		// Assign the authorization header to this component's state passed from parent
 		this.setState({authHeader: this.props.authHeader})
 	}
 
+	/**
+	 * Recipe component is made up of child components which it passes recipe data to
+	 */
 	render() {
-
-		// Recipe component is made up of child components which it passes recipe data to
+		
 		return (
 			<div className="recipe">
 				<RecipeHeader name={this.state.recipe.name} category={this.state.recipe.category} description={this.state.recipe.description} main_image={this.state.recipe.main_image} />
 				<RecipeContent ingredients_list={this.state.recipe.ingredients_list} preperation_steps_list={this.state.recipe.preperation_steps_list} video={this.state.recipe.video} />
-				<RecipeFooter likes={this.state.recipe.likes} dislikes={this.state.recipe.dislikes} authHeader={this.props.authHeader} recipeID={this.state.recipeID} />
+				<RecipeFooter likes={this.state.recipe.likes} dislikes={this.state.recipe.dislikes} authHeader={this.props.authHeader} recipeID={this.state.recipeID} views={this.state.recipe.views}/>
 			</div>
 		)
 	}

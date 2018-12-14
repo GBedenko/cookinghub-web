@@ -4,7 +4,9 @@ import React, { Component } from 'react'
 // Import CSS
 import './RecipeCommentBox.css'
 
-// Component to add a comment to a recipe
+/**
+ * @class Component to add a comment to a recipe
+ */
 class RecipeCommentBox extends Component {
 
 	constructor(props){
@@ -13,6 +15,9 @@ class RecipeCommentBox extends Component {
 		super(props)
 	}
 
+	/**
+	 * Component to add a comment to a recipe
+	 */
 	render() {
 
 		return (

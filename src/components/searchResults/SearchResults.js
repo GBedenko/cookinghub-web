@@ -8,7 +8,9 @@ import './SearchResults.css'
 // Import module for making requests to backend API
 import ApiRequests from '../../modules/api_requests'
 
-// SearchResults is assigned to recipes endpoint to show all recipes matching search criteria
+/**
+ * @class SearchResults is assigned to recipes endpoint to show all recipes matching search criteria
+ */
 class SearchResults extends Component {
 
 	constructor(props){
@@ -29,32 +31,35 @@ class SearchResults extends Component {
 
 		// Call backend API for all recipes and send the url params as search query
 		ApiRequests.getRecipes(this.props.authHeader, this.props.location.search)
-					.then(({ data }) => {
-						// Set the data for all retrieved recipes to the component's state
-						this.setState({
-							recipes: data
-						})
-					})
+			.then(({ data }) => {
+				// Set the data for all retrieved recipes to the component's state
+				this.setState({
+					recipes: data
+				})
+			})
 	}
 
+	/**
+	 * // Map each recipe to HTML displaying the name, category likes and image of the recipe, all wrapped within a React Link
+	 */
 	render() {
 
 		return (
-
-			// Map each recipe to HTML displaying the name, category likes and image of the recipe, all wrapped within a React Link
+			
 			<div className="SearchResults">
 
 				<h3>Your search query found {this.state.recipes.length} results:</h3>
 
 				{this.state.recipes.map((recipe) =>
 
-					<Link to={'/app/recipe/' + recipe._id}>
+					<Link to={'/app/recipe/' + recipe._id} key={recipe._id}>
 						<div className="SearchResult" key={recipe._id}>
 							<div className="row">
 								<div className="col-3"><p>{recipe.name}</p></div>
-								<div className="col-3"><p><b>Category: </b>{recipe.category}</p></div>
-								<div className="col-3"><p>Likes: {recipe.likes}</p></div>
-								<div className="col-3"><img src={recipe.main_image} style={{width: '100px', height: '100px'}}/></div>
+								<div className="col-2"><p><b>Category: </b>{recipe.category}</p></div>
+								<div className="col-2"><p>Likes: {recipe.likes}</p></div>
+								<div className="col-2"><p>Views: {recipe.views}</p></div>
+								<div className="col-2"><img src={recipe.main_image} style={{width: '100px', height: '100px'}}/></div>
 							</div>
 						</div>
 					</Link>

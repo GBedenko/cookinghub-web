@@ -4,7 +4,9 @@ import React, { Component } from 'react'
 // Import child components
 import UserRecipes from './userRecipes/UserRecipes'
 
-// UserDashboard allows to view all of a user's recipes and manage their status on the application
+/**
+ * @class UserDashboard allows to view all of a user's recipes and manage their status on the application
+ */
 class UserDashboard extends Component {
 
 	constructor(props){
@@ -18,9 +20,11 @@ class UserDashboard extends Component {
 		}
 	}
 
+	/**
+	 * Displays the UserRecipes sub-component for the user to manage
+	 */
 	render() {
 
-		// Displays the UserRecipes sub-component for the user to manage
 		return (
 			<div className="UserDashboard">
 				<h1>{this.state.username}'s Dashboard:</h1>

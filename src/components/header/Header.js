@@ -11,7 +11,9 @@ import SearchBox from './searchBox/SearchBox'
 // Import header image from img directory
 import yummyRecipesLogo from '../../img/logo-full.png'
 
-// Header component to show at the top of most pages within application
+/**
+ * @class Header component to show at the top of most pages within application
+ */
 class Header extends Component {
 
 	constructor(props){
@@ -20,16 +22,21 @@ class Header extends Component {
 		super(props)
 	}
 
-	// Function to check if the header component should be rendered on the current page
+	/**
+	 * Function to check if the header component should be rendered on the current page
+	 * @param {*} path URL path to run a regex test against
+	 */
 	checkIfRequired(path) {
 
 		// Regex test to return false if the path contains login or register
 		return !/login|register$/g.test(path)
 	}
 
+	/**
+	 * Component for logo, navigation bar and search box component, also with logout option in header
+	 */
 	render() {
 
-		// Component for logo, navigation bar and search box component, also with logout option in header
 		return (
 
 			<React.Fragment>
@@ -38,12 +45,12 @@ class Header extends Component {
 
 				// Header component using React Router Links instead of a tags so it can remain as SPA
 				<div className="Header">
-					<Link to={"/app/home"}><img src={yummyRecipesLogo} alt="Yummy Recipes Logo" /></Link>
+					<Link to={'/app/home'}><img src={yummyRecipesLogo} alt="Yummy Recipes Logo" /></Link>
 					<div className="row">
 						<ul className="navigationMenu">
-							<li><Link to={"/app/home"}>Home</Link></li>
-							<li><Link to={"/app/create-recipe"}>Create a Recipe</Link></li>
-							<li><Link to={"/app/recipes"}>View All Recipes</Link></li>
+							<li><Link to={'/app/home'}>Home</Link></li>
+							<li><Link to={'/app/create-recipe'}>Create a Recipe</Link></li>
+							<li><Link to={'/app/recipes'}>View All Recipes</Link></li>
 						</ul>
 						<div className="searchBoxContainer">
 							<SearchBox submitSearch={this.submitSearch}/>

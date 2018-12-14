@@ -10,7 +10,9 @@ import RecipeAboutAuthor from './recipeAboutAuthor/RecipeAboutAuthor'
 import RecipeCommentBox from './recipeCommentBox/RecipeCommentBox'
 import RecipeSharingOptions from'./recipeSharingOptions/RecipeSharingOptions'
 
-// RecipeFooter component containing options and other details for a recipe
+/**
+ * @class RecipeFooter component containing options and other details for a recipe
+ */
 class RecipeFooter extends Component {
 
 	constructor(props){
@@ -23,13 +25,15 @@ class RecipeFooter extends Component {
 		}
 	}
 
+	/**
+	 * Component consists of other smaller components to breakdown the UI elements
+	 */
 	render() {
 
-		// Component consists of other smaller components to breakdown the UI elements
 		return (
 
 			<div className="RecipeFooter">
-				<RecipeSharingOptions likes={this.props.likes} dislikes={this.props.dislikes} authHeader={this.props.authHeader} recipeID={this.props.recipeID} />
+				<RecipeSharingOptions likes={this.props.likes} dislikes={this.props.dislikes} authHeader={this.props.authHeader} recipeID={this.props.recipeID} views={this.props.views} />
 				{/* <RecipeComments/> */}
 				<RecipeCommentBox />
 				<RecipeAboutAuthor />

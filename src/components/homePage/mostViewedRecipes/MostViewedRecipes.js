@@ -10,7 +10,9 @@ import './MostViewedRecipes.css'
 // Import child components
 import Grid from '../grid/Grid'
 
-// MostViewedRecipes component to contain list of recipe tiles sorted by views ascending
+/**
+ * @class MostViewedRecipes component to contain list of recipe tiles sorted by views ascending
+ */
 class MostViewedRecipes extends Component {
 
 	constructor(props){
@@ -37,25 +39,27 @@ class MostViewedRecipes extends Component {
 
 		if(this.state.recipes_list.length == 0 && this.props.authHeader) {
 			// Request backend API for recipes with params limit of 4 and sorted by timestamp attribute descending
-			ApiRequests.getRecipes(this.props.authHeader, '?limit=4&view=-1')
-						.then( resp => {
-							this.setState({
-								// Set state of recipes list to object retrieved from GET request
-								recipes_list: resp.data
-							})
-						})
+			ApiRequests.getRecipes(this.props.authHeader, '?limit=4&views=-1')
+				.then( resp => {
+					this.setState({
+						// Set state of recipes list to object retrieved from GET request
+						recipes_list: resp.data
+					})
+				})
 		}
 	}
 
 	componentDidMount(){
-		
+
 		// Assign the authorization header to this component's state passed from parent
 		this.setState({authHeader: this.props.authHeader})
 	}
 
+	/**
+	 * Component is made up from a grid of 1 row containing 4 elements using the recipes data
+	 */
 	render() {
 
-		// Component is made up from a grid of 1 row containing 4 elements using the recipes data
 		return (
 
 			<div className="MostViewedRecipes">

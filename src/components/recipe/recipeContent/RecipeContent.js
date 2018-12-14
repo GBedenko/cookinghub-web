@@ -1,9 +1,6 @@
 // Import React
 import React, { Component } from 'react'
 
-// Import module for making requests to backend API
-import ApiRequests from '../../../modules/api_requests'
-
 // Import CSS
 import './RecipeContent.css'
 
@@ -13,7 +10,9 @@ import PreperationSteps from './preperationsSteps/PreperationSteps'
 import RecipeVideo from './recipeVideo/RecipeVideo'
 import RecipeSoundFile from './recipeSoundFile/RecipeSoundFile'
 
-// RecipeContent contains the main body of a recipe including the ingredients and steps
+/**
+ * @class RecipeContent contains the main body of a recipe including the ingredients and steps
+ */
 class RecipeContent extends Component {
 
 	constructor(props){
@@ -22,15 +21,17 @@ class RecipeContent extends Component {
 		super(props)
 	}
 
+	/**
+	 * RecipeContent consists of smaller components to break down the UI structure
+	 */
 	render() {
 
-		// RecipeContent consists of smaller components to break down the UI structure
 		return (
 			<div className="recipeContent">
 				<Ingredients ingredients_list={this.props.ingredients_list}/>
 				<PreperationSteps preperation_steps_list={this.props.preperation_steps_list}/>
 				<RecipeVideo video={this.props.video}/>
-				<RecipeSoundFile/>
+				{/* <RecipeSoundFile/> */}
 			</div>
 		)
 	}

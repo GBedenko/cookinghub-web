@@ -7,7 +7,9 @@ import './Grid.css'
 // Import child components
 import Card from '../card/Card'
 
-// Grid component which will contain GridRows, which contain Card components
+/**
+ * @class Grid component which will contain GridRows, which contain Card components
+ */
 class Grid extends Component {
 
 	// GridRow requires and array of cards it is going to make and the index of the row
@@ -34,6 +36,9 @@ class Grid extends Component {
 		)
 	}
 
+	/**
+	 * Dynamically creates GridRow components to populate a Grid based on input
+	 */
 	render() {
 
 		// Check that the items array has been passed to the Grid component

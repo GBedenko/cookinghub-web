@@ -9,7 +9,9 @@ import HighestRatedRecipes from './highestRatedRecipes/HighestRatedRecipes'
 import MostRecentRecipes from './mostRecentRecipes/MostRecentRecipes'
 import MostViewedRecipes from './mostViewedRecipes/MostViewedRecipes'
 
-// HomePage component for main content showing after a user logs in
+/**
+ * @class HomePage component for main content showing after a user logs in
+ */
 class HomePage extends Component {
 
 	constructor(props){
@@ -28,9 +30,11 @@ class HomePage extends Component {
 		this.setState({authHeader: this.props.authHeader})
 	}
 
+	/**
+	 * HomePage is made up from child components of lists of sorted recipes
+	 */
 	render() {
-
-		// HomePage is made up from child components of lists of sorted recipes
+		
 		return (
 
 			<div className="HomePage">
