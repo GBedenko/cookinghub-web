@@ -50,7 +50,7 @@ class Header extends Component {
 						<ul className="navigationMenu">
 							<li><Link to={'/app/home'}>Home</Link></li>
 							<li><Link to={'/app/create-recipe'}>Create a Recipe</Link></li>
-							<li><Link to={'/app/recipes'}>View All Recipes</Link></li>
+							<li><Link to={'/app/recipes?query='}>View All Recipes</Link></li>
 						</ul>
 						<div className="searchBoxContainer">
 							<SearchBox />
