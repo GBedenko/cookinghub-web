@@ -1,3 +1,27 @@
-# 304CEM-FRONTEND-DEVELOPMENT-GenaroBedenko-7060234
+# cookinghub-web
 
-## Frontend React App for 304CEM Coursework Assignment - Yummy Recipes Blog
+React Web Application for CookingHub
+
+## Prerequisites
+
+```console
+sudo apt install nodejs
+
+sudo apt install git
+```
+
+## Development Environment Setup
+
+```console
+git clone https://github.com/GBedenko/cookinghub-web
+
+cd cookinghub-web
+
+npm install
+```
+
+## Run Server
+
+```console
+npm start
+```
