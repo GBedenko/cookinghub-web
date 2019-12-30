@@ -9,7 +9,7 @@ import './Header.css'
 import SearchBox from './searchBox/SearchBox'
 
 // Import header image from img directory
-import yummyRecipesLogo from '../../img/logo-full.png'
+import logo from '../../img/logo-full.png'
 
 /**
  * @class Header component to show at the top of most pages within application
@@ -45,7 +45,7 @@ class Header extends Component {
 
 				// Header component using React Router Links instead of a tags so it can remain as SPA
 				<div className="Header">
-					<Link to={'/app/home'}><img src={yummyRecipesLogo} alt="Yummy Recipes Logo" /></Link>
+					<Link to={'/app/home'}><img src={logo} alt="CookingHub Logo" /></Link>
 					<div className="row">
 						<ul className="navigationMenu">
 							<li><Link to={'/app/home'}>Home</Link></li>

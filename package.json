@@ -1,8 +1,8 @@
 {
-  "name": "304cem-frontend-development-genarobedenko-7060234",
+  "name": "cookinghub-web",
   "version": "1.0.0",
   "private": true,
-  "description": "Frontend React App for 304CEM Coursework Assignment",
+  "description": "React Web Application for CookingHub",
   "dependencies": {
     "axios": "^0.18.0",
     "bcrypt": "^3.0.2",
@@ -22,9 +22,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.coventry.ac.uk/304CEM-1819OCTJAN/304CEM-FRONTEND-DEVELOPMENT-GenaroBedenko-7060234"
+    "url": "https://github.com/GBedenko/cookinghub-web"
   },
-  "author": "bedenkog",
+  "author": "GBedenko",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
